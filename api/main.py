@@ -15,7 +15,7 @@ async def say_hello(name: str):
 
 @app.get("/runner/")
 async def run_flagfileexists():
-    status = pwsh.run_pwsh("/Users/amaula/GitHub/codex/checks/FlagFileExists.ps1")
+    status = pwsh.run_pwsh_script("/Users/amaula/GitHub/codex/checks/PrintHello.ps1")
     return {"message": status}
 
 
