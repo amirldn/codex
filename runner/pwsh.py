@@ -1,45 +1,52 @@
 import subprocess, sys
+import logging
+logging.basicConfig(filename='example.log',
+                    encoding='utf-8',
+                    level=logging.NOTSET,
+                    format='%(asctime)s :: %(levelname)s | %(message)s',
+                    datefmt='%m/%d/%Y %I:%M:%S %p')
 
 
-# def run_pwsh(script_path, params=""):
-#     """
-#     Run a powershell command and return the output
-#     """
-#     try:
-#         # p = subprocess.Popen('powershell.exe -ExecutionPolicy RemoteSigned -file "hello world.ps1"', stdout=sys.stdout)
-#         # p.communicate()
-#         process = subprocess.Popen(["pwsh",
-#                               f"{script_path}"],
-#                              stdout=subprocess.PIPE)
-#         while True:
-#             output = process.stdout.readline()
-#             if output.strip() == "b''" and process.poll() is not None:
-#                 return "ERROR: pwsh finished with no output"
-#             if output:
-#                 print("output was given", output.strip())
-#                 return output.strip()
-#     except subprocess.CalledProcessError as e:
-#         return (e.output)
-
-  # POWERSHELL EXE PATH
+# POWERSHELL EXE PATH
 pwsh_path = "pwsh"
 
-def run_pwsh_script(script_path, *params):  # SCRIPT PATH = POWERSHELL SCRIPT PATH,  PARAM = POWERSHELL SCRIPT PARAMETERS ( IF ANY )
 
-    commandline_options = [pwsh_path, '-ExecutionPolicy', 'Unrestricted', script_path]  # ADD POWERSHELL EXE AND EXECUTION POLICY TO COMMAND VARIABLE
-    print("Running command: ", commandline_options)
-    for param in params:  # LOOP FOR EACH PARAMETER FROM ARRAY
-        commandline_options.append("'" + param + "'")  # APPEND YOUR FOR POWERSHELL SCRIPT
+def run_pwsh_script(script_path,
+                    *params):
+    """
+    Run a powershell command and return the output
 
-    process_result = subprocess.run(commandline_options, stdout = subprocess.PIPE, stderr = subprocess.PIPE, universal_newlines = True)  # CALL PROCESS
+    Arguments:
+        script_path {str} -- Path to the PowerShell script
+        *params {[any]]} -- Parameters to pass to the script (if any)
+    """
+    try:
+        commandline_options = [pwsh_path,
+                               '-ExecutionPolicy',
+                               'Unrestricted',
+                               '-NonInteractive',
+                               script_path] + list(params)
+        # TODO: figure out why this does not display to console
+        logging.info("Running command: %s " % str(commandline_options))
+        logging.warn("warning")
+        logging.error("error")
 
-    print(process_result.returncode)  # PRINT RETURN CODE OF PROCESS  0 = SUCCESS, NON-ZERO = FAIL
-    print(process_result.stdout)      # PRINT STANDARD OUTPUT FROM POWERSHELL
-    print(process_result.stderr)      # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
+        process_result = subprocess.run(commandline_options,
+                                        stdout=subprocess.PIPE,
+                                        stderr=subprocess.PIPE,
+                                        universal_newlines=True)  # CALL PROCESS
 
-    if process_result.returncode == 0:  # COMPARING RESULT
-        Message = "Success !"
-    else:
-        Message = "Error Occurred !"
+        print(process_result.returncode)  # PRINT RETURN CODE OF PROCESS  0 = SUCCESS, NON-ZERO = FAIL
+        print(process_result.stdout)  # PRINT STANDARD OUTPUT FROM POWERSHELL
+        print(process_result.stderr)  # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
+        print("hello")
 
-    return Message  # RETURN MESSAGE
+        if process_result.returncode == 0:  # COMPARING RESULT
+            Message = "Success !"
+        else:
+            Message = "Error Occurred !"
+
+        return Message  # RETURN MESSAGE
+    except Exception as e:
+        logging.error(e)
+        return "Internal error has occurred"
