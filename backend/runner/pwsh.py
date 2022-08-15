@@ -1,10 +1,10 @@
 import subprocess, sys
-import logging
-logging.basicConfig(filename='example.log',
-                    encoding='utf-8',
-                    level=logging.NOTSET,
-                    format='%(asctime)s :: %(levelname)s | %(message)s',
-                    datefmt='%m/%d/%Y %I:%M:%S %p')
+# import logging
+# logging.basicConfig(filename='example.log',
+#                     encoding='utf-8',
+#                     level=logging.NOTSET,
+#                     format='%(asctime)s :: %(levelname)s | %(message)s',
+#                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
 
 # POWERSHELL EXE PATH
