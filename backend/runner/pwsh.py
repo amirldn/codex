@@ -1,4 +1,5 @@
 import subprocess, logging
+from backend.runner.pwsh_result import Status
 
 # POWERSHELL EXE PATH
 pwsh_path = "pwsh"
@@ -14,7 +15,8 @@ def run_pwsh_script(
     Run a powershell command and return the output
 
     Arguments:
-        script_path {str} -- Path to the PowerShell script
+        script_filename {str} -- Filename of the  PowerShell script
+        script_path_prefix {str} -- Path to the PowerShell script (default: {script_path_prefix})
         *params {[any]]} -- Parameters to pass to the script (if any)
     """
     try:
@@ -25,21 +27,22 @@ def run_pwsh_script(
                                (script_path_prefix + script_filename)] + list(params)
         logging.info("Running command: %s " % str(' '.join(commandline_options)))
 
+        # Runs the command and returns the output
         process_result = subprocess.run(commandline_options,
                                         stdout=subprocess.PIPE,
                                         stderr=subprocess.PIPE,
-                                        universal_newlines=True)  # CALL PROCESS
+                                        universal_newlines=True)
 
-        logging.info("Return Code: {}".format(process_result.returncode))  # PRINT RETURN CODE OF PROCESS  0 = SUCCESS, NON-ZERO = FAIL
+        logging.debug("Return Code: {}".format(process_result.returncode))  # PRINT RETURN CODE OF PROCESS  0 = SUCCESS, NON-ZERO = FAIL
         if (process_result.stdout):
             logging.debug("stdout: {}".format(process_result.stdout.strip()))  # PRINT STANDARD OUTPUT FROM POWERSHELL
         if (process_result.stderr != ""):
             logging.error("stderr: {}".format(process_result.stderr))  # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
 
         if process_result.returncode == 0:  # COMPARING RESULT
-            Message = "Success !"
+            Message = process_result.stdout.strip()
         else:
-            Message = "Error Occurred !"
+            Message = Status.UNKNOWN
 
         return Message  # RETURN MESSAGE
     except Exception as e:

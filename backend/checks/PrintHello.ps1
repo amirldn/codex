@@ -1,4 +1,4 @@
-# This check looks for the presence of 'here' in the file path specified.
+# This check returns a simple value back as stdout. Used as a test file to ensure things are set up correctly.
 
 
-Write-Output 'OK'
+Write-Output 'OK,Hello was returned;WARN,Goodbye was not returned;ERROR,Hello was not returned'
