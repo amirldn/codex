@@ -1,9 +1,6 @@
 from fastapi import FastAPI
 from backend.runner import pwsh
-from backend.log import log
 import logging
-
-# log.init()
 
 app = FastAPI()
 
