@@ -1,18 +1,18 @@
 import logging, sys
 from datetime import datetime
 
-def get_root_logger():
+def init():
     """Configure the RootLogger by saving to a file & setting up the StreamHandler"""
-    current_date = datetime.today().strftime('%Y-%m-%d')
-    filename = 'codex-api-{}.log'.format(current_date)
-    # TODO: Create folder /logs/backend if it does not exist
-
-    # Log File Config
-    logging.basicConfig(filename='logs/backend/{}'.format(filename),
-                        encoding='utf-8',
-                        level=logging.INFO,
-                        format='%(levelname)s :: %(asctime)s | %(message)s',
-                        datefmt='%m/%d/%Y %I:%M:%S %p')
+    # current_date = datetime.today().strftime('%Y-%m-%d')
+    # filename = 'codex-api-{}.log'.format(current_date)
+    # # TODO: Create folder /logs/backend if it does not exist
+    #
+    # # Log File Config
+    # logging.basicConfig(filename='logs/backend/{}'.format(filename),
+    #                     encoding='utf-8',
+    #                     level=logging.INFO,
+    #                     format='%(levelname)s :: %(asctime)s | %(message)s',
+    #                     datefmt='%m/%d/%Y %I:%M:%S %p')
 
     # Log StreamHandler Config
     log_root = logging.getLogger()

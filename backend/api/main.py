@@ -1,15 +1,15 @@
 from fastapi import FastAPI
 from backend.runner import pwsh
 from backend.log import log
+import logging
 
-log_root = log.get_root_logger()
-
+# log.init()
 
 app = FastAPI()
 
 @app.get("/")
 async def root():
-    log_root.info("/ visited")
+    logging.info("/ visited")
     return {"message": "Hello World"}
 
 @app.get("/hello/{name}")
@@ -23,6 +23,6 @@ async def run_flagfileexists():
 
 @app.get("/printhello/")
 async def run_flagfileexists():
-    log_root.info("printhello called")
+    logging.info("printhello called")
     status = pwsh.run_pwsh_script("/backend/checks/PrintHello.ps1", )
     return {"message": status}
