@@ -1,4 +1,6 @@
-import subprocess, logging
+import logging
+import subprocess
+
 from backend.runner.pwshresult import Status
 
 # POWERSHELL EXE PATH
@@ -9,8 +11,8 @@ script_path_prefix = '/Users/amaula/GitHub/codex/backend/checks/'
 
 def run_pwsh_script(
         script_filename,
-        script_path_prefix=script_path_prefix,
-                    *params):
+        script_path_folder=script_path_prefix,
+        *params):
     """
     Run a powershell command and return the output
 
@@ -24,7 +26,7 @@ def run_pwsh_script(
                                '-ExecutionPolicy',
                                'Unrestricted',
                                '-NonInteractive',
-                               (script_path_prefix + script_filename)] + list(params)
+                               (script_path_folder + script_filename)] + list(params)
         logging.info("Running command: %s " % str(' '.join(commandline_options)))
 
         # Runs the command and returns the output
@@ -33,18 +35,20 @@ def run_pwsh_script(
                                         stderr=subprocess.PIPE,
                                         universal_newlines=True)
 
-        logging.debug("Return Code: {}".format(process_result.returncode))  # PRINT RETURN CODE OF PROCESS  0 = SUCCESS, NON-ZERO = FAIL
-        if (process_result.stdout):
+        logging.debug("Return Code: {}".format(
+            process_result.returncode))  # PRINT RETURN CODE OF PROCESS  0 = SUCCESS, NON-ZERO = FAIL
+        if process_result.stdout:
             logging.debug("stdout: {}".format(process_result.stdout.strip()))  # PRINT STANDARD OUTPUT FROM POWERSHELL
-        if (process_result.stderr != ""):
-            logging.error("stderr: {}".format(process_result.stderr))  # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
+        if process_result.stderr != "":
+            logging.error("stderr: {}".format(
+                process_result.stderr))  # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
 
         if process_result.returncode == 0:  # COMPARING RESULT
-            Message = process_result.stdout.strip()
+            message = process_result.stdout.strip()
         else:
-            Message = Status.UNKNOWN
+            message = Status.UNKNOWN
 
-        return Message  # RETURN MESSAGE
+        return message  # RETURN MESSAGE
     except Exception as e:
         logging.error(e)
         return "Internal error has occurred"
