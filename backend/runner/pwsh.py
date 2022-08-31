@@ -1,5 +1,5 @@
 import subprocess, logging
-from backend.runner.pwsh_result import Status
+from backend.runner.pwshresult import Status
 
 # POWERSHELL EXE PATH
 pwsh_path = "pwsh"

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from backend.runner import pwsh
-from backend.runner.pwsh_result import pwsh_result
+from backend.runner.pwshresult import pwshResult
 import logging
 
 app = FastAPI()
@@ -21,5 +21,6 @@ async def run_flagfileexists():
 
 @app.get("/printhello/")
 async def run_flagfileexists():
-    result = pwsh_result(pwsh.run_pwsh_script("PrintHello.ps1"))
-    return {"pwsh_output": result.result_array}
+    result = pwshResult(pwsh.run_pwsh_script("PrintHello.ps1"))
+    logging.info ("result: {}".format(result.result_json))
+    return result.result_array
