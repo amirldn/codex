@@ -64,7 +64,7 @@ function Sidebar(props) {
           href="https://www.creative-tim.com"
           className="simple-text logo-normal"
         >
-          Creative Tim
+          codex.io
         </a>
       </div>
       <div className="sidebar-wrapper" ref={sidebar}>
