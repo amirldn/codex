@@ -1,3 +1,4 @@
 /.idea/*
 /logs/*
 /codex-api.log
+/frontend/node_modules/
