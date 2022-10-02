@@ -42,4 +42,4 @@ async def run_flagfileexists():
 async def run_flagfileexists():
     result = pwshResult(pwsh.run_pwsh_script("PrintHello.ps1"))
     logging.info ("result: {}".format(result.result_json))
-    return result.result_array
+    return {"data": result.result_array}
