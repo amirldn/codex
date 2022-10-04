@@ -72,7 +72,7 @@
     FunctionsToExport = @('*')
 
     # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
-    CmdletsToExport   = @('Add-CodexOutput', 'Get-CodexOutput', 'Write-CodexOutput')
+    CmdletsToExport   = @('Add-CodexOutput', 'Get-CodexOutput', 'Write-CodexOutput', 'Use-CodexModule')
 
     # Variables to export from this module
     VariablesToExport = '*'

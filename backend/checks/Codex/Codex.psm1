@@ -49,3 +49,33 @@ function Write-CodexOutput {
     [CmdletBinding()]
     $codexOutput | ConvertTo-Json
 }
+
+function Test-Administrator {  
+    $user = [Security.Principal.WindowsIdentity]::GetCurrent();
+    (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
+}
+
+function Use-CodexModule {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory)]
+        [string]$ModuleName
+    )
+
+    $isAdmin = Test-Administrator
+    Set-ExecutionPolicy Unrestricted -Scope CurrentUser -Force
+    
+    # Check if module requires Administrator
+    if ($ModuleName -eq 'PSWindowsUpdate') {
+        if ($isAdmin) {
+            Install-Module PSWindowsUpdate -Force
+        }
+        else {
+            Start-Process powershell -Verb runas -ArgumentList "Install-Module PSWindowsUpdate -Force"
+        }
+    }
+    else {
+        Install-Module $ModuleName -Scope CurrentUser -Force 
+    }
+    
+}
