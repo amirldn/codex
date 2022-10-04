@@ -17,14 +17,19 @@
 New-Variable -Name codexOutput -Value @() -Scope Script -Force
 
 function Add-CodexOutput {
+    [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
         [ValidateSet('Ok', 'Warn', 'Crit')]
         [string]$State,
 
         [Parameter(Mandatory)]
-        [string]$Message
+        [string]$Message,
+
+        [Parameter(Mandatory)]
+        [string]$CheckName
     )
+
     $checkResult = [PSCustomObject]@{
         "CheckName" = 'CheckName'
         "State"     = $State
@@ -36,9 +41,11 @@ function Add-CodexOutput {
 }
 
 function Get-CodexOutput {
+    [CmdletBinding()]
     $codexOutput
 }
 
 function Write-CodexOutput {
+    [CmdletBinding()]
     $codexOutput | ConvertTo-Json
 }
