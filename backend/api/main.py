@@ -39,7 +39,13 @@ async def run_flagfileexists():
     return {"pwsh_output": status}
 
 @app.get("/printhello/")
-async def run_flagfileexists():
+async def run_printhello():
     result = pwshResult(pwsh.run_pwsh_script("PrintHello.ps1"))
+    logging.info ("result: {}".format(result.result_json))
+    return {"data": result.result_array}
+
+@app.get("/testoutput/")
+async def run_test_output():
+    result = pwshResult(pwsh.run_pwsh_script("Test-Output.ps1"))
     logging.info ("result: {}".format(result.result_json))
     return {"data": result.result_array}
