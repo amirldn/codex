@@ -24,7 +24,7 @@ function Add-CodexOutput {
         "Message"   = $Message
     }
     $script:codexOutput += $checkResult
-    Write-Output $codexOutput
+#    Write-Output $codexOutput
 
 }
 
@@ -35,7 +35,18 @@ function Get-CodexOutput {
 
 function Write-CodexOutput {
     [CmdletBinding()]
+    param ()
+    $i = 0
+    $codexOutput | ForEach-Object {
+        $_ | Add-Member -MemberType NoteProperty -Name ID -Value $i -Force
+        $i += 1
+    }
     $codexOutput | ConvertTo-Json
+}
+
+function Clear-CodexOutput {
+    [CmdletBinding()]
+    $script:codexOutput = @()
 }
 
 # Tests if Powershell is running as Administrator

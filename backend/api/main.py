@@ -46,6 +46,7 @@ async def run_printhello():
 
 @app.get("/testoutput/")
 async def run_test_output():
-    result = pwshResult(pwsh.run_pwsh_script("Test-Output.ps1"))
-    logging.info ("result: {}".format(result.result_json))
-    return {"data": result.result_array}
+    result = pwsh.run_pwsh_script("Test-Output.ps1")
+    logging.info ("result: {}".format(result))
+    # TODO: Need to strip the newline chars as when it gets displayed on the site, it looks messed up
+    return {"data": result}

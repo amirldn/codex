@@ -48,6 +48,7 @@ def to_result_dict(stdout):
     return check_result_array
 
 
+
 class pwshResult:
 
     def __init__(self, stdout):
