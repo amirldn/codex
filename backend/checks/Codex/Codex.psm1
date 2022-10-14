@@ -15,6 +15,7 @@
 # have a validate set also for Ok, Warn and Crit
 
 New-Variable -Name codexOutput -Value @() -Scope Script -Force
+$ErrorActionPreference = 'Stop'
 
 function Add-CodexOutput {
     [CmdletBinding()]
@@ -50,9 +51,58 @@ function Write-CodexOutput {
     $codexOutput | ConvertTo-Json
 }
 
-function Test-Administrator {  
-    $user = [Security.Principal.WindowsIdentity]::GetCurrent();
-    (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)  
+# Tests if Powershell is running as Administrator
+# Requires Windows
+function Test-CodexAdministrator {
+
+    if (Test-CodexOS -AllowedOS Windows)
+    {
+        $user = [Security.Principal.WindowsIdentity]::GetCurrent();
+        (New-Object Security.Principal.WindowsPrincipal $user).IsInRole([Security.Principal.WindowsBuiltinRole]::Administrator)
+    }
+    else
+    {
+        "Unsupported"
+    }
+}
+
+# Determines what OS is running
+function Get-CodexOS {
+    if ($isWindows)
+    {
+        "Windows"
+    }
+    elseif ($isLinux)
+    {
+        "Linux"
+    }
+    elseif ($isMacOS)
+    {
+        "MacOS"
+    }
+    else
+    {
+        "Unknown"
+    }
+}
+
+# Helper command to check if a cmdlet can be ran on this OS
+function Test-CodexOS {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory)]
+        [ValidateSet('Windows', 'Linux', 'MacOS')]
+        [string]$AllowedOS
+    )
+
+    if ($AllowedOS -eq (Get-CodexOS))
+    {
+        return $true
+    }
+    else
+    {
+        return $false
+    }
 }
 
 function Use-CodexModule {
