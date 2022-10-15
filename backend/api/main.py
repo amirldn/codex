@@ -1,7 +1,13 @@
+import json
+
 from fastapi import FastAPI
+from fastapi.encoders import jsonable_encoder
+
 from backend.runner import pwsh
 from backend.runner.pwshresult import pwshResult
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from pydantic import BaseModel
 import logging
 
 app = FastAPI()
@@ -46,7 +52,6 @@ async def run_printhello():
 
 @app.get("/testoutput/")
 async def run_test_output():
-    result = pwsh.run_pwsh_script("Test-Output.ps1")
+    result = pwsh.run_and_return("Test-Output.ps1")
     logging.info ("result: {}".format(result))
-    # TODO: Need to strip the newline chars as when it gets displayed on the site, it looks messed up
     return {"data": result}

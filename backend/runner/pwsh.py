@@ -1,3 +1,4 @@
+import json
 import logging
 import subprocess
 
@@ -7,6 +8,19 @@ from backend.runner.pwshresult import Status
 pwsh_path = "pwsh"
 # TODO: Set this to be some env variable using os
 script_path_prefix = '/Users/amaula/GitHub/codex/backend/checks/'
+
+
+def convert_to_dict(result):
+    """
+    Convert the result to a dictionary
+
+    Arguments:
+        result {str} -- Result from the PowerShell script
+
+    Returns:
+        dict -- Dictionary of the result
+    """
+    return json.loads(result)
 
 
 def run_pwsh_script(
@@ -49,6 +63,26 @@ def run_pwsh_script(
             message = Status.UNKNOWN
 
         return message  # RETURN MESSAGE
+    except Exception as e:
+        logging.error(e)
+        return "Internal error has occurred"
+
+
+def run_and_return(
+        script_filename,
+        script_path_folder=script_path_prefix,
+        *params):
+    """
+    Wrapper for running a powershell command and return the output as a dict
+
+    Arguments:
+        script_filename {str} -- Filename of the  PowerShell script
+        script_path_prefix {str} -- Path to the PowerShell script (default: {script_path_prefix})
+        *params {[any]]} -- Parameters to pass to the script (if any)
+    """
+    try:
+        result = run_pwsh_script(script_filename, script_path_folder, *params)
+        return convert_to_dict(result)
     except Exception as e:
         logging.error(e)
         return "Internal error has occurred"

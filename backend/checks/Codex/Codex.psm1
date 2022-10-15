@@ -19,7 +19,7 @@ function Add-CodexOutput {
     )
 
     $checkResult = [PSCustomObject]@{
-        "CheckName" = 'CheckName'
+        "CheckName" = $CheckName
         "State"     = $State
         "Message"   = $Message
     }
