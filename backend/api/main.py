@@ -1,6 +1,6 @@
 import json
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from fastapi.encoders import jsonable_encoder
 
 from backend.runner import pwsh
@@ -41,8 +41,10 @@ async def say_hello(name: str):
 
 @app.get("/flagfileexists/")
 async def run_flagfileexists():
-    status = pwsh.run_pwsh_script("FlagFileExists.ps1", '/Users/amaula/GitHub/codex/tests/flag.txt')
-    return {"pwsh_output": status}
+    result = pwsh.run_and_return("Test-FlagFileExists.ps1", '/Users/amaula/GitHub/codex/tests/flag.txt')
+    if "Internal Error" in result:
+        raise HTTPException(status_code=400, detail=result, )
+    return {"data": result}
 
 @app.get("/printhello/")
 async def run_printhello():

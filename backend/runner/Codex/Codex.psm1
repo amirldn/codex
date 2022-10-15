@@ -8,7 +8,7 @@ function Add-CodexOutput {
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
-        [ValidateSet('Ok', 'Warn', 'Crit')]
+        [ValidateSet('Ok', 'Warn', 'Crit', 'Unknown')]
         [string]$State,
 
         [Parameter(Mandatory)]

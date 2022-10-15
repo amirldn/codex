@@ -2,8 +2,6 @@ import json
 import logging
 import subprocess
 
-from backend.runner.pwshresult import Status
-
 # POWERSHELL EXE PATH
 pwsh_path = "pwsh"
 # TODO: Set this to be some env variable using os
@@ -60,12 +58,12 @@ def run_pwsh_script(
         if process_result.returncode == 0:  # COMPARING RESULT
             message = process_result.stdout.strip()
         else:
-            message = Status.UNKNOWN
+            message = "UNKNOWN: " + process_result.stderr.strip()
 
         return message  # RETURN MESSAGE
     except Exception as e:
         logging.error(e)
-        return "Internal error has occurred"
+        return "Internal Error : " + str(e)
 
 
 def run_and_return(
@@ -85,4 +83,4 @@ def run_and_return(
         return convert_to_dict(result)
     except Exception as e:
         logging.error(e)
-        return "Internal error has occurred"
+        return e

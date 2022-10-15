@@ -7,10 +7,12 @@ param (
     $FilePath
 )
 
+Import-Module /Users/amaula/GitHub/codex/runner/checks/Codex/Codex.psm1 -Force
+
 $content = Get-Content -Path $FilePath -ErrorAction SilentlyContinue
 if ($content -eq 'here') {
-    Write-Output "OK"
+    Add-CodexOutput -CheckName "FlagFileExists" -State Ok -Message "Content '$content' was found"
 }
 else {
-    Write-Output "CRIT"
+    Add-CodexOutput -CheckName "FlagFileExists" -State Crit -Message "Content was not found"
 }

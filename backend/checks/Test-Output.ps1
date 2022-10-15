@@ -1,6 +1,6 @@
 # This check returns a simple value back as stdout. Used as a test file to ensure things are set up correctly.
 
-Import-Module /Users/amaula/GitHub/codex/backend/checks/Codex/Codex.psm1 -Force
+Import-Module /Users/amaula/GitHub/codex/backend/runner/Codex/Codex.psm1 -Force
 #Clear-CodexOutput
 
 # Add some Codex output and display it
