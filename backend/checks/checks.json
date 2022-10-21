@@ -1,0 +1,46 @@
+{
+   "checks":[
+      {
+         "name":"Test-Output",
+         "filename":"Test-Output.ps1",
+         "category":"Testing",
+         "os":"Windows, MacOS"
+      },
+      {
+         "name":"Test-FlagFileExists",
+         "filename":"Test-FlagFileExists.ps1",
+         "category":"Testing",
+         "os":"Windows, MacOS"
+      },
+      {
+         "name":"Check-WindowsUpdate",
+         "filename":"Check-WindowsUpdate.ps1",
+         "category":"Patching",
+         "os":"Windows"
+      },
+      {
+         "name":"Check-WindowsFirewall",
+         "filename":"Check-WindowsFirewall.ps1",
+         "category":"Security",
+         "os":"Windows"
+      },
+      {
+         "name":"Check-GuestAccount",
+         "filename":"Check-GuestAccount.ps1",
+         "category":"Security",
+         "os":"Windows"
+      },
+      {
+         "name":"Check-ProcessRunningAsAdmin",
+         "filename":"Check-ProcessRunningAsAdmin.ps1",
+         "category":"Security",
+         "os":"Windows"
+      },
+      {
+         "name":"Check-SoftwareUpdate",
+         "filename":"Check-SoftwareUpdate.ps1",
+         "category":"Patching",
+         "os":"Windows"
+      }
+   ]
+}

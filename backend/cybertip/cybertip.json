@@ -1,41 +1,39 @@
 {
-  "tips": [
-    {
-      "id": 1,
-      "title": "Turn on 2-Factor Authentication (2FA)",
-      "description": "Turning on 2FA is one of the most effective ways to protect your online accounts from cyber criminals.\n\n\nYou should protect your most important accounts (such as email, banking, social media and online shopping) by making sure you have 2-factor authentication turned on for each of them.\n\n2-factor authentication (2FA), which is also known as two-factor authentication (2FA) or multi-factor authentication (MFA), helps to keep cyber criminals out of your accounts, even if they know your passwords. The NCSC recommend you take time to set up 2-factor authentication on all your important accounts, even for ones that you've protected with strong passwords."
-    },
-    {
-      "id": 2,
-      "title": "Back up your data frequently",
-      "description": "Don't be a victim to ransomware or even something like losing your device! Maintain frequent backups of your content on a separate device or in the cloud. This will help you recover your data if you lose it or it gets corrupted."
-    },
-    {
-      "id": 3,
-      "title": "Use a password manager",
-      "description": "A password manager is a software program that stores your passwords in an encrypted database. It then automatically fills in your login information when you need it. This is a great way to keep your passwords secure and easy to use."
-    },
-    {
-      "id": 4,
-        "title": "Use a VPN",
-        "description": "A VPN (Virtual Private Network) is a service that allows you to connect to the internet through a secure server. This means that your internet traffic is encrypted and your IP address is hidden. This is a great way to protect your privacy and security online."
-    },
-    {
-    "id": 5,
-    "title": "Use a secure browser",
-    "description": "A secure browser is a browser that protects your privacy and security online. It does this by blocking trackers and ads, and by encrypting your internet traffic. This is a great way to protect your privacy and security online."
-    },
-    {
-      "id": 6,
-        "title": "Use a secure email provider",
-        "description": "A secure email provider is an email provider that protects your privacy and security online. It does this by encrypting your emails and by blocking trackers and ads. This is a great way to protect your privacy and security online."
-    },
-    {
-      "id": 7,
-      "title": "Use a secure messaging app",
-      "description": "A secure messaging app is a messaging app that protects your privacy and security online. It does this by encrypting your messages and by blocking trackers and ads. This is a great way to protect your privacy and security online."
-  }
-  ]
+   "tips":[
+      {
+         "id":1,
+         "title":"Turn on 2-Factor Authentication (2FA)",
+         "description":"Turning on 2FA is one of the most effective ways to protect your online accounts from cyber criminals.\n\n\nYou should protect your most important accounts (such as email, banking, social media and online shopping) by making sure you have 2-factor authentication turned on for each of them.\n\n2-factor authentication (2FA), which is also known as two-factor authentication (2FA) or multi-factor authentication (MFA), helps to keep cyber criminals out of your accounts, even if they know your passwords. The NCSC recommend you take time to set up 2-factor authentication on all your important accounts, even for ones that you've protected with strong passwords."
+      },
+      {
+         "id":2,
+         "title":"Back up your data frequently",
+         "description":"Don't be a victim to ransomware or even something like losing your device! Maintain frequent backups of your content on a separate device or in the cloud. This will help you recover your data if you lose it or it gets corrupted."
+      },
+      {
+         "id":3,
+         "title":"Use a password manager",
+         "description":"A password manager is a software program that stores your passwords in an encrypted database. It then automatically fills in your login information when you need it. This is a great way to keep your passwords secure and easy to use."
+      },
+      {
+         "id":4,
+         "title":"Use a VPN",
+         "description":"A VPN (Virtual Private Network) is a service that allows you to connect to the internet through a secure server. This means that your internet traffic is encrypted and your IP address is hidden. This is a great way to protect your privacy and security online."
+      },
+      {
+         "id":5,
+         "title":"Use a secure browser",
+         "description":"A secure browser is a browser that protects your privacy and security online. It does this by blocking trackers and ads, and by encrypting your internet traffic. This is a great way to protect your privacy and security online."
+      },
+      {
+         "id":6,
+         "title":"Use a secure email provider",
+         "description":"A secure email provider is an email provider that protects your privacy and security online. It does this by encrypting your emails and by blocking trackers and ads. This is a great way to protect your privacy and security online."
+      },
+      {
+         "id":7,
+         "title":"Use a secure messaging app",
+         "description":"A secure messaging app is a messaging app that protects your privacy and security online. It does this by encrypting your messages and by blocking trackers and ads. This is a great way to protect your privacy and security online."
+      }
+   ]
 }
-
-
