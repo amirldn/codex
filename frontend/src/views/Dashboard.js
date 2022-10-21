@@ -36,6 +36,7 @@ import {
   dashboardNASDAQChart
 } from "variables/charts.js";
 import CyberTip from "../components/CyberTip/CyberTip";
+import 'animate.css';
 
 function Dashboard() {
   return (
@@ -245,6 +246,7 @@ function Dashboard() {
                     </Row>
                 </CardBody>
                 <CardFooter>
+                  <hr />
                   <CyberTip />
                 </CardFooter>
               </Card>

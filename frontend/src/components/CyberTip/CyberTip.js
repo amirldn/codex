@@ -3,6 +3,7 @@
 import React, {useEffect} from "react";
 import {Card, CardBody} from "reactstrap";
 
+import 'animate.css';
 
 const TipContext = React.createContext({
   tip: [], fetchTip: () => {
@@ -19,13 +20,23 @@ export default function CyberTip(props) {
     setTip(data.data);
   }
 
-  useEffect(() => {
-      fetchTip();
-  }, []);
+
+
+  // Refresh the component every 30 seconds but make it fetch as soon as it is loaded
+    useEffect(() => {
+        const interval = setInterval(() => {
+            fetchTip();
+        }, 30000);
+        fetchTip();
+        return () => clearInterval(interval);
+    }, []);
+
+
+
 
   return (
     <TipContext.Provider value={{tip, fetchTip}}>
-      <div className="rounded bg-secondary p-1">
+      <div className="animate__animated animate__fadeInUp rounded bg-secondary p-1">
         <Card className="card-tip-of-the-day m-1">
             <CardBody>
               <h3><i className="nc-icon nc-bulb-63"/> Cyber Tip of the Day</h3>
@@ -37,7 +48,7 @@ export default function CyberTip(props) {
         {/*<div className="rounded bg-secondary text-white">*/}
         {/*  <p>hello</p>*/}
         {/*</div>*/}
-      </div>>
+      </div>
     </TipContext.Provider>
 
   )
