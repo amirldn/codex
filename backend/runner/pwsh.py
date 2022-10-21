@@ -58,34 +58,28 @@ def run_pwsh_script(
 
         if process_result.returncode == 0:
             # Return the output and the return code if successful
+            logging.debug("pwsh ran successfully")
             stdout = process_result.stdout.strip()
             return stdout, process_result.returncode
         else:
             # If an internal error occurs, create a JSON to return
-            logging.debug("pwsh did not return 0")
-            error = {"fault":
-                {
-                    "brief": "Pwsh Runner Non-Zero Error",
-                    "stderr": process_result.stderr.strip(),
-                    "stdout": process_result.stdout.strip(),
-                    "code": process_result.returncode
-
-                }
+            logging.error("pwsh ran with non-zero exit code")
+            error = {"fault": {
+                "brief": "Pwsh Runner Non-Zero Error",
+                "stderr": process_result.stderr.strip(),
+                "stdout": process_result.stdout.strip(),
+                "code": process_result.returncode}
             }
             return error, process_result.returncode
 
     except Exception:
-        error = {"fault":
-            {
-                "brief": "Pwsh Internal Runner Error",
-                "detail": {
-                    "stderr": process_result.stderr.strip(),
-                    "stdout": process_result.stdout.strip()},
-                "code": process_result.returncode
-
-            }
+        error = {"fault": {
+            "brief": "Pwsh Runner Non-Zero Error",
+            "stderr": process_result.stderr.strip(),
+            "stdout": process_result.stdout.strip(),
+            "code": process_result.returncode}
         }
-        logging.error("pwsh exception occured: {}".format(error))
+        logging.error("pwsh exception occurred: {}".format(error))
         return error
 
 
