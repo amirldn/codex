@@ -35,6 +35,7 @@ import {
   dashboardEmailStatisticsChart,
   dashboardNASDAQChart
 } from "variables/charts.js";
+import CyberTip from "../components/CyberTip/CyberTip";
 
 function Dashboard() {
   return (
@@ -244,17 +245,7 @@ function Dashboard() {
                     </Row>
                 </CardBody>
                 <CardFooter>
-                  <div className="rounded bg-secondary p-1">
-                    <Card className="card-tip-of-the-day m-1">
-                        <CardBody>
-                            <h3><i className="nc-icon nc-bulb-63"/> Cyber Tip of the Day</h3>
-                            <p>Use the <b>System Status</b> page to see the health of your system. If you see any issues, you can click on the issue to see more details.</p>
-                        </CardBody>
-                    </Card>
-                    {/*<div className="rounded bg-secondary text-white">*/}
-                    {/*  <p>hello</p>*/}
-                    {/*</div>*/}
-                  </div>
+                  <CyberTip />
                 </CardFooter>
               </Card>
             </Col>
