@@ -25,6 +25,12 @@
          "os":"Windows"
       },
       {
+         "name": "Check-WindowsDefender",
+         "filename": "Check-WindowsDefender.ps1",
+         "category": "Security",
+         "os": "Windows"
+      },
+      {
          "name":"Check-GuestAccount",
          "filename":"Check-GuestAccount.ps1",
          "category":"Security",

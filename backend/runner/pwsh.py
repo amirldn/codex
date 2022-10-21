@@ -1,6 +1,7 @@
 import json
 import logging
 import subprocess
+import re
 
 # POWERSHELL EXE PATH
 pwsh_path = "pwsh"
@@ -20,6 +21,16 @@ def convert_to_dict(result):
     """
     return json.loads(result)
 
+
+def clean_output(string):
+    """
+    Clean the output of the PowerShell script of any ansi escape codes
+    """
+#     if \u001b[96m exists in the string, remove it
+    def remove_ansi_escape_sequences(string):
+        ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
+        return ansi_escape.sub('', string)
+    return remove_ansi_escape_sequences(string)
 
 def run_pwsh_script(
         script_filename,
@@ -70,6 +81,7 @@ def run_pwsh_script(
         else:
             # If an internal error occurs, create a JSON to return
             logging.error("pwsh ran but produced stderr")
+            process_result.stderr = clean_output(process_result.stderr)
             error = {"fault": {
                 "brief": "Pwsh Runner Stderr Error",
                 "stderr": process_result.stderr.strip(),
@@ -83,6 +95,7 @@ def run_pwsh_script(
                 return error, process_result.returncode
 
     except Exception:
+        process_result.stderr = clean_output(process_result.stderr)
         error = {"fault": {
             "brief": "Pwsh Runner Non-Zero Error",
             "stderr": process_result.stderr.strip(),

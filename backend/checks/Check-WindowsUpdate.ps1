@@ -8,7 +8,7 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
-Import-Module ./Codex/Codex.psd1 -Force
+Import-Module /Users/amaula/GitHub/codex/backend/runner/Codex/Codex.psm1 -Force
 
 # use the codex helper module to install PSWindowsUpdate module correctly
 Use-CodexModule -ModuleName PSWindowsUpdate

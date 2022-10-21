@@ -25,3 +25,12 @@ async def run_test_output():
     if 'fault' in result:
         raise HTTPException(status_code=500, detail=result)
     return result
+
+
+@router.get("/checkfirewall/",
+            summary="Runs the Check-WindowsFirewall check")
+async def run_test_output():
+    result = pwsh.run_and_return("Check-WindowsFirewall.ps1")
+    if 'fault' in result:
+        raise HTTPException(status_code=500, detail=result)
+    return result

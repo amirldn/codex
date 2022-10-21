@@ -109,6 +109,35 @@ $ModuleCompatibility = @{
     "PSWindowsUpdate" = "Windows"
 }
 
+
+function Get-CodexCompatibleCheck {
+    [CmdletBinding()]
+    param ()
+    $json = Get-Content -Path '/Users/amaula/GitHub/codex/backend/checks/checks.json' | ConvertFrom-Json
+    $checks = $json.checks
+
+    $os = Get-CodexOS
+    $compatible = @()
+    $checks | foreach {
+       if ($_.os == $os)
+       {
+           $compatible += $_
+       }
+    }
+    $compatible | ConvertTo-Json -AsArray
+}
+
+function New-CodexCompatibleCheckList {
+    [CmdletBinding()]
+    param (
+        [Parameter(Mandatory)]
+        [string]$Path = '/Users/amaula/GitHub/codex/backend/local/compatiblechecks.json'
+    )
+
+    $checks = Get-CodexCompatibleCheck
+    $checks | Out-File -FilePath $Path
+}
+
 # Installs third party modules
 function Use-CodexModule {
     [CmdletBinding()]
@@ -152,6 +181,7 @@ function Start-CodexModule {
     [CmdletBinding()]
     param ()
     $os = Get-CodexOS
+    New-CodexCompatibleCheckList
     $modulesToUse = foreach ($module in $ModuleCompatibility.Keys) {
         if ($ModuleCompatibility[$module] -eq $os) {
             $module.Value
