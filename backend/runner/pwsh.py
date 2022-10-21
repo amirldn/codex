@@ -54,23 +54,33 @@ def run_pwsh_script(
                 "pwsh stdout: {}".format(process_result.stdout.strip()))  # PRINT STANDARD OUTPUT FROM POWERSHELL
         if process_result.stderr != "":
             logging.error("pwsh stderr: {}".format(
-                process_result.stderr))  # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
+                process_result.stderr.strip()))  # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
 
-        if process_result.returncode == 0:
-            # Return the output and the return code if successful
+        # If pwsh produces no output, treat it as an error
+        if not process_result.stdout and not process_result.stderr:
+            process_result.stdout = script_filename
+            process_result.stderr = 'NO OUTPUT PRODUCED BY POWERSHELL SCRIPT'
+            process_result.returncode = 0
+
+        if not process_result.stderr:
+            # Return the output and the return code if pwsh ran successfully
             logging.debug("pwsh ran successfully")
             stdout = process_result.stdout.strip()
-            return stdout, process_result.returncode
+            return stdout, 0
         else:
             # If an internal error occurs, create a JSON to return
-            logging.error("pwsh ran with non-zero exit code")
+            logging.error("pwsh ran but produced stderr")
             error = {"fault": {
-                "brief": "Pwsh Runner Non-Zero Error",
+                "brief": "Pwsh Runner Stderr Error",
                 "stderr": process_result.stderr.strip(),
                 "stdout": process_result.stdout.strip(),
                 "code": process_result.returncode}
             }
-            return error, process_result.returncode
+            # Workaround for when error occurs but gives 0 code
+            if process_result.returncode == 0:
+                return error, 1
+            else:
+                return error, process_result.returncode
 
     except Exception:
         error = {"fault": {
@@ -97,13 +107,15 @@ def run_and_return(
     try:
         output, code = run_pwsh_script(script_filename, *params)
         if code == 0:
+            logging.debug("creating dict from output")
+            print(output)
             output_as_dict = convert_to_dict(output)
             return_value = {"data": output_as_dict}
             return return_value
         else:
-            logging.debug("pwsh run_and_return did not get a  0")
+            logging.debug("pwsh run_and_return did not get a 0")
             return_value = output
             return return_value
     except Exception as e:
-        logging.error("pwsh run_and_return error occurred: {}".format(e))
+        logging.error("pwsh run_and_return exception occurred: {}".format(e))
         return e
