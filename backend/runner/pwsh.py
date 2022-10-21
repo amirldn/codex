@@ -23,14 +23,14 @@ def convert_to_dict(result):
 
 def run_pwsh_script(
         script_filename,
-        script_path_folder=script_path_prefix,
+        # script_path_folder=script_path_prefix,
         *params):
     """
     Run a powershell command and return the output
 
     Arguments:
         script_filename {str} -- Filename of the  PowerShell script
-        script_path_prefix {str} -- Path to the PowerShell script (default: {script_path_prefix})
+        # script_path_prefix {str} -- Path to the PowerShell script (default: {script_path_prefix})
         *params {[any]]} -- Parameters to pass to the script (if any)
     """
     try:
@@ -38,7 +38,7 @@ def run_pwsh_script(
                                '-ExecutionPolicy',
                                'Unrestricted',
                                '-NonInteractive',
-                               (script_path_folder + script_filename)] + list(params)
+                               (script_path_prefix + script_filename)] + list(params)
         logging.info("Running command: %s " % str(' '.join(commandline_options)))
 
         # Runs the command and returns the output
@@ -85,24 +85,25 @@ def run_pwsh_script(
 
 def run_and_return(
         script_filename,
-        script_path_folder=script_path_prefix,
         *params):
     """
     Wrapper for running a powershell command and return the output as a dict
 
     Arguments:
         script_filename {str} -- Filename of the  PowerShell script
-        script_path_prefix {str} -- Path to the PowerShell script (default: {script_path_prefix})
+        # script_path_prefix {str} -- Path to the PowerShell script (default: {script_path_prefix})
         *params {[any]]} -- Parameters to pass to the script (if any)
     """
     try:
-        output, code = run_pwsh_script(script_filename, script_path_folder, *params)
+        output, code = run_pwsh_script(script_filename, *params)
         if code == 0:
             output_as_dict = convert_to_dict(output)
             return_value = {"data": output_as_dict}
             return return_value
         else:
+            logging.debug("pwsh run_and_return did not get a  0")
             return_value = output
             return return_value
     except Exception as e:
+        logging.error("pwsh run_and_return error occurred: {}".format(e))
         return e

@@ -1,0 +1,16 @@
+{
+  "tips": [
+    {
+      "id": 1,
+      "title": "Turn on 2-Factor Authentication (2FA)",
+      "description": "Turning on 2FA is one of the most effective ways to protect your online accounts from cyber criminals.\n\n\nYou should protect your most important accounts (such as email, banking, social media and online shopping) by making sure you have 2-factor authentication turned on for each of them.\n\n2-factor authentication (2FA), which is also known as two-factor authentication (2FA) or multi-factor authentication (MFA), helps to keep cyber criminals out of your accounts, even if they know your passwords. The NCSC recommend you take time to set up 2-factor authentication on all your important accounts, even for ones that you've protected with strong passwords."
+    },
+    {
+      "id": 2,
+      "title": "Back up your data frequently",
+      "description": "Don't be a victim to ransomware or even something like losing your device! Maintain frequent backups of your content on a separate device or in the cloud. This will help you recover your data if you lose it or it gets corrupted."
+    }
+  ]
+}
+
+
