@@ -1,14 +1,9 @@
 import json
 
 from fastapi import FastAPI, HTTPException
-from fastapi.encoders import jsonable_encoder
-
-from backend.runner import pwsh
-from backend.runner.pwshresult import pwshResult
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 import logging
+from .routers import runner, cybertip
 
 app = FastAPI()
 
@@ -39,21 +34,6 @@ async def root():
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
 
-@app.get("/flagfileexists/")
-async def run_flagfileexists():
-    result = pwsh.run_and_return("Test-FlagFileExists.ps1", '/Users/amaula/GitHub/codex/tests/flag.txt')
-    if "Internal Error" in result:
-        raise HTTPException(status_code=400, detail=result, )
-    return {"data": result}
 
-@app.get("/printhello/")
-async def run_printhello():
-    result = pwshResult(pwsh.run_pwsh_script("PrintHello.ps1"))
-    logging.info ("result: {}".format(result.result_json))
-    return {"data": result.result_array}
-
-@app.get("/testoutput/")
-async def run_test_output():
-    result = pwsh.run_and_return("Test-Output.ps1")
-    logging.info ("result: {}".format(result))
-    return {"data": result}
+app.include_router(runner.router)
+app.include_router(cybertip.router)
