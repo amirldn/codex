@@ -47,23 +47,46 @@ def run_pwsh_script(
                                         stderr=subprocess.PIPE,
                                         universal_newlines=True)
 
-        logging.debug("Return Code: {}".format(
+        logging.debug("pwsh return code: {}".format(
             process_result.returncode))  # PRINT RETURN CODE OF PROCESS  0 = SUCCESS, NON-ZERO = FAIL
         if process_result.stdout:
-            logging.debug("stdout: {}".format(process_result.stdout.strip()))  # PRINT STANDARD OUTPUT FROM POWERSHELL
+            logging.debug(
+                "pwsh stdout: {}".format(process_result.stdout.strip()))  # PRINT STANDARD OUTPUT FROM POWERSHELL
         if process_result.stderr != "":
-            logging.error("stderr: {}".format(
+            logging.error("pwsh stderr: {}".format(
                 process_result.stderr))  # PRINT STANDARD ERROR FROM POWERSHELL ( IF ANY OTHERWISE ITS NULL|NONE )
 
-        if process_result.returncode == 0:  # COMPARING RESULT
-            message = process_result.stdout.strip()
+        if process_result.returncode == 0:
+            # Return the output and the return code if successful
+            stdout = process_result.stdout.strip()
+            return stdout, process_result.returncode
         else:
-            message = "UNKNOWN: " + process_result.stderr.strip()
+            # If an internal error occurs, create a JSON to return
+            logging.debug("pwsh did not return 0")
+            error = {"fault":
+                {
+                    "brief": "Pwsh Runner Non-Zero Error",
+                    "stderr": process_result.stderr.strip(),
+                    "stdout": process_result.stdout.strip(),
+                    "code": process_result.returncode
 
-        return message  # RETURN MESSAGE
-    except Exception as e:
-        logging.error(e)
-        return "Internal Error : " + str(e)
+                }
+            }
+            return error, process_result.returncode
+
+    except Exception:
+        error = {"fault":
+            {
+                "brief": "Pwsh Internal Runner Error",
+                "detail": {
+                    "stderr": process_result.stderr.strip(),
+                    "stdout": process_result.stdout.strip()},
+                "code": process_result.returncode
+
+            }
+        }
+        logging.error("pwsh exception occured: {}".format(error))
+        return error
 
 
 def run_and_return(
@@ -79,8 +102,13 @@ def run_and_return(
         *params {[any]]} -- Parameters to pass to the script (if any)
     """
     try:
-        result = run_pwsh_script(script_filename, script_path_folder, *params)
-        return convert_to_dict(result)
+        output, code = run_pwsh_script(script_filename, script_path_folder, *params)
+        if code == 0:
+            output_as_dict = convert_to_dict(output)
+            return_value = {"data": output_as_dict}
+            return return_value
+        else:
+            return_value = output
+            return return_value
     except Exception as e:
-        logging.error(e)
         return e

@@ -13,9 +13,9 @@ router = APIRouter(
 @router.get("/flagfileexists/")
 async def run_flagfileexists():
     result = pwsh.run_and_return("Test-FlagFileExists.ps1", '/Users/amaula/GitHub/codex/tests/flag.txt')
-    if "Internal Error" in result:
-        raise HTTPException(status_code=400, detail=result, )
-    return {"data": result}
+    if result['fault']:
+        raise HTTPException(status_code=500, detail=result)
+    return result
 
 
 @router.get("/printhello/")
@@ -29,4 +29,4 @@ async def run_printhello():
 async def run_test_output():
     result = pwsh.run_and_return("Test-Output.ps1")
     logging.info("result: {}".format(result))
-    return {"data": result}
+    return result
