@@ -41,7 +41,9 @@ function Write-CodexOutput {
         $_ | Add-Member -MemberType NoteProperty -Name ID -Value $i -Force
         $i += 1
     }
-    $codexOutput | ConvertTo-Json
+
+
+    $codexOutput | ConvertTo-Json -AsArray
 }
 
 function Clear-CodexOutput {

@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 import logging
 from .routers import runner, cybertip
 
-version = "0.0.1"
+version = "0.1.0"
 app = FastAPI(
     title="Codex API",
     description="Codex API",

@@ -12,7 +12,7 @@ router = APIRouter(
 
 @router.get("/flagfileexists/")
 async def run_flagfileexists():
-    result = pwsh.run_and_return("Test-FlagFileExists.ps1", '/Users/amaula/GitHub/codex/tests/flag.txt')
+    result = pwsh.run_and_return("Test-FlagFileExists.ps1", '/Users/amaula/GitHub/codex/backend/tests/flag.txt')
     if 'fault' in result:
         raise HTTPException(status_code=500, detail=result)
     return result

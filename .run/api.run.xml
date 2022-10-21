@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="api" type="Python.FastAPI">
-    <option name="additionalOptions" value="--reload --log-config $PROJECT_DIR$/backend/log/uvicorn.ini --use-colors --reload-exclude '*.js,*.log,*.pyc*,*.xml*'" />
+    <option name="additionalOptions" value="--reload --log-config $PROJECT_DIR$/backend/log/uvicorn.ini --use-colors" />
     <option name="file" value="$PROJECT_DIR$/backend/api/main.py" />
     <module name="codex" />
     <option name="INTERPRETER_OPTIONS" value="" />
