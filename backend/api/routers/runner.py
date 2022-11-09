@@ -48,15 +48,14 @@ async def run_check_guest():
 
 
 @router.post("/", summary="Runs a check specified in the request body", status_code=201)
-async def run_check(body: str):
-    check_name = body['check']
+async def run_check(check_name: str):
     # TODO: Validate check_name
     # TODO: Validate OS is able to run check (or maybe we only give the front end checks they can run?)
     task = create_task.delay(check_name)
     return {"task_id": task.id}
 
 
-@app.get("/{task_id}")
+@router.get("/id/{task_id}", summary="Get the result of a check by task ID")
 def get_status(task_id):
     task_result = AsyncResult(task_id)
     result = {
