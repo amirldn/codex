@@ -12,11 +12,13 @@
     "perfect-scrollbar": "1.5.5",
     "react": ">=16.8.0",
     "react-chartjs-2": "3.0.3",
+    "react-confetti": "^6.1.0",
     "react-dom": ">=16.8.0",
     "react-move": "^6.5.0",
     "react-notification-alert": "0.0.13",
     "react-router-dom": "5.2.0",
     "react-scripts": "5.0.1",
+    "react-use": "^17.4.0",
     "reactstrap": "8.7.1",
     "sass": "1.53.0"
   },

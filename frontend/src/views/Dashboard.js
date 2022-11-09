@@ -234,7 +234,9 @@ function Dashboard() {
               <SystemHealthDash/>
             </Col>
           <Col md="12">
-            <hr/>
+            {/*<div className={"animate__animated animate__fadeInUp"}>*/}
+              <hr/>
+            {/*</div>*/}
             <CyberTip/>
           </Col>
         </Row>

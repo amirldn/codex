@@ -22,11 +22,12 @@ export default function CyberTip(props) {
 
 
 
-  // Refresh the component every 30 seconds but make it fetch as soon as it is loaded
+  // TODO: make this refresh the animation too
+  // Refresh the component every 10 seconds but make it fetch as soon as it is loaded
     useEffect(() => {
         const interval = setInterval(() => {
             fetchTip();
-        }, 30000);
+        }, 10000);
         fetchTip();
         return () => clearInterval(interval);
     }, []);
