@@ -1,11 +1,13 @@
 import logging
 
+from celery.result import AsyncResult
 from fastapi import APIRouter, HTTPException
 
 from backend.runner import pwsh
+from backend.api.scheduler.worker import create_task
 
 router = APIRouter(
-    prefix="/runner",
+    prefix="/check",
 )
 
 
@@ -45,7 +47,21 @@ async def run_check_guest():
     return result
 
 
-@router.post("/runcheck/", summary="Runs a check specified in the request body", status_code=201)
+@router.post("/", summary="Runs a check specified in the request body", status_code=201)
 async def run_check(body: str):
     check_name = body['check']
-    return JSONResponse(check_name)
+    # TODO: Validate check_name
+    # TODO: Validate OS is able to run check (or maybe we only give the front end checks they can run?)
+    task = create_task.delay(check_name)
+    return {"task_id": task.id}
+
+
+@app.get("/{task_id}")
+def get_status(task_id):
+    task_result = AsyncResult(task_id)
+    result = {
+        "task_id": task_id,
+        "task_status": task_result.status,
+        "task_result": task_result.result
+    }
+    return result
