@@ -1,16 +1,17 @@
 
 
 import React, {useEffect} from "react";
-import {Card, CardBody} from "reactstrap";
+import {Card, CardBody, CardFooter, CardHeader, CardTitle, Col, Row} from "reactstrap";
 
 import 'animate.css';
+import CyberTip from "../CyberTip/CyberTip";
 
 const TipContext = React.createContext({
   tip: [], fetchTip: () => {
   }
 })
 
-export default function CyberTip(props) {
+export default function SystemHealthDash(props) {
 
 
   const [tip, setTip] = React.useState({});
@@ -37,17 +38,27 @@ export default function CyberTip(props) {
   return (
     <TipContext.Provider value={{tip, fetchTip}}>
       <div className="animate__animated animate__fadeInUp rounded p-1">
-        <Card className="card-tip-of-the-day m-1">
+          <Card className="card-status">
+            <CardHeader>
+              <CardTitle tag="h5">Status</CardTitle>
+              <p className="card-category">System Cyber Health</p>
+            </CardHeader>
             <CardBody>
-              <h3><i className="nc-icon nc-bulb-63"/> Cyber Tip of the Day</h3>
-              <h2>{tip.title}</h2>
-              <p>{tip.description}</p>
-              {/*<p>debug text - should show API above</p>*/}
+              <Row>
+                <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                <Col md="10">
+
+                <h2>All good!</h2>
+                <p>On the last run, we saw no issues with your system.</p>
+                  <p>Last Run: 12 Sep - 08:38</p>
+                </Col>
+                </Row>
             </CardBody>
-        </Card>
-        {/*<div className="rounded bg-secondary text-white">*/}
-        {/*  <p>hello</p>*/}
-        {/*</div>*/}
+            <CardFooter>
+              {/*<hr />*/}
+              {/*<CyberTip />*/}
+            </CardFooter>
+          </Card>
       </div>
     </TipContext.Provider>
 

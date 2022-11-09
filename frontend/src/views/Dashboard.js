@@ -38,6 +38,8 @@ import {
 import CyberTip from "../components/CyberTip/CyberTip";
 import 'animate.css';
 
+import SystemHealthDash from "../components/SystemHealthDash/SystemHealthDash";
+
 function Dashboard() {
   return (
     <>
@@ -229,28 +231,12 @@ function Dashboard() {
         <Row>
 
             <Col md="12">
-              <Card className="card-status">
-                <CardHeader>
-                  <CardTitle tag="h5">Status</CardTitle>
-                  <p className="card-category">System Cyber Health</p>
-                </CardHeader>
-                <CardBody>
-                  <Row>
-                    <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
-                    <Col md="10">
-
-                    <h2>All good!</h2>
-                    <p>On the last run, we saw no issues with your system.</p>
-                      <p>Last Run: 12 Sep - 08:38</p>
-                    </Col>
-                    </Row>
-                </CardBody>
-                <CardFooter>
-                  <hr />
-                  <CyberTip />
-                </CardFooter>
-              </Card>
+              <SystemHealthDash/>
             </Col>
+          <Col md="12">
+            <hr/>
+            <CyberTip/>
+          </Col>
         </Row>
       </div>
     </>
