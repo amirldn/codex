@@ -2,48 +2,56 @@
    "checks":[
       {
          "name":"Test-Output",
+         "api_name": "testoutput",
          "filename":"Test-Output.ps1",
          "category":"Testing",
          "os":"Windows, MacOS"
       },
       {
          "name":"Test-FlagFileExists",
+         "api_name": "testflagfileexists",
          "filename":"Test-FlagFileExists.ps1",
          "category":"Testing",
          "os":"Windows, MacOS"
       },
       {
          "name":"Check-WindowsUpdate",
+         "api_name": "checkwindowsupdate",
          "filename":"Check-WindowsUpdate.ps1",
          "category":"Patching",
          "os":"Windows"
       },
       {
          "name":"Check-WindowsFirewall",
+         "api_name": "checkwindowsfirewall",
          "filename":"Check-WindowsFirewall.ps1",
          "category":"Security",
          "os":"Windows"
       },
       {
          "name": "Check-WindowsDefender",
+         "api_name": "checkwindowsdefender",
          "filename": "Check-WindowsDefender.ps1",
          "category": "Security",
          "os": "Windows"
       },
       {
          "name":"Check-GuestAccount",
+         "api_name": "checkguestaccount",
          "filename":"Check-GuestAccount.ps1",
          "category":"Security",
          "os":"Windows"
       },
       {
          "name":"Check-ProcessRunningAsAdmin",
+         "api_name": "checkprocessrunningasadmin",
          "filename":"Check-ProcessRunningAsAdmin.ps1",
          "category":"Security",
          "os":"Windows"
       },
       {
          "name":"Check-SoftwareUpdate",
+         "api_name": "checksoftwareupdate",
          "filename":"Check-SoftwareUpdate.ps1",
          "category":"Patching",
          "os":"Windows"

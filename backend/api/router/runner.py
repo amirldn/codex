@@ -1,10 +1,10 @@
 import logging
 
-from celery.result import AsyncResult
 from fastapi import APIRouter, HTTPException
 
 from backend.runner import pwsh
-from backend.api.scheduler.worker import create_task
+from backend.api.scheduler.worker import create_task, celery
+from backend.checks import check
 
 router = APIRouter(
     prefix="/check",
@@ -47,19 +47,26 @@ async def run_check_guest():
     return result
 
 
-@router.post("/", summary="Runs a check specified in the request body", status_code=201)
+@router.post(path="/",
+             summary="Runs a check specified in the request body",
+             status_code=201)
 async def run_check(check_name: str):
-    # TODO: Validate check_name
-    # TODO: Validate OS is able to run check (or maybe we only give the front end checks they can run?)
-    task = create_task.delay(check_name)
-    return {"task_id": task.id}
+    if check.exists(check_name):
+        # TODO: Validate OS is able to run check (or maybe we only give the front end checks they can run?)
+        task = create_task.delay(check_name)
+        print(task.backend)
+        return {"task_id": task.id}
+    else:
+        raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
 
 
 @router.get("/id/{task_id}", summary="Get the result of a check by task ID")
 def get_status(task_id):
-    task_result = AsyncResult(task_id)
+    task_result = celery.AsyncResult(task_id)
+    print(task_result.status)
     result = {
         "task_id": task_id,
+        # task_result: task_result
         "task_status": task_result.status,
         "task_result": task_result.result
     }

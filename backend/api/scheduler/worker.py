@@ -4,11 +4,11 @@ import time
 from celery import Celery
 from fastapi import HTTPException
 
-from backend.api.routers.runner import pwsh
+from backend.api.router.runner import pwsh
 
-celery = Celery(__name__)
-celery.conf.broker_url = os.environ.get("CELERY_BROKER_URL", "redis://localhost:6379")
-celery.conf.result_backend = os.environ.get("CELERY_RESULT_BACKEND", "redis://localhost:6379")
+celery = Celery('worker',
+                broker='redis://localhost:6379',
+                backend='redis://localhost:6379')
 
 
 @celery.task(name="create_task")
