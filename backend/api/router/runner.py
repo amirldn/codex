@@ -54,7 +54,9 @@ async def run_check(check_name: str):
     if check.exists(check_name):
         # TODO: Validate OS is able to run check (or maybe we only give the front end checks they can run?)
         task = create_task.delay(check_name)
-        print(task.backend)
+        # TODO: check why this doesnt actually do anything, not sure if create_task is getting called
+        logging.info(f"New Task Created for {check_name} - ID: {task.id}")
+        print(task.status)
         return {"task_id": task.id}
     else:
         raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
