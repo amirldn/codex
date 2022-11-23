@@ -1,10 +1,7 @@
-import json
-
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import logging
-from .router import runner, cybertip
-from .celery import celery
+from .router import apirunner, cybertip
 
 version = "0.1.0"
 app = FastAPI(
@@ -45,5 +42,5 @@ async def say_hello(name: str):
     return {"message": f"Hello {name}"}
 
 
-app.include_router(runner.router)
+app.include_router(apirunner.router)
 app.include_router(cybertip.router)
