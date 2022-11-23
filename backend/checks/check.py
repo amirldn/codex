@@ -10,3 +10,11 @@ def exists(check_name: str):
         if check['api_name'] == check_name:
             return True
     return False
+
+
+# Function that takes api_name and returns the filename
+def get_filename(check_name: str):
+    for check in checks_dict:
+        if check['api_name'] == check_name:
+            return check['filename']
+    return None
