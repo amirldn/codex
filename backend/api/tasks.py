@@ -22,8 +22,7 @@ def create_task(check_name: str):
     print("DEBUG: Running task")
     logging.info(f"CREATE_TASKRunning task for {check_name}")
     result = pwsh.run_and_return(check_name)
-    if 'fault' in result:
-        raise HTTPException(status_code=500, detail=result)
+    # currently, result will return even if error, the API needs to handle this by looking at result output
     return result
 
 

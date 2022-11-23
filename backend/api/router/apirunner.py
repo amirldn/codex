@@ -57,7 +57,6 @@ async def run_check(check_name: str):
         task = create_task.delay(check_name)
         # TODO: check why this doesnt actually do anything, not sure if create_task is getting called
         logging.info(f"New Task Created for {check_name} - ID: {task.id}")
-        print(task.status)
         return {"task_id": task.id}
     else:
         raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
@@ -66,10 +65,10 @@ async def run_check(check_name: str):
 @router.get("/id/{task_id}", summary="Get the result of a check by task ID")
 def get_status(task_id):
     task_result = celery.AsyncResult(task_id)
-    print(task_result.status)
+    if 'fault' in task_result.result:
+        raise HTTPException(status_code=500, detail=task_result.result)
     result = {
         "task_id": task_id,
-        # task_result: task_result
         "task_status": task_result.status,
         "task_result": task_result.result
     }
