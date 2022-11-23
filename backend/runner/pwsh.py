@@ -26,11 +26,14 @@ def clean_output(string):
     """
     Clean the output of the PowerShell script of any ansi escape codes
     """
-#     if \u001b[96m exists in the string, remove it
+
+    #     if \u001b[96m exists in the string, remove it
     def remove_ansi_escape_sequences(string):
         ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
         return ansi_escape.sub('', string)
+
     return remove_ansi_escape_sequences(string)
+
 
 def run_pwsh_script(
         script_filename,

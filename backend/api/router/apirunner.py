@@ -2,9 +2,10 @@ import logging
 
 from fastapi import APIRouter, HTTPException
 
-from backend.runner import pwsh
-from backend.api.celery.celery import create_task, celery
-from backend.checks import check
+# from backend.runner import pwsh
+from ...runner import pwsh
+from ..tasks import create_task, celery
+from ...checks import check
 
 router = APIRouter(
     prefix="/check",

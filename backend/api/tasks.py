@@ -5,9 +5,9 @@ import logging
 from celery import Celery
 from fastapi import HTTPException
 
-from backend.api.router.runner import pwsh
+from ..runner import pwsh
 
-celery = Celery('backend',
+celery = Celery('tasks',
                 broker='redis://localhost',
                 backend='redis://localhost')
 
