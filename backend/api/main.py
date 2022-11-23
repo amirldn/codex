@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 import logging
 from .router import runner, cybertip
+from .celery import celery
 
 version = "0.1.0"
 app = FastAPI(

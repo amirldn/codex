@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, HTTPException
 
 from backend.runner import pwsh
-from backend.api.scheduler.worker import create_task, celery
+from backend.api.celery.celery import create_task, celery
 from backend.checks import check
 
 router = APIRouter(
