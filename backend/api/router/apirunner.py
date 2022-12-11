@@ -83,3 +83,9 @@ async def get_status(task_id):
 async def get_check_list():
     return {"data": check.get_check_list()}
 
+
+@router.get("/list/category",
+            summary="Get a list of all the check categories",
+            status_code=200)
+async def get_check_categories():
+    return {"data": check.get_cateogry_list()}

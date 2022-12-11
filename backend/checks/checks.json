@@ -63,7 +63,7 @@
       {
          "name":"Check-ProcessRunningAsAdmin",
          "friendly_name":"Running Processes (Admin)",
-         "description":"Checks if any processes are running as administrator that shouldn't be'",
+         "description":"Checks if any processes are running as administrator that shouldn't be",
          "icon": "fa fa-user",
          "api_name": "checkprocessrunningasadmin",
          "filename":"Check-ProcessRunningAsAdmin.ps1",

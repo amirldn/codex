@@ -8,9 +8,11 @@ export default function CheckCard(props) {
       <div className="animate__animated animate__fadeInUp rounded p-1">
         <Card className="card-check m-1">
             <CardBody>
-              <h5>Guest Account</h5>
-                <p>Check if the guest account is enabled</p>
-                <p>Latest : <span className="text-success">Pass</span></p>
+              <h5><i className={props.check.icon}/> {props.check.friendly_name}</h5>
+                {console.log(props)}
+                {/*make text italic*/}
+                <i>{props.check.description}</i>
+                <p>Status: <b><span className="text-success">Ok</span></b></p>
                 <Row>
                     <Col md="6">
                         <p><b>Last Run:</b>
@@ -22,10 +24,10 @@ export default function CheckCard(props) {
                         <Button className="btn-round" color="success" outline>
                             <i className="nc-icon nc-check-2"/> Run Check
                         </Button>
+                        <p>{props.check.api_name}</p>
                     </Col>
                 </Row>
                 <Row>
-                {/*    Add a large rounded refresh button*/}
                     <Col md="6">
                         <Button className="btn-round" color="info" outline>
                             <i className="nc-icon nc-refresh-69"/> Refresh

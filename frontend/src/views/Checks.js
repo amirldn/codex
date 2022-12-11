@@ -45,7 +45,6 @@ const CheckListContext = React.createContext({
   checkList: [], fetchCheckList: () => {}
 })
 
-
 const CategoryListContext = React.createContext({
   categoryList: [], fetchCategoryList: () => {}
 })
@@ -92,36 +91,34 @@ function Checks() {
     notificationAlert.current.notificationAlert(options);
   };
 
- // Create an API call to get the list of checks
+  // API call to fetch list of checks
   const [checkList, setCheckList] = React.useState({});
   const fetchCheckList  = async () => {
     const response = await fetch('http://127.0.0.1:8000/check/list/');
     const data = await response.json();
     setCheckList(data.data);
 
-    for (let i = 0; i < data.data.length; i++) {
-      if (!categoryList.includes(data.data[i].category)) {
-        categoryList.push(data.data[i].category);
-      }
-    }
     // console.log(data.data);
-    // console.log(categoryList);
   }
 
-  // TODO: Maybe just do this in Python instead of JS
-  //  Need to return a list of categories
+
+
+  // TODO:  Need to figure out why this does not work on initial load
+  //  workaround: comment out the categoryList.map() bit then uncomment it and it will display
   const [categoryList, setCategoryList] = React.useState({});
-    const fetchCategoryList  = async () => {
-        fetchCheckList();
-       for (let i = 0; i < checkList.length; i++) {
-          if (!categoryList.includes(checkList[i].category)) {
-            categoryList.push(checkList[i].category);
-          }
-        }
-    }
+  const fetchCategoryList = async () => {
+    const response = await fetch('http://127.0.0.1:8000/check/list/category');
+    const data = await response.json();
+    setCategoryList(data.data);
+
+  }
 
     useEffect(() => {
       fetchCheckList()
+    }, [])
+
+    useEffect(() => {
+      fetchCategoryList()
     }, [])
 
   return (
@@ -138,22 +135,19 @@ function Checks() {
                      <p>Check the status of your system by running these checks</p>
                  </CardHeader>
                  <CardBody>
-                {/*   For each entry in categoryList, create a new <Card>*/}
-                  {/*   For each entry in checkList, create a new <CheckCard> if check.category is equal to category*/}
-                   {console.log(categoryList)}
                   {categoryList.map((category) => (
-                      console.log(category),
-                      <p>test</p>
-                      // <Card className="card-check m-1">
-                      //     <CardBody>
-                      //         <h5>{category}</h5>>
-                      //         {checkList.map((check) => (
-                      //             // if (check.category === category)
-                      //             <CheckCard/>
-                      //
-                      //         ))}
-                      //     </CardBody>
-                      // </Card>
+                      <Card className="card-check m-1">
+                          <CardBody>
+                              <h5>{category}</h5>
+                              <Row>
+
+                          {/*    Filter checkList to create a <CheckCard> if check.category is equal to category */}
+                                {checkList.filter((check) => check.category === category).map((check) => (
+                                    <CheckCard check={check}/>
+                                ))}
+                                </Row>
+                          </CardBody>
+                      </Card>
                   ))}
 
 
