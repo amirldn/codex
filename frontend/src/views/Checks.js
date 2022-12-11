@@ -46,6 +46,7 @@ const CheckListContext = React.createContext({
   }
 })
 
+//TODO: figure out why the API call does not work
 
 function Checks() {
   const notificationAlert = React.useRef();
@@ -92,22 +93,21 @@ function Checks() {
  // Create an API call to get the list of checks
   const [checkList, setCheckList] = React.useState({});
   const fetchCheckList  = async () => {
-    const response = await fetch('http://127.0.0.1:8000/checks/list/');
+    const response = await fetch('http://127.0.0.1:8000/check/list/');
     const data = await response.json();
     setCheckList(data.data);
+    console.log(data.data);
   }
 
 
 
   // TODO: make this refresh the animation too
   // Refresh the component every 10 seconds but make it fetch as soon as it is loaded
-    useEffect(() => {
-        fetchCheckList();
-        return () => fetchCheckList();
-    }, []);
+  useEffect(() => {
+    fetchCheckList()
+  }, [])
 
   return (
-    //  TODO: Based on a list of checks, create a card for each check
     <>
       <div className="content">
         <NotificationAlert ref={notificationAlert} />
@@ -116,15 +116,24 @@ function Checks() {
             <Card>
               <CardHeader>
                 <CardTitle tag="h5">Checks</CardTitle>
-                 {/*<p className="card-category">*/}
-                 {/*  Check the status of your system by running these checks</p>*/}
+                   <p>Check the status of your system by running these checks</p>
                </CardHeader>
                <CardBody>
-                <Row>
-                  <Col md="6">
-                    <CheckCard/>
-                    </Col>
-                </Row>
+              {/* Using the data from checkList, map a new <Card> for each checkList.category and map a <CheckCard> for each item */}
+                {checkList.map((category) => (
+                    <div>
+                        <h3>{category.category}</h3>
+                        {category.checks.map((check) => (
+                            <CheckCard check={check}/>
+                        ))}
+                    </div>
+                ))}
+
+                {/*<Row>*/}
+                {/*  <Col md="6">*/}
+                {/*    <CheckCard/>*/}
+                {/*    </Col>*/}
+                {/*</Row>*/}
               </CardBody>
             </Card>
           </Col>
