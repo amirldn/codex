@@ -23,7 +23,8 @@ import Typography from "views/Typography.js";
 import TableList from "views/Tables.js";
 import Maps from "views/Map.js";
 import UserPage from "views/User.js";
-import UpgradeToPro from "views/Upgrade.js";
+// import UpgradeToPro from "views/Upgrade.js";
+import Checks from "./views/Checks";
 
 var routes = [
   {
@@ -31,6 +32,13 @@ var routes = [
     name: "Dashboard",
     icon: "nc-icon nc-bank",
     component: Dashboard,
+    layout: "/admin"
+  },
+  {
+    path: "/checks",
+    name: "Checks",
+    icon: "nc-icon nc-vector",
+    component: Checks,
     layout: "/admin"
   },
   {
@@ -75,13 +83,13 @@ var routes = [
     component: Typography,
     layout: "/admin"
   },
-  {
-    pro: true,
-    path: "/upgrade",
-    name: "Upgrade to PRO",
-    icon: "nc-icon nc-spaceship",
-    component: UpgradeToPro,
-    layout: "/admin"
-  }
+  // {
+  //   pro: true,
+  //   path: "/dashboard",
+  //   name: "Upgrade to PRO",
+  //   // icon: "nc-icon nc-spaceship",
+  //   component: UpgradeToPro,
+  //   layout: "/admin"
+  // }
 ];
 export default routes;

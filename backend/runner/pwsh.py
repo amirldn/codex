@@ -124,7 +124,6 @@ def run_and_return(
         output, code = run_pwsh_script(script_filename, *params)
         if code == 0:
             logging.debug("creating dict from output")
-            print(output)
             output_as_dict = convert_to_dict(output)
             return_value = {"data": output_as_dict}
             return return_value
