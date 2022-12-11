@@ -42,11 +42,13 @@ import CheckCard from "../components/CheckCard/CheckCard";
 
 
 const CheckListContext = React.createContext({
-  checkList: [], fetchCheckList: () => {
-  }
+  checkList: [], fetchCheckList: () => {}
 })
 
-//TODO: figure out why the API call does not work
+
+const CategoryListContext = React.createContext({
+  categoryList: [], fetchCategoryList: () => {}
+})
 
 function Checks() {
   const notificationAlert = React.useRef();
@@ -96,131 +98,171 @@ function Checks() {
     const response = await fetch('http://127.0.0.1:8000/check/list/');
     const data = await response.json();
     setCheckList(data.data);
-    console.log(data.data);
+
+    for (let i = 0; i < data.data.length; i++) {
+      if (!categoryList.includes(data.data[i].category)) {
+        categoryList.push(data.data[i].category);
+      }
+    }
+    // console.log(data.data);
+    // console.log(categoryList);
   }
 
+  // TODO: Maybe just do this in Python instead of JS
+  //  Need to return a list of categories
+  const [categoryList, setCategoryList] = React.useState({});
+    const fetchCategoryList  = async () => {
+        fetchCheckList();
+       for (let i = 0; i < checkList.length; i++) {
+          if (!categoryList.includes(checkList[i].category)) {
+            categoryList.push(checkList[i].category);
+          }
+        }
+    }
 
-
-  // TODO: make this refresh the animation too
-  // Refresh the component every 10 seconds but make it fetch as soon as it is loaded
-  useEffect(() => {
-    fetchCheckList()
-  }, [])
+    useEffect(() => {
+      fetchCheckList()
+    }, [])
 
   return (
     <>
-      <div className="content">
-        <NotificationAlert ref={notificationAlert} />
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardHeader>
-                <CardTitle tag="h5">Checks</CardTitle>
-                   <p>Check the status of your system by running these checks</p>
-               </CardHeader>
-               <CardBody>
-              {/* Using the data from checkList, map a new <Card> for each checkList.category and map a <CheckCard> for each item */}
-                {checkList.map((category) => (
-                    <div>
-                        <h3>{category.category}</h3>
-                        {category.checks.map((check) => (
-                            <CheckCard check={check}/>
-                        ))}
-                    </div>
-                ))}
+      <CheckListContext.Provider value={{checkList, fetchCheckList}}>
+        <CategoryListContext.Provider value={{categoryList, fetchCategoryList}}>
+          <div className="content">
+          <NotificationAlert ref={notificationAlert} />
+          <Row>
+            <Col md="12">
+              <Card>
+                <CardHeader>
+                  <CardTitle tag="h5">Checks</CardTitle>
+                     <p>Check the status of your system by running these checks</p>
+                 </CardHeader>
+                 <CardBody>
+                {/*   For each entry in categoryList, create a new <Card>*/}
+                  {/*   For each entry in checkList, create a new <CheckCard> if check.category is equal to category*/}
+                   {console.log(categoryList)}
+                  {categoryList.map((category) => (
+                      console.log(category),
+                      <p>test</p>
+                      // <Card className="card-check m-1">
+                      //     <CardBody>
+                      //         <h5>{category}</h5>>
+                      //         {checkList.map((check) => (
+                      //             // if (check.category === category)
+                      //             <CheckCard/>
+                      //
+                      //         ))}
+                      //     </CardBody>
+                      // </Card>
+                  ))}
 
-                {/*<Row>*/}
-                {/*  <Col md="6">*/}
-                {/*    <CheckCard/>*/}
-                {/*    </Col>*/}
-                {/*</Row>*/}
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col md="12">
-            <Card>
-              <CardBody>
+
+                {/* Using the data from checkList, map a new <Card> for each checkList.category and map a <CheckCard> for each item */}
+                {/*  {checkList.map((category) => (*/}
+                {/*      <div>*/}
+                {/*          <h3>{category.category}</h3>*/}
+                {/*          {category.checks.map((check) => (*/}
+                {/*              <CheckCard check={check}/>*/}
+                {/*          ))}*/}
+                {/*      </div>*/}
+                {/*  ))}*/}
+
+                  {/*<Row>*/}
+                  {/*  <Col md="6">*/}
+                  {/*    <CheckCard/>*/}
+                  {/*    </Col>*/}
+                  {/*</Row>*/}
+                </CardBody>
+              </Card>
+            </Col>
+          </Row>
+          {/* Next section below */}
+          <Row>
+                <Col md="12">
+                <Card>
+                <CardBody>
                 <div className="places-buttons">
-                  <Row>
-                    <Col className="ml-auto mr-auto text-center" md="6">
-                      <CardTitle tag="h4">Notifications Places</CardTitle>
-                      <p className="category">Click to view notifications</p>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="ml-auto mr-auto" lg="8">
-                      <Row>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("tl")}
-                          >
-                            Top Left
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("tc")}
-                          >
-                            Top Center
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("tr")}
-                          >
-                            Top Right
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="ml-auto mr-auto" lg="8">
-                      <Row>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("bl")}
-                          >
-                            Bottom Left
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("bc")}
-                          >
-                            Bottom Center
-                          </Button>
-                        </Col>
-                        <Col md="4">
-                          <Button
-                            block
-                            color="primary"
-                            onClick={() => notify("br")}
-                          >
-                            Bottom Right
-                          </Button>
-                        </Col>
-                      </Row>
-                    </Col>
-                  </Row>
+                <Row>
+                <Col className="ml-auto mr-auto text-center" md="6">
+                <CardTitle tag="h4">Notifications Places</CardTitle>
+                <p className="category">Click to view notifications</p>
+                </Col>
+                </Row>
+                <Row>
+                <Col className="ml-auto mr-auto" lg="8">
+                <Row>
+                <Col md="4">
+                <Button
+                block
+                color="primary"
+                onClick={() => notify("tl")}
+                >
+                Top Left
+                </Button>
+                </Col>
+                <Col md="4">
+                <Button
+                block
+                color="primary"
+                onClick={() => notify("tc")}
+                >
+                Top Center
+                </Button>
+                </Col>
+                <Col md="4">
+                <Button
+                block
+                color="primary"
+                onClick={() => notify("tr")}
+                >
+                Top Right
+                </Button>
+                </Col>
+                </Row>
+                </Col>
+                </Row>
+                <Row>
+                <Col className="ml-auto mr-auto" lg="8">
+                <Row>
+                <Col md="4">
+                <Button
+                block
+                color="primary"
+                onClick={() => notify("bl")}
+                >
+                Bottom Left
+                </Button>
+                </Col>
+                <Col md="4">
+                <Button
+                block
+                color="primary"
+                onClick={() => notify("bc")}
+                >
+                Bottom Center
+                </Button>
+                </Col>
+                <Col md="4">
+                <Button
+                block
+                color="primary"
+                onClick={() => notify("br")}
+                >
+                Bottom Right
+                </Button>
+                </Col>
+                </Row>
+                </Col>
+                </Row>
                 </div>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
-      </div>
+                </CardBody>
+                </Card>
+                </Col>
+                </Row>
+        </div>
+          </CategoryListContext.Provider>
+        </CheckListContext.Provider>
+
     </>
   );
 }

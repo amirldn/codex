@@ -81,4 +81,5 @@ async def get_status(task_id):
             summary="Get a list of all checks with their last runtime & status",
             status_code=200)
 async def get_check_list():
-    return check.get_check_list()
+    return {"data": check.get_check_list()}
+
