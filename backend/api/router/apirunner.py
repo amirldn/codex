@@ -48,7 +48,7 @@ async def run_check_guest():
     return result
 
 
-@router.post(path="/",
+@router.post(path="/run/",
              summary="Runs a check specified in the request body",
              status_code=201)
 async def run_check(check_name: str):
@@ -62,8 +62,10 @@ async def run_check(check_name: str):
         raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
 
 
-@router.get("/id/{task_id}", summary="Get the result of a check by task ID")
-def get_status(task_id):
+@router.get("/id/{task_id}",
+            summary="Get the result of a check by task ID",
+            status_code=200)
+async def get_status(task_id):
     task_result = celery.AsyncResult(task_id)
     if 'fault' in task_result.result:
         raise HTTPException(status_code=500, detail=task_result.result)
@@ -73,3 +75,10 @@ def get_status(task_id):
         "task_result": task_result.result
     }
     return result
+
+
+@router.get("/list/",
+            summary="Get a list of all checks with their last runtime & status",
+            status_code=200)
+async def get_check_list():
+    return check.get_check_list()

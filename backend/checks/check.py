@@ -1,4 +1,5 @@
-import os, json
+import json
+import os
 
 check_json_path = os.path.join(os.path.dirname(__file__), 'checks.json')
 checks_dict = (json.loads(open(check_json_path).read()))['checks']
@@ -18,3 +19,7 @@ def get_filename(check_name: str):
         if check['api_name'] == check_name:
             return check['filename']
     return None
+
+
+def get_check_list():
+    return checks_dict
