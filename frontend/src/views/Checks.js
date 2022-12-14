@@ -103,8 +103,6 @@ function Checks() {
 
 
 
-  // TODO:  Need to figure out why this does not work on initial load
-  //  workaround: comment out the categoryList.map() bit then uncomment it and it will display
   const [categoryList, setCategoryList] = React.useState([]);
   const fetchCategoryList = async () => {
     const response = await fetch('http://127.0.0.1:8000/check/list/category');
@@ -114,7 +112,7 @@ function Checks() {
 
     useEffect(() => {
       fetchCheckList();
-    }, [])
+    }, [categoryList])
 
     useEffect(() => {
       fetchCategoryList()
