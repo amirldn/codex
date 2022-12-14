@@ -66,7 +66,10 @@ async def run_check(check_name: str):
             status_code=200)
 async def get_status(task_id):
     task_result = celery.AsyncResult(task_id)
-    if 'fault' in task_result.result:
+    if not task_result.result:
+        # TODO: Fix this - don't know why task_result is empty
+        raise HTTPException(status_code=500, detail='something went wrong ')
+    elif 'fault' in task_result.result:
         raise HTTPException(status_code=500, detail=task_result.result)
     result = {
         "task_id": task_id,

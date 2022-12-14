@@ -2,9 +2,8 @@
 
 param (
     # File path of flag.txt
-    [Parameter(Mandatory)]
     [String]
-    $FilePath
+    $FilePath = "/Users/amaula/GitHub/codex/backend/tests/flag.txt"
 )
 
 Import-Module /Users/amaula/GitHub/codex/backend/runner/Codex/Codex.psm1 -Force

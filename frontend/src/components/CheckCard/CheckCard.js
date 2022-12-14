@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Button, Card, CardBody, Col, Row} from "reactstrap";
 
 import 'animate.css';
+import CheckStatus from "../CheckStatus/CheckStatus";
 
 export default function CheckCard(props) {
   //  Write a function that will submit a post request to run the check
@@ -36,7 +37,8 @@ export default function CheckCard(props) {
                   <h5><i className={props.check.icon}/> {props.check.friendly_name}</h5>
                     {/*{console.log(props)}*/}
                     <i>{props.check.description}</i>
-                    <p>Status: <b><span className="text-success">Ok</span></b></p>
+                    {/*<p>Status: <b><span className="text-success">Ok</span></b></p>*/}
+                    <CheckStatus taskId={taskId.taskId}/>
                     <Row>
                         <Col md="6">
                             <p><b>Last Run:</b>
