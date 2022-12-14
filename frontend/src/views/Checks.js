@@ -92,7 +92,7 @@ function Checks() {
   };
 
   // API call to fetch list of checks
-  const [checkList, setCheckList] = React.useState({});
+  const [checkList, setCheckList] = React.useState([]);
   const fetchCheckList  = async () => {
     const response = await fetch('http://127.0.0.1:8000/check/list/');
     const data = await response.json();
@@ -105,16 +105,15 @@ function Checks() {
 
   // TODO:  Need to figure out why this does not work on initial load
   //  workaround: comment out the categoryList.map() bit then uncomment it and it will display
-  const [categoryList, setCategoryList] = React.useState({});
+  const [categoryList, setCategoryList] = React.useState([]);
   const fetchCategoryList = async () => {
     const response = await fetch('http://127.0.0.1:8000/check/list/category');
     const data = await response.json();
     setCategoryList(data.data);
-
   }
 
     useEffect(() => {
-      fetchCheckList()
+      fetchCheckList();
     }, [])
 
     useEffect(() => {
@@ -151,21 +150,7 @@ function Checks() {
                   ))}
 
 
-                {/* Using the data from checkList, map a new <Card> for each checkList.category and map a <CheckCard> for each item */}
-                {/*  {checkList.map((category) => (*/}
-                {/*      <div>*/}
-                {/*          <h3>{category.category}</h3>*/}
-                {/*          {category.checks.map((check) => (*/}
-                {/*              <CheckCard check={check}/>*/}
-                {/*          ))}*/}
-                {/*      </div>*/}
-                {/*  ))}*/}
 
-                  {/*<Row>*/}
-                  {/*  <Col md="6">*/}
-                  {/*    <CheckCard/>*/}
-                  {/*    </Col>*/}
-                  {/*</Row>*/}
                 </CardBody>
               </Card>
             </Col>
