@@ -3,17 +3,23 @@ import {Button, Card, CardBody, Col, Row} from "reactstrap";
 
 import 'animate.css';
 
-export default function CheckStatus(props) {
+export default function CheckStatus(taskId) {
 
     const [status, setStatus] = React.useState([]);
     // TODO: fix this trying to get the fetch the status if there is no taskId
-    const fetchStatus = () => {}
-    if (props.taskId) {
+    let fetchStatus = () => {}
+    console.log("hello from checkstatus")
+    if (taskId) {
         const fetchStatus = async () => {
-            const response = await fetch('http://127.0.0.1:8000/check/id/' + props.taskId);
+            const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId);
             const data = await response.json();
             setStatus(data.data);
+            console.log(data.data);
         }
+    }
+    else {
+        const fetchStatus = () => {}
+        console.log("no taskId")
     }
 
     const StatusContext = React.createContext({
@@ -23,7 +29,7 @@ export default function CheckStatus(props) {
 
     useEffect(() => {
         fetchStatus();
-    }, [props.taskId])
+    }, [taskId])
 
 
     // TODO: This component should display the status of the check
@@ -32,7 +38,7 @@ export default function CheckStatus(props) {
     //  If the check errored, display the error message
 
     // If no task id is provided, display a message to run the check
-    if (props.taskId === '') {
+    if (taskId === '') {
         return (
             // <StatusContext.Provider value={{status, fetchStatus}}>
                 <div className="animate__animated animate__fadeInUp rounded p-1">

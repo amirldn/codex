@@ -21,6 +21,14 @@ export default function CheckCard(props) {
         })
       }
 
+  //    TODO: Add a useEffect hook that will fetch the status of the check
+
+
+    useEffect(() => {
+        console.log("hello from useEffect checkcard")
+        console.log(taskId)
+    }
+    , [taskId])
   function fetchTaskId() {
   }
 
