@@ -141,6 +141,7 @@ function Checks() {
                               <Row>
 
                           {/*    Filter checkList to create a <CheckCard> if check.category is equal to category */}
+                          {/*        Add a key for each check*/}
                                 {checkList.filter((check) => check.category === category).map((check) => (
                                     <CheckCard check={check}/>
                                 ))}

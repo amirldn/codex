@@ -1,5 +1,6 @@
 import json
 import os
+import logging
 
 check_json_path = os.path.join(os.path.dirname(__file__), 'checks.json')
 checks_dict = (json.loads(open(check_json_path).read()))['checks']
