@@ -14,29 +14,41 @@ export default function CheckStatus({check, taskId}) {
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
             setStatus(data);
-            console.log(data);
+            // console.log(data);
         } else {
-            console.log("being asked to fetch but there is no taskId")
+            // console.log("being asked to fetch but there is no taskId")
         }
     }
 
     useEffect(() => {
         const interval = setInterval(() => {
                 fetchStatus();
-        }, 10000);
+        }, 5000);
         fetchStatus();
         return () => clearInterval(interval);
     }, []);
 
 
-    // If a taskId is present, fetch and set the status
-    if (taskId !== '') {
+    // If a taskId is present and a status exists, display the status
+    if (taskId !== '' && status.task_status) {
         console.log("taskID for " + check.api_name + " is " + taskId.task_id)
         return (
             <div>
-                <p>Status: <b><span className="text-success">Ran</span></b></p>
-                <p><b>Message:</b>
+                <p>Status: <b><span className="text-success">{status.task_status}</span></b></p>
+                <p><b>Output:</b>
                     <br/>
+                    {console.log(status)}
+                    {console.log("this is the task_result")}
+                    {console.log(status.task_result.data)}
+                    {status.task_result.data.map((item) => (
+                        <li key={item.ID}>
+                            <b>{item.ID}</b> - {item.CheckName}
+                            <p>{item.Message}</p>
+                            <p>{item.State}</p>
+                        </li>
+                    ))}
+
+
                 </p>
             </div>
 
