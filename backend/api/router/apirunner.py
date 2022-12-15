@@ -77,7 +77,7 @@ async def get_status(task_id):
         }
         return result
     elif 'fault' in task_result.result:
-        raise HTTPException(status_code=500, detail=task_result.result)
+        raise HTTPException(status_code=200, detail=task_result.result)
     result = {
         "task_id": task_id,
         "task_status": task_result.status,

@@ -13,33 +13,29 @@ export default function CheckStatusResult(props) {
         <div className="animate__animated animate__fadeInUp rounded p-1">
             <Card className="card-check m-1">
                 <CardHeader>
-
-                    <Button className="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                            aria-expanded="true"
-                            aria-controls="collapseOne"
+                    <Button className="btn btn-link rounded"
                             onClick={toggle}>
                         <Row>
                             <Col md="8">
                                 <Row>
-                                    <Col md="10">
+                                    <Col>
                                         <Row>
-                                            <Col md="2">
+                                            <Col md="4">
                                                 <b><i className='fa fa-user'/></b>
                                             </Col>
-                                            <Col md="10">
+                                            <Col md="8">
                                                 {/*{console.log(props)}*/}
                                                 <b> {props.props.CheckName}</b>
                                             </Col>
                                         </Row>
-
-                                    </Col>
-                                    <Col md="2">
-                                        <i className="fa fa-chevron-down"/>
                                     </Col>
                                 </Row>
                             </Col>
-                            <Col md="4">
+                            <Col md="2">
                                 <i className="fa fa-check-circle fa-5x text-success"/>
+                            </Col>
+                            <Col md="2">
+                             <i className="fa fa-chevron-down"/>
                             </Col>
                         </Row>
                     </Button>
