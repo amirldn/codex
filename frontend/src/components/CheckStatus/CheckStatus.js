@@ -50,10 +50,10 @@ export default function CheckStatus({check, taskId}) {
                 <div>
                     <p>Status: <b><span
                         className="text-success animate__animated animate__pulse">{status.task_status}</span></b></p>
-                    <p><b>Result:</b>
+                    <p><b>Result:</b></p>
                         <br/>
                         {status.task_result.data.map((item) => (
-                            <CheckStatusResult/>
+                            <CheckStatusResult props={item} key={item.ID}/>
                             // <li key={item.ID}>
                             //     <b>{item.CheckName}</b>
                             //     <br/>
@@ -62,7 +62,6 @@ export default function CheckStatus({check, taskId}) {
                             //     {item.State}
                             // </li>
                         ))}
-                    </p>
                 </div>
             )
         }

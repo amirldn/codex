@@ -37,13 +37,7 @@ export default function CheckCard(props) {
                 <Card className="card-check m-1">
                     <CardBody>
                         <h5><i className={props.check.icon}/> {props.check.friendly_name}</h5>
-                        {/*{console.log(props)}*/}
                         <i>{props.check.description}</i>
-                        {/*<p>Status: <b><span className="text-success">Ok</span></b></p>*/}
-                        <CheckStatus
-                            check={props.check}
-                            taskId={taskId}
-                        />
                         <Row>
                             <Col md="6">
                                 <p><b>Last Run:</b>
@@ -56,9 +50,13 @@ export default function CheckCard(props) {
                                         onClick={() => RunCheck(props.check.api_name)}>
                                     <i className="nc-icon nc-check-2"/> Run Check
                                 </Button>
-                                <p>{props.check.api_name}</p>
                             </Col>
                         </Row>
+                        <CheckStatus
+                            check={props.check}
+                            taskId={taskId}
+                        />
+
                         <Row>
                             <Col md="6">
                                 <Button className="btn-round" color="info" outline>
