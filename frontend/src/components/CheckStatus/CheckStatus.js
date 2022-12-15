@@ -6,10 +6,36 @@ import 'animate.css';
 export default function CheckStatus({check, taskId}) {
 
     const [status, setStatus] = React.useState({});
+    const [shouldRefresh, setShouldRefresh] = React.useState(true);
 
 
     const fetchStatus = async () => {
-        if (taskId !== '') {
+        // Check taskId is not empty and the status.task_status is not 'SUCCESS' and taskId is different from the previous taskId
+
+
+       console.log(taskId)
+       if (taskId !== '') {
+            if (status.task_status !== 'SUCCESS') {
+                setShouldRefresh(true);
+            }
+            else {
+                if (taskId !== status.task_id) {
+                    setShouldRefresh(true);
+                }
+                else {
+                    setShouldRefresh(true);
+                }
+            }
+       }
+       else {
+           console.log('taskId was empty, should not be refreshing')
+           setShouldRefresh(false);
+       }
+
+
+
+
+        if (shouldRefresh) {
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
             setStatus(data);
@@ -21,7 +47,9 @@ export default function CheckStatus({check, taskId}) {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            fetchStatus();
+            // if (shouldRefresh) {
+                fetchStatus();
+            // }
         }, 1000);
         fetchStatus();
         return () => clearInterval(interval);
