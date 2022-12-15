@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import {Button, Card, CardBody, Col, Row} from "reactstrap";
 
 import 'animate.css';
+import CheckStatusResult from "../CheckStatusResult/CheckStatusResult";
 
 export default function CheckStatus({check, taskId}) {
 
@@ -34,31 +35,48 @@ export default function CheckStatus({check, taskId}) {
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
         // console.log("taskID for " + check.api_name + " is " + taskId.task_id)
-        return (
-            <div>
-                <p>Status: <b><span className="text-success animate__animated animate__pulse">{status.task_status}</span></b></p>
-                <p><b>Output:</b>
-                    <br/>
-                    {status.task_result.data.map((item) => (
-                        <li key={item.ID}>
-                            <b>{item.CheckName}</b>
-                            <br/>
-                            {item.Message}
-                            <br/>
-                            {item.State}
-                        </li>
-                    ))}
-                </p>
-            </div>
-        )
+        if (status.task_status === 'PENDING') {
+            return (
+                <div>
+                    <p>Status: <b><span
+                        className="text-info animate__animated animate__pulse">{status.task_status}</span></b></p>
+                </div>
+            )
+        }
+
+
+        if (status.task_status === 'SUCCESS') {
+            return (
+                <div>
+                    <p>Status: <b><span
+                        className="text-success animate__animated animate__pulse">{status.task_status}</span></b></p>
+                    <p><b>Result:</b>
+                        <br/>
+                        {status.task_result.data.map((item) => (
+                            <CheckStatusResult/>
+                            // <li key={item.ID}>
+                            //     <b>{item.CheckName}</b>
+                            //     <br/>
+                            //     {item.Message}
+                            //     <br/>
+                            //     {item.State}
+                            // </li>
+                        ))}
+                    </p>
+                </div>
+            )
+        }
+
+
     }
 
 
-        // If a taskId is present and a status exists, display the status
+    // If there was an error
     if (taskId !== '' && status.detail) {
         return (
             <div>
-                <p>Status: <b><span className="text-danger animate__animated animate__pulse">Unknown - Internal Error</span></b></p>
+                <p>Status: <b><span
+                    className="text-danger animate__animated animate__pulse">Unknown - Internal Error</span></b></p>
                 <p><b>Error Detail:</b>
                     <br/>
                     {status.detail.fault.brief}
