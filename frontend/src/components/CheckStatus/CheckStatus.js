@@ -5,15 +5,17 @@ import 'animate.css';
 
 export default function CheckStatus({check, taskId}) {
 
+    const [shouldRefresh, setShouldRefresh] = React.useState(false);
+
     const [status, setStatus] = React.useState({});
     // The value of status disappears when the component is changing it seems so cannot perform our conditional here
+    // TODO: Stop this refreshing if status is not pending and taskId is the same as status.task_id
     const fetchStatus = async () => {
         if (taskId !== '') {
-// && (status.task_status !== 'SUCCESS') && (taskId.task_id !== status.task_id)
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
             setStatus(data);
-            console.log('refreshing status for' + taskId.task_id);
+            // console.log('refreshing status for ' + taskId.task_id);
         }
     }
 
@@ -34,10 +36,9 @@ export default function CheckStatus({check, taskId}) {
         // console.log("taskID for " + check.api_name + " is " + taskId.task_id)
         return (
             <div>
-                <p>Status: <b><span className="text-success">{status.task_status}</span></b></p>
+                <p>Status: <b><span className="text-success animate__animated animate__pulse">{status.task_status}</span></b></p>
                 <p><b>Output:</b>
                     <br/>
-                    {/*{console.log(status)}*/}
                     {status.task_result.data.map((item) => (
                         <li key={item.ID}>
                             <b>{item.CheckName}</b>
@@ -47,11 +48,25 @@ export default function CheckStatus({check, taskId}) {
                             {item.State}
                         </li>
                     ))}
-
-
                 </p>
             </div>
+        )
+    }
 
+
+        // If a taskId is present and a status exists, display the status
+    if (taskId !== '' && status.detail) {
+        return (
+            <div>
+                <p>Status: <b><span className="text-danger animate__animated animate__pulse">Unknown - Internal Error</span></b></p>
+                <p><b>Error Detail:</b>
+                    <br/>
+                    {status.detail.fault.brief}
+                    <br/>
+                    <br/>
+                    <i>{status.detail.fault.stderr}</i>
+                </p>
+            </div>
         )
     }
 
