@@ -5,10 +5,10 @@ import {Card, CardBody} from "reactstrap";
 
 import 'animate.css';
 
-const TipContext = React.createContext({
-  tip: [], fetchTip: () => {
-  }
-})
+// const TipContext = React.createContext({
+//   tip: [], fetchTip: () => {
+//   }
+// })
 
 export default function CyberTip(props) {
 
@@ -36,7 +36,7 @@ export default function CyberTip(props) {
 
 
   return (
-    <TipContext.Provider value={{tip, fetchTip}}>
+    // <TipContext.Provider value={{tip, fetchTip}}>
       <div className="animate__animated animate__fadeInUp rounded p-1">
         <Card className="card-tip-of-the-day m-1">
             <CardBody>
@@ -50,7 +50,7 @@ export default function CyberTip(props) {
         {/*  <p>hello</p>*/}
         {/*</div>*/}
       </div>
-    </TipContext.Provider>
+    // </TipContext.Provider>
 
   )
 }
