@@ -28,7 +28,7 @@ export default function CheckStatusResult(props) {
                                             </Col>
                                             <Col md="10">
                                                 {/*{console.log(props)}*/}
-                                                <b> {props.CheckName}</b>
+                                                <b> {props.props.CheckName}</b>
                                             </Col>
                                         </Row>
 
@@ -47,8 +47,7 @@ export default function CheckStatusResult(props) {
                 <Collapse isOpen={isOpen}>
                     <CardBody>
                         <Row>
-                            <i>Checks if the Windows Defender service is enabled</i>
-                            <i>{props.Message}</i>
+                            <i>{props.props.Message}</i>
                         </Row>
                     </CardBody>
                 </Collapse>
