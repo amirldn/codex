@@ -6,24 +6,24 @@ import 'animate.css';
 export default function CheckStatus({check, taskId}) {
 
     const [status, setStatus] = React.useState({});
-
-
+    // The value of status disappears when the component is changing it seems so cannot perform our conditional here
     const fetchStatus = async () => {
-        // Check taskId is not empty and the status.task_status is not 'SUCCESS' and taskId is different from the previous taskId
-        if (taskId !== '' && status.task_status !== 'SUCCESS' && taskId !== status.task_id) {
+        if (taskId !== '') {
+// && (status.task_status !== 'SUCCESS') && (taskId.task_id !== status.task_id)
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
             setStatus(data);
-            // console.log(data);
-        } else {
-            // console.log("being asked to fetch but there is no taskId")
+            console.log('refreshing status for' + taskId.task_id);
         }
     }
 
+// If the taskId changes or status.task_status is not SUCCESS then fetch the status
+
     useEffect(() => {
         const interval = setInterval(() => {
-                fetchStatus();
+            fetchStatus();
         }, 5000);
+
         fetchStatus();
         return () => clearInterval(interval);
     }, []);
@@ -31,20 +31,20 @@ export default function CheckStatus({check, taskId}) {
 
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
-        console.log("taskID for " + check.api_name + " is " + taskId.task_id)
+        // console.log("taskID for " + check.api_name + " is " + taskId.task_id)
         return (
             <div>
                 <p>Status: <b><span className="text-success">{status.task_status}</span></b></p>
                 <p><b>Output:</b>
                     <br/>
-                    {console.log(status)}
-                    {console.log("this is the task_result")}
-                    {console.log(status.task_result.data)}
+                    {/*{console.log(status)}*/}
                     {status.task_result.data.map((item) => (
                         <li key={item.ID}>
-                            <b>{item.ID}</b> - {item.CheckName}
-                            <p>{item.Message}</p>
-                            <p>{item.State}</p>
+                            <b>{item.CheckName}</b>
+                            <br/>
+                            {item.Message}
+                            <br/>
+                            {item.State}
                         </li>
                     ))}
 

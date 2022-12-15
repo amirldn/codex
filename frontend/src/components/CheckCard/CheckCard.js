@@ -22,12 +22,6 @@ export default function CheckCard(props) {
             })
     }
 
-    //    TODO: Add a useEffect hook that will fetch the status of the check
-    //   useEffect(() => {
-    //       console.log("hello from useEffect checkcard")
-    //       console.log(taskId)
-    //   }
-    //   , [taskId])
     function fetchTaskId() {
     }
 
@@ -63,7 +57,6 @@ export default function CheckCard(props) {
                                     <i className="nc-icon nc-check-2"/> Run Check
                                 </Button>
                                 <p>{props.check.api_name}</p>
-                                {/*<p>{taskId.taskId}</p>*/}
                             </Col>
                         </Row>
                         <Row>
