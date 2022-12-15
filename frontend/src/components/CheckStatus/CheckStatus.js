@@ -25,7 +25,7 @@ export default function CheckStatus({check, taskId}) {
     useEffect(() => {
         const interval = setInterval(() => {
             fetchStatus();
-        }, 5000);
+        }, 1000);
 
         fetchStatus();
         return () => clearInterval(interval);
