@@ -3,6 +3,7 @@ import {Button, Card, CardBody, Col, Row} from "reactstrap";
 
 import 'animate.css';
 import CheckStatusResult from "../CheckStatusResult/CheckStatusResult";
+import CheckStatusResultError from "../CheckStatusResultError/CheckStatusResultError";
 
 
 export default function CheckStatus({check, taskId}) {
@@ -78,17 +79,15 @@ export default function CheckStatus({check, taskId}) {
 
     // If there was an error
     if (taskId !== '' && status.detail) {
-        return (<div>
+        return (
+            <div>
             <p>Status: <b><span
                 className="text-danger animate__animated animate__pulse">Unknown - Internal Error</span></b></p>
-            <p><b>Error Detail:</b>
-                <br/>
-                {status.detail.fault.brief}
-                <br/>
-                <br/>
-                <i>{status.detail.fault.stderr}</i>
-            </p>
-        </div>)
+                <CheckStatusResultError props={status}/>
+
+        </div>
+
+        )
     }
 
 

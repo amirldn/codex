@@ -17,7 +17,7 @@ export default function CheckCard(props) {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)  // Print the data
+                // console.log(data)  // Print the data
                 setTaskId(data);
             })
     }
@@ -57,13 +57,13 @@ export default function CheckCard(props) {
                             taskId={taskId}
                         />
 
-                        <Row>
-                            <Col md="6">
-                                <Button className="btn-round" color="info" outline>
-                                    <i className="nc-icon nc-refresh-69"/> Refresh
-                                </Button>
-                            </Col>
-                        </Row>
+                        {/*<Row>*/}
+                        {/*    <Col md="6">*/}
+                        {/*        <Button className="btn-round" color="info" outline>*/}
+                        {/*            <i className="nc-icon nc-refresh-69"/> Refresh*/}
+                        {/*        </Button>*/}
+                        {/*    </Col>*/}
+                        {/*</Row>*/}
 
                     </CardBody>
                 </Card>
