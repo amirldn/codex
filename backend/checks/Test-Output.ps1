@@ -1,7 +1,9 @@
 # This check returns a simple value back as stdout. Used as a test file to ensure things are set up correctly.
 
-Import-Module /Users/amaula/GitHub/codex/backend/runner/Codex/Codex.psm1 -Force
-#Clear-CodexOutput
+# Import the Codex module
+$modulePath = Join-Path (Get-Location) "backend" -AdditionalChildPath @("checks","Codex","Codex.psm1")
+Write-Output "Module path: $modulePath"
+Import-Module $modulePath -Force
 
 # Add some Codex output and display it
 
