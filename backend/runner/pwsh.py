@@ -2,11 +2,17 @@ import json
 import logging
 import subprocess
 import re
+from pathlib import Path
 
-# POWERSHELL EXE PATH
+# Define the path of the PowerShell executable
 pwsh_path = "pwsh"
-# TODO: Set this to be some env variable using os
-script_path_prefix = '/Users/amaula/GitHub/codex/backend/checks/'
+
+# Define the path of the PowerShell scripts
+script_path_prefix = str(Path(__file__).parent.parent / "checks")
+if script_path_prefix[0] == "/":
+    script_path_prefix += "/"
+else:
+    script_path_prefix += "\\"
 
 
 def convert_to_dict(result):
