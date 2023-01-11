@@ -3,12 +3,17 @@
 param (
     # File path of flag.txt
     [String]
-    $FilePath = "/Users/amaula/GitHub/codex/backend/tests/flag.txt"
+    $FilePath
 )
 
 # Import the Codex module
 $modulePath = Join-Path (Get-Location) "backend" -AdditionalChildPath @("checks","Codex","Codex.psm1")
 Import-Module $modulePath -Force
+
+
+if (!$FilePath) {
+    $FilePath = Join-Path (Get-Location) "backend" -AdditionalChildPath @("tests","flag.txt")
+}
 
 $content = Get-Content -Path $FilePath -ErrorAction SilentlyContinue
 if ($content -eq 'here') {
