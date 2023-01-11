@@ -7,3 +7,8 @@ Requirements:
 - NPM
 - Redis
 - Powershell 7
+
+Installation:
+- Clone the repository
+- In the `backend/api` folder, run `pip install pipenv` and then `pipenv install`
+- In the frontend folder, run `npm install`
