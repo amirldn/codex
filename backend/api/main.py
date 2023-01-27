@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import logging
-from .router import apirunner, cybertip
+from .router import apirunner, cybertip, passwordgen
 
 version = "0.1.0"
 app = FastAPI(
@@ -44,3 +44,4 @@ async def say_hello(name: str):
 
 app.include_router(apirunner.router)
 app.include_router(cybertip.router)
+app.include_router(passwordgen.router)
