@@ -25,6 +25,7 @@ import Maps from "views/Map.js";
 import UserPage from "views/User.js";
 // import UpgradeToPro from "views/Upgrade.js";
 import Checks from "./views/Checks";
+import Password from "./views/Password";
 
 var routes = [
   {
@@ -39,6 +40,13 @@ var routes = [
     name: "Checks",
     icon: "nc-icon nc-vector",
     component: Checks,
+    layout: "/admin"
+  },
+  {
+    path: "/tools/password",
+    name: "Password Generator",
+    icon: "nc-icon nc-lock-circle-open",
+    component: Password,
     layout: "/admin"
   },
   {

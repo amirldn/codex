@@ -18,8 +18,8 @@ async def gen_password(length: int = 12, special: bool = True, numbers: bool = T
     types = [lower, upper, number_chars, special_chars]
 
     logging.info("Generating password of length: {}, special: {}, numbers:{}".format(length, special, numbers))
-
     password = ""
+
     for i in range(length):
         if special and numbers:
             next_char_type = random.randint(0, len(types) - 1)
