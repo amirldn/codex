@@ -43,7 +43,7 @@ function Password() {
             new URLSearchParams({
                 length: lengthState,
                 special: symbolState,
-                number: numberState,
+                numbers: numberState,
                 upper: upperState
             }));
         const data = await response.json();
@@ -245,7 +245,7 @@ function Password() {
                                             </Input>
                                         </FormGroup>
                                     </Col>
-                                    <Col className="pl-1" md="6">
+                                    <Col className="pr-1" md="6">
                                         <FormGroup>
                                             <label>Include Numbers</label>
                                             <Input

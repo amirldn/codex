@@ -10,37 +10,31 @@ router = APIRouter(
 
 
 @router.get("/generate/", summary="Generate a random password")
-async def gen_password(length: int = 12, special: bool = True, numbers: bool = True):
-    lower = "abcdefghijklmnopqrstuvwxyz"
-    upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+async def gen_password(length: int = 12, special: bool = True, numbers: bool = True, upper: bool = True):
+    lower_chars = "abcdefghijklmnopqrstuvwxyz"
+    upper_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
     special_chars = '!@#$%^&*()'
     number_chars = '0123456789'
-    types = [lower, upper, number_chars, special_chars]
+    types = [lower_chars, upper_chars, number_chars, special_chars]
 
     logging.info("Generating password of length: {}, special: {}, numbers:{}".format(length, special, numbers))
     password = ""
 
+    # Generate a password of the specified length
+    if not special:
+        types.remove(special_chars)
+    if not numbers:
+        types.remove(number_chars)
+    if not upper:
+        types.remove(upper_chars)
     for i in range(length):
-        if special and numbers:
-            next_char_type = random.randint(0, len(types) - 1)
-            next = types[next_char_type]
-        elif special:
-            next_char_type = random.randint(0, len(types) - 2)
-            next = types[next_char_type]
-        elif numbers:
-            next_char_type = random.randint(0, len(types) - 3)
-            next = types[next_char_type]
-        else:
-            next_char_type = random.randint(0, len(types) - 4)
-            next = types[next_char_type]
-
-        length_of_char_type_array = len(next)
-        char = next[random.randint(0, length_of_char_type_array - 1)]
+        # Randomly select a character type
+        char_type = random.choice(types)
+        # Randomly select a character from the selected type
+        char = random.choice(char_type)
+        # Add the character to the password
         password += char
 
     return {"data": {
         "password": password,
     }}
-
-
-
