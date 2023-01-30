@@ -20,6 +20,7 @@ async def run_flagfileexists():
         raise HTTPException(status_code=500, detail=result)
     return result
 
+
 @router.get("/flagfileexists/",
             summary="Runs the Test-FlagFileExists pwsh script")
 async def run_flagfileexists():
@@ -27,6 +28,7 @@ async def run_flagfileexists():
     if 'fault' in result:
         raise HTTPException(status_code=500, detail=result)
     return result
+
 
 @router.get("/testoutput/",
             summary="Runs the Test-Output pwsh script")
@@ -36,6 +38,7 @@ async def run_test_output():
         raise HTTPException(status_code=500, detail=result)
     return result
 
+
 @router.get("/testnewfile/",
             summary="Runs the Test-NewFile pwsh script")
 async def run_test_output():
@@ -43,6 +46,7 @@ async def run_test_output():
     if 'fault' in result:
         raise HTTPException(status_code=500, detail=result)
     return result
+
 
 @router.get("/checkfirewall/",
             summary="Runs the Check-WindowsFirewall check")
@@ -91,16 +95,6 @@ async def get_status(task_id):
             "task_result": {'data': []}
         }
         return result
-    # TODO: Why does running Test-NewFile have FAILURE instead of fault
-    # elif task_result.status == 'FAILURE':
-    #     logging.debug(task_result)
-    #     # raise HTTPException(status_code=200, detail=task_result.result)
-    #     result = {
-    #         "task_id": task_id,
-    #         "task_status": task_result.status,
-    #         "task_result": {'data': ['something went wrong, shouldn\'t be here']}
-    #     }
-    #     return result
     elif 'fault' in task_result.result:
         logging.debug(task_result)
         raise HTTPException(status_code=200, detail=task_result.result)
