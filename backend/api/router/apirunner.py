@@ -36,6 +36,13 @@ async def run_test_output():
         raise HTTPException(status_code=500, detail=result)
     return result
 
+@router.get("/testnewfile/",
+            summary="Runs the Test-NewFile pwsh script")
+async def run_test_output():
+    result = pwsh.run_and_return("Test-NewFile.ps1")
+    if 'fault' in result:
+        raise HTTPException(status_code=500, detail=result)
+    return result
 
 @router.get("/checkfirewall/",
             summary="Runs the Check-WindowsFirewall check")
@@ -76,6 +83,7 @@ async def get_status(task_id):
     if not task_result.status:
         # TODO: Fix this - don't know why task_result is empty
         raise HTTPException(status_code=500, detail='something went wrong ')
+    print(task_result)
     if task_result.status == 'PENDING':
         result = {
             "task_id": task_id,
@@ -83,7 +91,18 @@ async def get_status(task_id):
             "task_result": {'data': []}
         }
         return result
+    # TODO: Why does running Test-NewFile have FAILURE instead of fault
+    # elif task_result.status == 'FAILURE':
+    #     logging.debug(task_result)
+    #     # raise HTTPException(status_code=200, detail=task_result.result)
+    #     result = {
+    #         "task_id": task_id,
+    #         "task_status": task_result.status,
+    #         "task_result": {'data': ['something went wrong, shouldn\'t be here']}
+    #     }
+    #     return result
     elif 'fault' in task_result.result:
+        logging.debug(task_result)
         raise HTTPException(status_code=200, detail=task_result.result)
     result = {
         "task_id": task_id,

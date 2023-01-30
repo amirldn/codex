@@ -87,6 +87,17 @@
          "filename":"Check-SoftwareUpdate.ps1",
          "category":"Patching",
          "os":["Windows"]
+      },
+            {
+         "id": "9",
+         "name":"Test-NewFile",
+         "friendly_name":"New File",
+         "description":"Creates a new file",
+         "icon": "fa fa-cog",
+         "api_name": "testnewfile",
+         "filename":"Test-NewFile.ps1",
+         "category":"Testing",
+         "os":["Windows"]
       }
    ]
 }

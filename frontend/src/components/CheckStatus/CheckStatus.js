@@ -75,6 +75,7 @@ export default function CheckStatus({check, taskId}) {
             </div>)
         }
     }
+    console.log(status)
 
 
     // If there was an error
@@ -89,6 +90,7 @@ export default function CheckStatus({check, taskId}) {
 
         )
     }
+
 
 
     // TODO: This component should display the status of the check

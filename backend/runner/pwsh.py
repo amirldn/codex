@@ -103,10 +103,11 @@ def run_pwsh_script(
             else:
                 return error, process_result.returncode
 
-    except Exception:
+    except Exception as e:
+        logging.error("run_pwsh_script exception occurred: {}".format(e))
         process_result.stderr = clean_output(process_result.stderr)
         error = {"fault": {
-            "brief": "Pwsh Runner Non-Zero Error",
+            "brief": "Pwsh Runner Non-Zero Internal Error",
             "stderr": process_result.stderr.strip(),
             "stdout": process_result.stdout.strip(),
             "code": process_result.returncode}
@@ -139,4 +140,10 @@ def run_and_return(
             return return_value
     except Exception as e:
         logging.error("pwsh run_and_return exception occurred: {}".format(e))
-        return e
+        error = {"fault": {
+            "brief": "Pwsh Run  ner Non-Zero Error",
+            "stderr": "pwsh run_and_return exception occurred: {}".format(e),
+            "stdout": "pwsh run_and_return exception occurred: {}".format(e),
+            "code": 1}
+        }
+        return error
