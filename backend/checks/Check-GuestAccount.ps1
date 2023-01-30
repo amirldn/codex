@@ -5,7 +5,9 @@ param (
 
 $ErrorActionPreference = 'Stop'
 
-Import-Module /Users/amaula/GitHub/codex/backend/runner/Codex/Codex.psm1 -Force
+# Import the Codex module
+$modulePath = Join-Path (Get-Location) "backend" -AdditionalChildPath @("checks","Codex","Codex.psm1")
+Import-Module $modulePath -Force
 
 $accounts = Get-LocalUser
 $guest = $accounts | Where-Object { $_.Name -eq 'Guest' }
