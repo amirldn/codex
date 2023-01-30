@@ -35,11 +35,17 @@ function Password() {
     const [symbolState, setSymbolState] = useState(true);
     const [numberState, setNumberState] = useState(true);
     const [upperState, setUpperState] = useState(true);
-    const [lengthState, setLengthState] = useState(true);
+    const [lengthState, setLengthState] = useState(12);
 
     const [generatedPassword, setGeneratedPassword] = React.useState('Generate a Password');
     const fetchGeneratedPassword = async () => {
-        const response = await fetch('http://127.0.0.1:8000/password/generate/?length=10&special=True');
+        const response = await fetch('http://127.0.0.1:8000/password/generate/?' +
+            new URLSearchParams({
+                length: lengthState,
+                special: symbolState,
+                number: numberState,
+                upper: upperState
+            }));
         const data = await response.json();
         setGeneratedPassword(data.data.password);
     }
@@ -204,10 +210,10 @@ function Password() {
 
             <Row>
                 <Col className="ml-auto mr-auto" md="6">
-                    <Card className="card-plain">
+                    <Card>
                         <CardHeader>
-                            <CardTitle tag="h4">Password Generator</CardTitle>
-                            <p className="category">Generate a password based on your preferences</p>
+                            <CardTitle tag="h4">Password Generator Tool</CardTitle>
+                            <p>Use the parameters below to generate a secure password for your accounts</p>
                         </CardHeader>
 
                         <CardBody>
@@ -216,8 +222,9 @@ function Password() {
                                     <Col className="pr-1" md="6">
                                         <FormGroup>
                                             <label>Length</label>
+                                            {/* change this to range */}
                                             <Input
-                                                defaultValue="8"
+                                                defaultValue="12"
                                                 placeholder="Length"
                                                 type="number"
                                                 onChange={e => setLengthState(e.target.value)}
@@ -270,8 +277,9 @@ function Password() {
                                 <Row>
                                     <div className="update ml-auto mr-auto">
                                         <Button
-                                            className="btn-round"
+                                            className="btn-info"
                                             color="primary"
+                                            size="lg"
                                             onClick={fetchGeneratedPassword}
                                         >
                                             Generate Password
@@ -284,42 +292,7 @@ function Password() {
                 </Col>
             </Row>
             <Row>
-                <Col className="ml-auto mr-auto" md="6">
-                    <Card className="card-plain">
-                        <CardHeader>
-                            <CardTitle tag="h4">Password</CardTitle>
-                            <p className="category">Your generated password</p>
-                        </CardHeader>
-                        <CardBody>
-                            <Form>
-                                <Row>
-                                    <Col className="pr-1" md="12">
-                                        <FormGroup>
-                                            <label>Password</label>
-                                            <Input
-                                                defaultValue={generatedPassword}
-                                                placeholder="Password"
-                                                type="text"
-                                            />
-                                        </FormGroup>
-                                    </Col>
-                                </Row>
-                            </Form>
-                        </CardBody>
-                    </Card>
-                </Col>
-            </Row>
-
-
-            <Row className="justify-content-center">
-                <Col md="3" sm="6" xs="6">
-                    {/*TODO: add an onclick here but dont make it go crazy*/}
-                    <Button className="btn-info" color="primary" size="lg">Generate Password</Button>
-                </Col>
-            </Row>
-            <Row>
-                <Col md="12">
-                    <hr/>
+                <Col className="ml-auto mr-auto" md="10">
                     <Card>
                         <CardBody>
                             <CardTitle tag="h5" className="text-center">Generated Password</CardTitle>
