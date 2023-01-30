@@ -53,7 +53,7 @@ function Sidebar(props) {
     >
       <div className="logo">
         <a
-          href="https://localhost:3000/"
+          href="http://localhost:3000/"
           className="simple-text logo-mini"
         >
           <div className="logo-img">
@@ -61,7 +61,7 @@ function Sidebar(props) {
           </div>
         </a>
         <a
-          href="https://localhost:3000/"
+          href="http://localhost:3000/"
           className="simple-text logo-normal"
         >
           codex.io
