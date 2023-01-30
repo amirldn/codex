@@ -4,8 +4,8 @@ A modular security scanner with a clean and simple UI. Built with React, FastAPI
 Requirements:
 - Python 3.10
 - NodeJS 
-- NPM
-- Redis
+- NPM (MacOS) / NVM (Windows)
+- Redis (MacOS) / Memurai (Windows)
 - Powershell 7
 
 Installation:
