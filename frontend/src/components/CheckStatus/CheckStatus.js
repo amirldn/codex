@@ -27,30 +27,15 @@ export default function CheckStatus({check, taskId}) {
     const [shouldRefresh, setShouldRefresh] = React.useState(false);
 
     const [status, setStatus] = React.useState('');
-    // The value of status disappears when the component is changing it seems so cannot perform our conditional here
-    // TODO: Stop this refreshing if status is not pending and taskId is the same as status.task_id
-    // const fetchStatus = async () => {
-    //     if (taskId !== '') {
-    //         const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
-    //         const data = await response.json();
-    //         setStatus(data);
-    //     }
-    // }
     const fetchStatus = async () => {
         if (taskId !== '') {
 
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
             setStatus(data);
-            console.log(status)
             if (data.task_status === 'PENDING' || status === '') {
-                console.log('pending')
                 setShouldRefresh(true);
-            }
-            else if (status.detail || status.task_status === 'SUCCESS') {
-                setShouldRefresh(false);
-            }
-            else {
+            } else {
                 setShouldRefresh(false);
             }
         }
@@ -59,37 +44,12 @@ export default function CheckStatus({check, taskId}) {
     useEffect(() => {
         const interval = setInterval(() => {
             if (shouldRefresh) {
-                console.log('Refreshing')
                 fetchStatus();
             }
         }, 1000);
         fetchStatus()
         return () => clearInterval(interval);
     }, [shouldRefresh]);
-
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         if (taskId !== '' && status.detail == undefined && status.task_status !== 'SUCCESS') {
-    //             console.log('useEffect interval')
-    //             fetchStatus();
-    //             console.log(status)
-    //         }
-    //     }, 1000);
-    //     // fetchStatus()
-    //
-    //     return () => clearInterval(interval);
-    // }, [status, taskId]);
-
-    //     useEffect(() => {
-    //     const interval = setInterval(() => {
-    //             console.log('useEffect interval')
-    //             fetchStatus();
-    //             console.log(status)
-    //     }, 1000);
-    //
-    //     fetchStatus();
-    //     return () => clearInterval(interval);
-    // }, []);
 
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
