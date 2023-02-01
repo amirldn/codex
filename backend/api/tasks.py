@@ -9,8 +9,8 @@ from ..runner import pwsh
 from ..checks import check
 
 celery = Celery('tasks',
-                broker='redis://localhost',
-                backend='redis://localhost')
+                broker='redis://localhost:6379',
+                backend='redis://localhost:6379')
 
 
 @celery.task(name="create_task")
