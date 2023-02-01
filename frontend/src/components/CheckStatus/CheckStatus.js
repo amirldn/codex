@@ -13,7 +13,7 @@ export default function CheckStatus({check, taskId}) {
         let textColour = 'text-success'
         for (let i = 0; i < results.length; i++) {
             if (results[i].State === 'Crit') {
-                overallStatus = 'Critcal'
+                overallStatus = 'Critical'
                 textColour = 'text-danger'
                 break
             } else if (results[i].State === 'Warn') {
@@ -21,36 +21,75 @@ export default function CheckStatus({check, taskId}) {
                 textColour = 'text-warning'
             }
         }
-        return (
-            <span className={`statusbar-button-container ${textColour}`}>{overallStatus}</span>
-        )
+        return (<span className={`statusbar-button-container ${textColour}`}>{overallStatus}</span>)
     }
 
     const [shouldRefresh, setShouldRefresh] = React.useState(false);
 
-    const [status, setStatus] = React.useState({});
+    const [status, setStatus] = React.useState('');
     // The value of status disappears when the component is changing it seems so cannot perform our conditional here
     // TODO: Stop this refreshing if status is not pending and taskId is the same as status.task_id
+    // const fetchStatus = async () => {
+    //     if (taskId !== '') {
+    //         const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
+    //         const data = await response.json();
+    //         setStatus(data);
+    //     }
+    // }
     const fetchStatus = async () => {
         if (taskId !== '') {
+
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
             setStatus(data);
-            // console.log('refreshing status for ' + taskId.task_id);
+            console.log(status)
+            if (data.task_status === 'PENDING' || status === '') {
+                console.log('pending')
+                setShouldRefresh(true);
+            }
+            else if (status.detail || status.task_status === 'SUCCESS') {
+                setShouldRefresh(false);
+            }
+            else {
+                setShouldRefresh(false);
+            }
         }
     }
 
-// If the taskId changes or status.task_status is not SUCCESS then fetch the status
-
     useEffect(() => {
         const interval = setInterval(() => {
-            fetchStatus();
+            if (shouldRefresh) {
+                console.log('Refreshing')
+                fetchStatus();
+            }
         }, 1000);
-
-        fetchStatus();
+        fetchStatus()
         return () => clearInterval(interval);
-    }, []);
+    }, [shouldRefresh]);
 
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         if (taskId !== '' && status.detail == undefined && status.task_status !== 'SUCCESS') {
+    //             console.log('useEffect interval')
+    //             fetchStatus();
+    //             console.log(status)
+    //         }
+    //     }, 1000);
+    //     // fetchStatus()
+    //
+    //     return () => clearInterval(interval);
+    // }, [status, taskId]);
+
+    //     useEffect(() => {
+    //     const interval = setInterval(() => {
+    //             console.log('useEffect interval')
+    //             fetchStatus();
+    //             console.log(status)
+    //     }, 1000);
+    //
+    //     fetchStatus();
+    //     return () => clearInterval(interval);
+    // }, []);
 
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
@@ -60,8 +99,6 @@ export default function CheckStatus({check, taskId}) {
                     className="text-info animate__animated animate__pulse">{status.task_status}</span></b></p>
             </div>)
         }
-
-
         if (status.task_status === 'SUCCESS') {
             return (<div>
                 <p>Status: <b>
@@ -75,22 +112,18 @@ export default function CheckStatus({check, taskId}) {
             </div>)
         }
     }
-    console.log(status)
-
 
     // If there was an error
     if (taskId !== '' && status.detail) {
-        return (
-            <div>
-            <p>Status: <b><span
-                className="text-danger animate__animated animate__pulse">Unknown - Internal Error</span></b></p>
+        return (<div>
+                <p>Status: <b><span
+                    className="text-danger animate__animated animate__pulse">Unknown - Internal Error</span></b></p>
                 <CheckStatusResultError props={status}/>
 
-        </div>
+            </div>
 
         )
     }
-
 
 
     // TODO: This component should display the status of the check
