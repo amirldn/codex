@@ -131,6 +131,19 @@
       "os": [
         "Windows"
       ]
+    },
+        {
+      "id": "11",
+      "name": "Check-Disk",
+      "friendly_name": "Check Disk",
+      "description": "Checks disk encryption (Bitlocker) and usage",
+      "icon": "fa fa-cog",
+      "api_name": "checkdisk",
+      "filename": "Check-Disk.ps1",
+      "category": "Security",
+      "os": [
+        "Windows"
+      ]
     }
   ]
 }
