@@ -1,14 +1,21 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 import logging
-from .router import apirunner, cybertip, passwordgen
+from router import apirunner, cybertip, passwordgen
 
 version = "0.1.0"
+
+logging.info("Starting Codex API")
+logging.info("Version: " + version)
+
 app = FastAPI(
     title="Codex API",
     description="Codex API",
     version=version,
 )
+
+logging.info("Root Path: " + app.root_path)
+logging.info("Docs Path: " + app.docs_url)
 
 # CORS - Cross Origin Resource Sharing
 # Required for the frontend to access the backend
@@ -35,11 +42,6 @@ async def root(request: Request):
             "data": "This is the Codex API",
             "version": version,
             "root_path": request.scope.get("root_path")}
-
-
-@app.get("/hello/{name}")
-async def say_hello(name: str):
-    return {"message": f"Hello {name}"}
 
 
 app.include_router(apirunner.router)

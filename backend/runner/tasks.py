@@ -1,12 +1,9 @@
-import os
 import time
 import logging
-
 from celery import Celery
-from fastapi import HTTPException
 
-from ..runner import pwsh
-from ..checks import check
+from runner import pwsh
+from checks import check
 
 celery = Celery('tasks',
                 broker='redis://localhost:6379',

@@ -7,7 +7,7 @@ from fastapi import APIRouter
 
 # Open the json file of cyber security tips
 # get the absolute path of ../../cybertip/cybertip.json using pathlib
-tip_file = Path(__file__).parent.parent.parent / "cybertip/cybertip.json"
+tip_file = Path(__file__).parent.parent / "cybertip/cybertip.json"
 
 with open(tip_file) as f:
     tips = (json.loads(f.read()))['tips']
