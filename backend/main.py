@@ -1,7 +1,15 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-import logging
+
 from router import apirunner, cybertip, passwordgen
+
+import logging
+import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'checks')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'router')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'runner')))
 
 version = "0.1.0"
 

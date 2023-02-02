@@ -8,6 +8,7 @@ fastapi = "*"
 uvicorn = "*"
 redis = "*"
 celery = "*"
+pyinstaller = "*"
 
 [dev-packages]
 
