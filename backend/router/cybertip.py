@@ -13,6 +13,7 @@ router = APIRouter(
     prefix="/cybertip",
 )
 
+
 @router.get("/tip/", summary="Get a random cyber security tip")
 async def get_cybertip():
     tip = random.choice(tips)

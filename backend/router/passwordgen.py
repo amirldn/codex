@@ -1,6 +1,5 @@
 import logging
 import random
-import time
 
 from fastapi import APIRouter
 
