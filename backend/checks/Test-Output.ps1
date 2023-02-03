@@ -1,6 +1,7 @@
 # This check returns a simple value back as stdout. Used as a test file to ensure things are set up correctly.
 
 # Import the Codex module
+#Get-Location
 $modulePath = Join-Path (Get-Location) "checks" -AdditionalChildPath @("Codex","Codex.psm1")
 Import-Module $modulePath -Force
 

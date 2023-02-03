@@ -1,6 +1,3 @@
-# in here, create some helper functions
-# first helper is that it should check if a module is installed (like PSWindowsUpdate) and install it if not)
-
 New-Variable -Name codexOutput -Value @() -Scope Script -Force
 $ErrorActionPreference = 'Stop'
 
