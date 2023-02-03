@@ -3,7 +3,7 @@ import logging
 from celery import Celery
 
 from . import pwsh
-from ..checks import check
+from checks import check
 
 celery = Celery('tasks',
                 broker='redis://localhost:6379',
