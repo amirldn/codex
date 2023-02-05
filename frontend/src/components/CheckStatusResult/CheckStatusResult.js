@@ -21,38 +21,49 @@ export default function CheckStatusResult({props}) {
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
-    return (
-        <div className="animate__animated animate__fadeInUp rounded p-1">
-            <Card className="card-check m-1">
-                <CardHeader>
-                    <Container className="d-flex justify-content-between">
-                        <Button className="btn btn-link rounded"
-                                onClick={toggle} >
-                            <Row >
-                                <Col md="1">
-                                    <DrawStatusIcon status={props.State}/>
-                                </Col>
-                                <Col md="10">
-                                    <b>{props.CheckName}</b>
-                                </Col>
-                                <Col md="1">
-                                    <i className="fa fa-chevron-down"/>
-                                </Col>
-                            </Row>
-                        </Button>
-                    </Container>
-                </CardHeader>
-                <Collapse isOpen={isOpen}>
-                    <CardBody>
+    function renderResolveSteps() {
+        if (props.ResolveSteps) {
+            return (<CheckStatusResolveSteps props={props.ResolveSteps}/>)
+        }
+    }
+
+
+    return (<div className="animate__animated animate__fadeInUp rounded p-1">
+        <Card className="card-check m-1">
+            <CardHeader>
+                <Container className="d-flex justify-content-between">
+                    <Button className="btn btn-link rounded"
+                            onClick={toggle}>
                         <Row>
-                            <Col>
-                                <i>{props.Message}</i>
+                            <Col md="1">
+                                <DrawStatusIcon status={props.State}/>
                             </Col>
-                            <CheckStatusResolveSteps props={props.ResolveSteps} />
+                            <Col md="10">
+                                <b>{props.CheckName}</b>
+                            </Col>
+                            <Col md="1">
+                                <i className="fa fa-chevron-down"/>
+                            </Col>
                         </Row>
-                    </CardBody>
-                </Collapse>
-            </Card>
-        </div>
-    )
+                    </Button>
+                </Container>
+            </CardHeader>
+            <Collapse isOpen={isOpen}>
+                <CardBody>
+                    <Row>
+                        <Col>
+                            <i>{props.Message}</i>
+                        </Col>
+
+
+                    </Row>
+                    <Row>
+                        <Col md="12">
+                            {renderResolveSteps()}
+                        </Col>
+                    </Row>
+                </CardBody>
+            </Collapse>
+        </Card>
+    </div>)
 }

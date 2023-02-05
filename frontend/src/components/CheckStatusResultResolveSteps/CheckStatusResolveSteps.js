@@ -1,18 +1,5 @@
-import React, {useState} from "react";
-import {
-    Button,
-    Card,
-    CardBody,
-    CardFooter,
-    CardHeader,
-    Col,
-    Collapse,
-    Container,
-    Pagination,
-    PaginationItem,
-    PaginationLink,
-    Row
-} from "reactstrap";
+import React from "react";
+import {Card, CardBody, CardFooter, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row} from "reactstrap";
 
 import 'animate.css';
 
@@ -24,18 +11,19 @@ export default function CheckStatusResolveSteps({props}) {
     // The pagination bar should be hidden if there are no steps to resolve
 
     const [stepView, setStepView] = React.useState(0);
-    const [stepContent, setStepContent] = React.useState('')
+    const [stepContent, setStepContent] = React.useState(props[0])
 
-
+    // TODO: check why this takes two clicks to update
+    // TODO: implement a way of adding pictures to this
     function updateStep(step) {
-        if (step == -2) {
-            if (stepView == props.length - 1) {
+        if (step === -2) {
+            if (stepView === props.length - 1) {
                 console.log(stepView)
                 return
             }
             setStepView(stepView + 1)
-        } else if (step == -1) {
-            if (stepView == 0) {
+        } else if (step === -1) {
+            if (stepView === 0) {
                 console.log(stepView)
                 return
             }
@@ -47,6 +35,7 @@ export default function CheckStatusResolveSteps({props}) {
         console.log(stepView)
         return;
     }
+
 
 
     if (props === null) {
