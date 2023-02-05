@@ -2,8 +2,8 @@ import time
 import logging
 from celery import Celery
 
-from . import pwsh
-from checks import check
+from backend.runner import pwsh
+from backend.checks import check
 
 celery = Celery('tasks',
                 broker='redis://localhost:6379',
