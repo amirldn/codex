@@ -1,7 +1,8 @@
 New-Variable -Name codexOutput -Value @() -Scope Script -Force
 $ErrorActionPreference = 'Stop'
 
-function Add-CodexOutput {
+function Add-CodexOutput
+{
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -12,25 +13,28 @@ function Add-CodexOutput {
         [string]$Message,
 
         [Parameter(Mandatory)]
-        [string]$CheckName
+        [string]$CheckName,
+
+        [string[]]$ResolveSteps
     )
 
     $checkResult = [PSCustomObject]@{
         "CheckName" = $CheckName
-        "State"     = $State
-        "Message"   = $Message
+        "State" = $State
+        "Message" = $Message
+        "ResolveSteps" = $ResolveSteps
     }
     $script:codexOutput += $checkResult
-#    Write-Output $codexOutput
-
 }
 
-function Get-CodexOutput {
+function Get-CodexOutput
+{
     [CmdletBinding()]
     $codexOutput
 }
 
-function Write-CodexOutput {
+function Write-CodexOutput
+{
     [CmdletBinding()]
     param ()
     $i = 0
@@ -43,14 +47,16 @@ function Write-CodexOutput {
     $codexOutput | ConvertTo-Json -AsArray
 }
 
-function Clear-CodexOutput {
+function Clear-CodexOutput
+{
     [CmdletBinding()]
     $script:codexOutput = @()
 }
 
 # Tests if Powershell is running as Administrator
 # Requires Windows
-function Test-CodexAdministrator {
+function Test-CodexAdministrator
+{
 
     if (Test-CodexOS -AllowedOS Windows)
     {
@@ -64,7 +70,8 @@ function Test-CodexAdministrator {
 }
 
 # Determines what OS is running
-function Get-CodexOS {
+function Get-CodexOS
+{
     if ($isWindows)
     {
         "Windows"
@@ -84,7 +91,8 @@ function Get-CodexOS {
 }
 
 # Helper command to check if a cmdlet can be ran on this OS
-function Test-CodexOS {
+function Test-CodexOS
+{
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -107,7 +115,8 @@ $ModuleCompatibility = @{
 }
 
 
-function Get-CodexCompatibleCheck {
+function Get-CodexCompatibleCheck
+{
     [CmdletBinding()]
     param ()
     $json = Get-Content -Path '/Users/amaula/GitHub/codex/backend/checks/checks.json' | ConvertFrom-Json
@@ -116,15 +125,16 @@ function Get-CodexCompatibleCheck {
     $os = Get-CodexOS
     $compatible = @()
     $checks | foreach {
-       if ($_.os == $os)
-       {
-           $compatible += $_
-       }
+        if ($_.os = = $os)
+        {
+            $compatible += $_
+        }
     }
     $compatible | ConvertTo-Json -AsArray
 }
 
-function New-CodexCompatibleCheckList {
+function New-CodexCompatibleCheckList
+{
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -136,7 +146,8 @@ function New-CodexCompatibleCheckList {
 }
 
 # Installs third party modules
-function Use-CodexModule {
+function Use-CodexModule
+{
     [CmdletBinding()]
     param (
         [Parameter(Mandatory)]
@@ -150,37 +161,45 @@ function Use-CodexModule {
     }
 
     # Check if the module can be used on this OS
-   if ($ModuleCompatibility[$ModuleName] -notcontains (Get-CodexOS)) {
-       Write-Error "Module $ModuleName is not compatible with this OS ($(Get-CodexOS))"
-   }
+    if ($ModuleCompatibility[$ModuleName] -notcontains (Get-CodexOS))
+    {
+        Write-Error "Module $ModuleName is not compatible with this OS ($( Get-CodexOS ))"
+    }
 
-#    TODO: check if module is installed already
+    #    TODO: check if module is installed already
 
     # Check if module requires Administrator
-    if ($ModuleName -eq 'PSWindowsUpdate') {
+    if ($ModuleName -eq 'PSWindowsUpdate')
+    {
 
-        if ($isAdmin) {
+        if ($isAdmin)
+        {
             Install-Module PSWindowsUpdate -Force
         }
-        else {
+        else
+        {
             Start-Process powershell -Verb runas -ArgumentList "Install-Module PSWindowsUpdate -Force"
         }
     }
-    else {
-        Install-Module $ModuleName -Scope CurrentUser -Force 
+    else
+    {
+        Install-Module $ModuleName -Scope CurrentUser -Force
     }
-    
+
 }
 
 
 # Intialisation code
-function Start-CodexModule {
+function Start-CodexModule
+{
     [CmdletBinding()]
     param ()
     $os = Get-CodexOS
     New-CodexCompatibleCheckList
-    $modulesToUse = foreach ($module in $ModuleCompatibility.Keys) {
-        if ($ModuleCompatibility[$module] -eq $os) {
+    $modulesToUse = foreach ($module in $ModuleCompatibility.Keys)
+    {
+        if ($ModuleCompatibility[$module] -eq $os)
+        {
             $module.Value
         }
     }

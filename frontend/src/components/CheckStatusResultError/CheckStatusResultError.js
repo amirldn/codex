@@ -1,22 +1,8 @@
 import React, {useState} from "react";
 import {Button, Card, CardBody, CardHeader, Col, Collapse, Container, Row} from "reactstrap";
-
 import 'animate.css';
 
-function DrawStatusIcon(props) {
-    if (props.status === 'Ok') {
-        return <i className="fa fa-check-circle fa-3x text-success"/>
-    } else if (props.status === 'Warn') {
-        return <i className="fa fa-exclamation-circle fa-3x text-warning"/>
-    } else if (props.status === 'Crit') {
-        return <i className="fa fa-times-circle fa-3x text-danger"/>
-    }
-    return <i className="fa fa-question-circle fa-3x text-info"/>
-}
-
 export default function CheckStatusResultError({props}) {
-
-
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
