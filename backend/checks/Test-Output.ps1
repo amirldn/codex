@@ -1,8 +1,15 @@
 # This check returns a simple value back as stdout. Used as a test file to ensure things are set up correctly.
 
 # Import the Codex module
-#Get-Location
-$modulePath = Join-Path (Get-Location) "checks" -AdditionalChildPath @("Codex","Codex.psm1")
+$pwd = Get-Location
+if ($pwd -notlike "*backend*")
+{
+    $modulePath = Join-Path (Get-Location) "backend" -AdditionalChildPath @("checks","Codex","Codex.psm1")
+}
+else
+{
+    $modulePath = Join-Path (Get-Location) "checks" -AdditionalChildPath @("Codex","Codex.psm1")
+}
 Import-Module $modulePath -Force
 
 # Add some Codex output and display it
