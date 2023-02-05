@@ -7,7 +7,15 @@ param (
 )
 
 # Import the Codex module
-$modulePath = Join-Path (Get-Location) "checks" -AdditionalChildPath @("Codex","Codex.psm1")
+$pwd = Get-Location
+if ($pwd -notlike "*backend*")
+{
+    $modulePath = Join-Path (Get-Location) "backend" -AdditionalChildPath @("checks","Codex","Codex.psm1")
+}
+else
+{
+    $modulePath = Join-Path (Get-Location) "checks" -AdditionalChildPath @("Codex","Codex.psm1")
+}
 Import-Module $modulePath -Force
 
 
@@ -17,7 +25,7 @@ if (!$FilePath) {
 
 try
 {
-    New-Item -Path $FilePath -ItemType File -Force
+    New-Item -Path $FilePath -ItemType File -Force | Out-Null
     Add-CodexOutput -CheckName "NewFile" -State Ok -Message "File '$FilePath' was created"
 }
 catch
