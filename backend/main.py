@@ -1,5 +1,8 @@
+import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+
+import multiprocessing
 
 from backend.router import apirunner, cybertip, passwordgen
 
@@ -55,3 +58,8 @@ async def root(request: Request):
 app.include_router(apirunner.router)
 app.include_router(cybertip.router)
 app.include_router(passwordgen.router)
+
+
+# if __name__ == '__main__':
+#     multiprocessing.freeze_support()
+#     uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=False, workers=2)
