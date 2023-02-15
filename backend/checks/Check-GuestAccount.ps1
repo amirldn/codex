@@ -6,15 +6,8 @@ param (
 $ErrorActionPreference = 'Stop'
 
 # Import the Codex module
-$pwd = Get-Location
-if ($pwd -notlike "*backend*")
-{
-    $modulePath = Join-Path (Get-Location) "backend" -AdditionalChildPath @("checks","Codex","Codex.psm1")
-}
-else
-{
-    $modulePath = Join-Path (Get-Location) "checks" -AdditionalChildPath @("Codex","Codex.psm1")
-}
+$pwd = $MyInvocation.MyCommand.Path
+$modulePath = Join-Path ($pwd -replace '[^\\/]+$','') "Codex" -AdditionalChildPath @("Codex.psm1")
 Import-Module $modulePath -Force
 
 $accounts = Get-LocalUser
