@@ -15,7 +15,9 @@ function Add-CodexOutput
         [Parameter(Mandatory)]
         [string]$CheckName,
 
-        [string[]]$ResolveSteps
+        [string[]]$ResolveSteps,
+
+        [string[]]$ResolveImg
     )
 
     $checkResult = [PSCustomObject]@{
@@ -23,6 +25,7 @@ function Add-CodexOutput
         "State" = $State
         "Message" = $Message
         "ResolveSteps" = $ResolveSteps
+        "ResolveImg" = $ResolveImg
     }
     $script:codexOutput += $checkResult
 }

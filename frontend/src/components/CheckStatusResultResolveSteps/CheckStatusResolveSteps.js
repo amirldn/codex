@@ -12,6 +12,7 @@ export default function CheckStatusResolveSteps({props}) {
 
     const [stepView, setStepView] = React.useState(0);
     const [stepContent, setStepContent] = React.useState(props[0])
+    const [stepImg, setStepImg] = React.useState('')
 
     // TODO: check why this takes two clicks to update
     // TODO: implement a way of adding pictures to this
@@ -36,6 +37,11 @@ export default function CheckStatusResolveSteps({props}) {
         return;
     }
 
+    // function displayImage() {
+    //     if (props[stepView].Image) {
+    //         return <img src={props[stepView].Image} alt={props[stepView].ImageAlt}/>
+    //     }
+    // }
 
 
     if (props === null) {
@@ -54,6 +60,7 @@ export default function CheckStatusResolveSteps({props}) {
                             <p><b>Steps</b>
                                 <br/>
                                 {stepContent}
+                                {stepImg}
                             </p>
                         </Col>
                     </Row>

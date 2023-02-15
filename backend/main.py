@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 
-from router import apirunner, cybertip, passwordgen
+from backend.router import apirunner, cybertip, passwordgen
 
 import logging
 import os
