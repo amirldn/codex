@@ -1,8 +1,4 @@
 # -*- mode: python ; coding: utf-8 -*-
-from PyInstaller.utils.hooks import collect_data_files
-
-datas = []
-datas += collect_data_files('backend.router')
 
 
 block_cipher = None
@@ -10,10 +6,10 @@ block_cipher = None
 
 a = Analysis(
     ['main.py'],
-    pathex=['/Users/amaula/GitHub/codex/backend/router/'],
+    pathex=['router', 'runner'],
     binaries=[],
-    datas=datas,
-    hiddenimports=['backend.router'],
+    datas=[('checks', 'checks'), ('log', 'log'), ('tests', 'tests')],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
