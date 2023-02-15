@@ -4,10 +4,12 @@ import random
 import os
 from fastapi import APIRouter
 
-cybertip = os.path.abspath('router/cybertip.json')
-# If backend is not in the file path, then append before router
-if 'backend' not in cybertip:
-    cybertip = os.path.abspath('backend/router/cybertip.json')
+# cybertip = os.path.abspath('router/cybertip.json')
+# # If backend is not in the file path, then append before router
+# if 'backend' not in cybertip:
+#     cybertip = os.path.abspath('backend/router/cybertip.json')
+
+cybertip = os.path.join(os.path.dirname(__file__), 'cybertip.json')
 print(cybertip)
 
 with open(cybertip) as f:
