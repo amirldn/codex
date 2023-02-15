@@ -28,7 +28,12 @@ def start_uvicorn():
 
 def start_celery():
     worker = celeryi.Worker(
-        include=['backend.runner.tasks']
+        include=['backend.runner.tasks'],
+        loglevel='INFO',
+        pool='solo',
+        without_gossip=True,
+        without_mingle=True,
+        without_heartbeat=True,
     )
     worker.start()
 
