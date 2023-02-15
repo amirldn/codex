@@ -5,12 +5,12 @@ from celery import Celery
 from backend.runner import pwsh
 from backend.checks import check
 
-celery = Celery('tasks',
+celeryi = Celery('tasks',
                 broker='redis://localhost:6379',
                 backend='redis://localhost:6379')
 
 
-@celery.task(name="create_task")
+@celeryi.task(name="create_task")
 def create_task(check_name: str):
     # TODO: need to find where this logging is going, currently only to console
     logging.info("Running celery task with check_name: %s", check_name)

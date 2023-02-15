@@ -3,7 +3,7 @@ import logging
 from fastapi import APIRouter, HTTPException
 
 from backend.runner import pwsh
-from backend.runner.tasks import create_task, celery
+from backend.runner.tasks import create_task, celeryi
 from backend.checks import check
 
 router = APIRouter(
@@ -82,7 +82,7 @@ async def run_check(check_name: str):
             summary="Get the result of a check by task ID",
             status_code=200)
 async def get_status(task_id):
-    task_result = celery.AsyncResult(task_id)
+    task_result = celeryi.AsyncResult(task_id)
     if not task_result.status:
         # TODO: Fix this - don't know why task_result is empty
         raise HTTPException(status_code=500, detail='something went wrong ')
