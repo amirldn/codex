@@ -32,7 +32,7 @@ export default function CheckStatusResolveSteps({props}) {
     function displayImage() {
         if (props.resolveImg[stepView]) {
             let imgDir = 'https://i.imgur.com/' + props.resolveImg[stepView]
-            return (<div className="image">
+            return (<div className="image" style={{height : 'auto'}}>
                 <img src={imgDir} alt=''/>
             </div>)
         }
@@ -78,7 +78,7 @@ export default function CheckStatusResolveSteps({props}) {
                             </PaginationItem>
 
                             {props.resolveSteps.map((step, index) => {
-                                return <PaginationItem key={props.resolveSteps[index]}>
+                                return <PaginationItem key={props.resolveSteps[index]} >
                                     <PaginationLink tag="button"
                                                     onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
                                 </PaginationItem>
