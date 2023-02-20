@@ -11,8 +11,6 @@ export default function CheckStatusResolveSteps({props}) {
     // The pagination bar should be hidden if there are no steps to resolve
 
     const [stepView, setStepView] = React.useState(0);
-    const [stepContent, setStepContent] = React.useState(props[0])
-    const [stepImg, setStepImg] = React.useState('')
 
     // TODO: check why this takes two clicks to update
     // TODO: implement a way of adding pictures to this
@@ -32,16 +30,25 @@ export default function CheckStatusResolveSteps({props}) {
         } else {
             setStepView(step)
         }
-        setStepContent(props[stepView])
-        console.log(stepView)
         return;
     }
 
-    // function displayImage() {
-    //     if (props[stepView].Image) {
-    //         return <img src={props[stepView].Image} alt={props[stepView].ImageAlt}/>
-    //     }
-    // }
+    function displayImage() {
+        if (props.resolveImg[stepView]) {
+            let imgDir = 'https://i.imgur.com/' + props.resolveImg[stepView]
+            return (<div className="image">
+                <img src={imgDir} alt=''/>
+            </div>)
+        }
+    }
+
+    function displayStepContent(){
+        if (props.resolveSteps[stepView]) {
+            return (<div className="">
+               <p>{props.resolveSteps[stepView]}</p>
+            </div>)
+        }
+    }
 
 
     if (props === null) {
@@ -59,8 +66,8 @@ export default function CheckStatusResolveSteps({props}) {
                         <Col>
                             <p><b>Steps</b>
                                 <br/>
-                                {stepContent}
-                                {stepImg}
+                                {displayStepContent()}
+                                {displayImage()}
                             </p>
                         </Col>
                     </Row>
@@ -73,7 +80,8 @@ export default function CheckStatusResolveSteps({props}) {
                                 <PaginationLink previous tag="button"
                                                 onClick={() => updateStep(-1)}>Prev</PaginationLink>
                             </PaginationItem>
-                            {props.map((step, index) => {
+
+                            {props.resolveSteps.map((step, index) => {
                                 return <PaginationItem>
                                     <PaginationLink tag="button"
                                                     onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
