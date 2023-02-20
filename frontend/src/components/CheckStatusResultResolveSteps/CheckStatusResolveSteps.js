@@ -60,11 +60,11 @@ export default function CheckStatusResolveSteps({props}) {
                 <CardBody>
                     <Row>
                         <Col>
-                            <p><b>Steps</b>
+                            <b>Steps</b>
                                 <br/>
                                 {displayStepContent()}
                                 {displayImage()}
-                            </p>
+
                         </Col>
                     </Row>
 
@@ -78,7 +78,7 @@ export default function CheckStatusResolveSteps({props}) {
                             </PaginationItem>
 
                             {props.resolveSteps.map((step, index) => {
-                                return <PaginationItem>
+                                return <PaginationItem key={props.resolveSteps[index]}>
                                     <PaginationLink tag="button"
                                                     onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
                                 </PaginationItem>
