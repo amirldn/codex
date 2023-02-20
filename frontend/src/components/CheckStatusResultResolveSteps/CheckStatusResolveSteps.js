@@ -12,18 +12,14 @@ export default function CheckStatusResolveSteps({props}) {
 
     const [stepView, setStepView] = React.useState(0);
 
-    // TODO: check why this takes two clicks to update
-    // TODO: implement a way of adding pictures to this
     function updateStep(step) {
         if (step === -2) {
-            if (stepView === props.length - 1) {
-                console.log(stepView)
+            if (stepView === props.resolveSteps.length - 1) {
                 return
             }
             setStepView(stepView + 1)
         } else if (step === -1) {
             if (stepView === 0) {
-                console.log(stepView)
                 return
             }
             setStepView(stepView - 1)
