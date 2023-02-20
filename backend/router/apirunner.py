@@ -5,6 +5,7 @@ from fastapi import APIRouter, HTTPException
 from backend.runner import pwsh
 from backend.runner.tasks import create_task, celeryi
 from backend.checks import check
+from backend.router.redisclient import redisi
 
 router = APIRouter(
     prefix="/check",
@@ -73,9 +74,22 @@ async def run_check(check_name: str):
         # TODO: Validate OS is able to run check (or maybe we only give the front end checks they can run?)
         task = create_task.delay(check_name)
         logging.info(f"New Task Created for {check_name} - ID: {task.id}")
+        redisi.set(check_name, task.id)
+        logging.info(f"Task ID {task.id} saved to Redis for {check_name}")
         return {"task_id": task.id}
     else:
         raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
+
+
+@router.get("/id/latest/{check_name}",
+            summary="Get the task_id of the latest check by check name",
+            status_code=200)
+async def get_latest_task_id(check_name: str):
+    task_id = redisi.get(check_name)
+    if task_id:
+        return {"task_id": task_id}
+    else:
+        raise HTTPException(status_code=404, detail="No task found for {}".format(check_name))
 
 
 @router.get("/id/{task_id}",
