@@ -6,6 +6,7 @@ import CheckStatus from "../CheckStatus/CheckStatus";
 
 export default function CheckCard(props) {
     const [taskId, setTaskId] = React.useState('');
+    const [lastRun, setLastRun] = React.useState('N/A');
 
     function RunCheck(api_name) {
         // console.log("Running check: " + api_name)
@@ -21,7 +22,6 @@ export default function CheckCard(props) {
                 // console.log('run_check id: ' + taskId.task_id)
             })
     }
-
 
     useEffect(() => {
         // fetchTaskId();
@@ -43,34 +43,55 @@ export default function CheckCard(props) {
         // console.log('getlatest after async: ' + taskId)
     }
 
+    function updateLastRan(date) {
+        let formattedDate;
+        if (date === '') {
+            formattedDate = 'N/A'
+        } else if (date === 'N/A') {
+            formattedDate = 'N/A'
+        } else {
+            const jsDate = new Date(date);
+            formattedDate = jsDate.toLocaleString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: false
+            });
+            formattedDate = formattedDate.replace(',', ' @');
+        }
+        setLastRun(formattedDate);
+    }
 
 
-    return(
-        <div className="animate__animated animate__fadeInUp rounded p-1">
-            <Card className="card-check m-1">
-                <CardBody>
-                    <h5><i className={props.check.icon}/> {props.check.friendly_name}</h5>
-                    <i>{props.check.description}</i>
-                    <Row>
-                        <Col md="6">
-                            <p><b>Last Run:</b>
-                                <br/>
-                                5:45pm @ 11 Dec 2022
-                            </p>
-                        </Col>
-                        <Col md="6">
-                            <Button className="btn-round" color="success" outline
-                                    onClick={() => RunCheck(props.check.api_name)}>
-                                <i className="nc-icon nc-check-2"/> Run Check
-                            </Button>
-                        </Col>
-                    </Row>
-                    <CheckStatus
-                        check={props.check}
-                        taskId={taskId}
-                    />
-                </CardBody>
-            </Card>
-        </div>
-    )
+    return (<div className="animate__animated animate__fadeInUp rounded p-1">
+        <Card className="card-check m-1">
+            <CardBody>
+                <h5><i className={props.check.icon}/> {props.check.friendly_name}</h5>
+                <i>{props.check.description}</i>
+                <Row>
+                    <Col md="6">
+                        <p><b>Last Run:</b>
+                            <br/>
+                            {/*5:45pm @ 11 Dec 2022*/}
+                            {lastRun}
+                        </p>
+                    </Col>
+                    <Col md="6">
+                        <Button className="btn-round" color="success" outline
+                                onClick={() => RunCheck(props.check.api_name)}>
+                            <i className="nc-icon nc-check-2"/> Run Check
+                        </Button>
+                    </Col>
+                </Row>
+                <CheckStatus
+                    check={props.check}
+                    taskId={taskId}
+                    updateLastRan={updateLastRan}
+                />
+            </CardBody>
+        </Card>
+    </div>)
 }
