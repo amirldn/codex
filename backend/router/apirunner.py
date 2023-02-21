@@ -1,3 +1,5 @@
+import asyncio
+import json
 import logging
 
 from fastapi import APIRouter, HTTPException
@@ -11,6 +13,8 @@ router = APIRouter(
     prefix="/check",
 )
 
+
+# Individually Running Checks
 
 @router.get("/flagfileexists/mac",
             summary="Runs the Test-FlagFileExists pwsh script with a specified path")
@@ -66,6 +70,8 @@ async def run_check_guest():
     return result
 
 
+# Async Runs
+
 @router.post(path="/run/",
              summary="Runs a check specified in the request body",
              status_code=201)
@@ -92,10 +98,7 @@ async def get_latest_task_id(check_name: str):
         raise HTTPException(status_code=404, detail="No task found for {}".format(check_name))
 
 
-@router.get("/id/{task_id}",
-            summary="Get the result of a check by task ID",
-            status_code=200)
-async def get_status(task_id):
+def format_celery_status(task_id):
     task_result = celeryi.AsyncResult(task_id)
     if not task_result.status:
         # TODO: Fix this - don't know why task_result is empty
@@ -121,6 +124,16 @@ async def get_status(task_id):
     return result
 
 
+@router.get("/id/{task_id}",
+            summary="Get the result of a check by task ID",
+            status_code=200)
+async def get_status(task_id):
+    result = format_celery_status(task_id)
+    return result
+
+
+# Overview of Checks
+
 @router.get("/list/",
             summary="Get a list of all checks with their last runtime & status",
             status_code=200)
@@ -134,8 +147,68 @@ async def get_check_list():
 async def get_check_categories():
     return {"data": check.get_cateogry_list()}
 
+
 @router.get("/list/length",
             summary="Get the number of checks",
             status_code=200)
 async def get_check_length():
     return {"data": check.get_check_count()}
+
+
+@router.get("/list/latest/results",
+            summary="Get the results of the latest run of all checks",
+            status_code=200)
+async def get_check_results():
+    results = []
+    checks_dict = check.get_check_list()
+    for checki in checks_dict:
+        check_name = checki['api_name']
+        task_id = redisi.get(check_name)
+        if task_id:
+            task_result = celeryi.AsyncResult(task_id)
+            try:
+                result = {
+                    "task_id": task_id,
+                    "task_status": task_result.status,
+                    "task_result": task_result.result,
+                    "date_done": task_result._cache['date_done']
+                }
+                results.append(result)
+            except Exception as e:
+                continue
+    return {"data": results}
+
+
+@router.get("/list/latest/issuetotal",
+            summary="Get the total number of issues across all checks",
+            status_code=200)
+async def get_issue_total():
+    results = []
+    ok = 0
+    warning = 0
+    crit = 0
+    checks_dict = check.get_check_list()
+    for checki in checks_dict:
+        check_name = checki['api_name']
+        task_id = redisi.get(check_name)
+        if task_id:
+            task_result = celeryi.AsyncResult(task_id)
+            try:
+                result = task_result.result
+                if 'fault' in result:
+                    continue
+                for item in result['data']:
+                    if item['State'] == 'Crit':
+                        crit += 1
+                    elif item['State'] == 'Warn':
+                        warning += 1
+                    elif item['State'] == 'Ok':
+                        ok += 1
+                    results.append(item)
+            except Exception as e:
+                continue
+    return {"data":
+                {'OK': ok,
+                 'Warn': warning,
+                 'Crit': crit, }
+            }

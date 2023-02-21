@@ -1,6 +1,8 @@
 import json
 import os
 import logging
+from backend.router.redisclient import redisi
+# from backend.runner.tasks import celeryi
 
 check_json_path = os.path.join(os.path.dirname(__file__), 'checks.json')
 checks_dict = (json.loads(open(check_json_path).read()))['checks']
@@ -31,3 +33,26 @@ def get_check_count():
 
 def get_cateogry_list():
     return list(set([check['category'] for check in checks_dict]))
+
+#
+# def get_check_latest_results():
+# # Get the latest results from Redis
+#     results = []
+#     for check in checks_dict:
+#         check_name = check['api_name']
+#         task_id = redisi.get(check_name)
+#         if task_id:
+#             task_result = celeryi.AsyncResult(task_id)
+#             print(task_result)
+#             if task_result:
+#                 results.append(json.loads(task_result))
+#     return results
+#
+# def get_check_total_errors():
+#     results = get_check_latest_results()
+#     total_errors = 0
+#     for result in results:
+#         print(result)
+#         if 'fault' in result['task_result']:
+#             total_errors += 1
+#     return total_errors

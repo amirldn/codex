@@ -33,6 +33,7 @@ import 'animate.css';
 import SystemHealthDash from "../components/SystemHealthDash/SystemHealthDash";
 
 function Dashboard() {
+    // Check Count
     const [checkCount, setCheckCount] = React.useState(0);
 
     function fetchCheckCount() {
@@ -54,6 +55,10 @@ function Dashboard() {
             return (<CardTitle tag="p">{checkCount}</CardTitle>)
         }
     }
+
+
+
+
 
 
     return (<>
