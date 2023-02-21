@@ -73,6 +73,7 @@ export default function CheckStatus({check, taskId}) {
                 <p><b>Result:</b></p>
                 <br/>
                 {status.task_result.data.map((item) => (<CheckStatusResult props={item} key={item.ID}/>))}
+                {console.log(status)}
             </div>)
         }
     }

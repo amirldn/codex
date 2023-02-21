@@ -100,7 +100,7 @@ async def get_status(task_id):
     if not task_result.status:
         # TODO: Fix this - don't know why task_result is empty
         raise HTTPException(status_code=500, detail='something went wrong ')
-    # print(task_result)
+
     if task_result.status == 'PENDING':
         result = {
             "task_id": task_id,
@@ -111,10 +111,12 @@ async def get_status(task_id):
     elif 'fault' in task_result.result:
         logging.debug(task_result)
         raise HTTPException(status_code=200, detail=task_result.result)
+
     result = {
         "task_id": task_id,
         "task_status": task_result.status,
-        "task_result": task_result.result
+        "task_result": task_result.result,
+        "date_done": task_result._cache['date_done']
     }
     return result
 
