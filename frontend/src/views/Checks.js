@@ -119,6 +119,10 @@ function Checks() {
         fetchCategoryList()
     }, [])
 
+    function runAllChecks() {
+        console.log("Run all checks")
+    }
+
     return (
         <>
             <CheckListContext.Provider value={{checkList, fetchCheckList}}>
@@ -129,8 +133,23 @@ function Checks() {
                             <Col md="12">
                                 <Card>
                                     <CardHeader>
-                                        <CardTitle tag="h5">Checks</CardTitle>
+                                        <Row>
+                                            <Col md="10">
+                                               <CardTitle tag="h5">Checks</CardTitle>
                                         <p>Check the status of your system by running these checks</p>
+                                            </Col>
+                                            <Col md="2">
+                                               <Button className="btn-round" color="primary" outline type="submit"
+                                               onClick={() => runAllChecks()}>
+                                            <i className="nc-icon nc-spaceship"/> Run All
+                                        </Button>
+
+
+                                            </Col>
+                                        </Row>
+
+
+
                                     </CardHeader>
                                     <CardBody>
                                         {categoryList.map((category, index) => (
