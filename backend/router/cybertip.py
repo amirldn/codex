@@ -10,7 +10,7 @@ from fastapi import APIRouter
 #     cybertip = os.path.abspath('backend/router/cybertip.json')
 
 cybertip = os.path.join(os.path.dirname(__file__), 'cybertip.json')
-print(cybertip)
+# print(cybertip)
 
 with open(cybertip) as f:
     tips = (json.loads(f.read()))['tips']
