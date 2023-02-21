@@ -6,7 +6,6 @@ import CheckStatusResult from "../CheckStatusResult/CheckStatusResult";
 import CheckStatusResultError from "../CheckStatusResultError/CheckStatusResultError";
 
 
-
 export default function CheckStatus({check, taskId, updateLastRan}) {
 
     // console.log('checkstatus called for ' + check.api_name + ' with: ' + taskId.task_id)

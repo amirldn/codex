@@ -25,5 +25,9 @@ def get_filename(check_name: str):
 def get_check_list():
     return checks_dict
 
+
+def get_check_count():
+    return len(checks_dict)
+
 def get_cateogry_list():
     return list(set([check['category'] for check in checks_dict]))

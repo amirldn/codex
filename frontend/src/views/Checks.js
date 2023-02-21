@@ -22,24 +22,10 @@ import React, {useEffect} from "react";
 import NotificationAlert from "react-notification-alert";
 // reactstrap components
 import {
-    UncontrolledAlert,
-    Alert,
-    Button,
-    Card,
-    CardHeader,
-    CardBody,
-    CardTitle,
-    Row,
-    Col,
+    UncontrolledAlert, Alert, Button, Card, CardHeader, CardBody, CardTitle, Row, Col,
 } from "reactstrap";
 
 import CheckCard from "../components/CheckCard/CheckCard";
-
-
-// Create a card for each check
-// Create a button to run the check
-// Create a button to view the check history
-
 
 const CheckListContext = React.createContext({
     checkList: [], fetchCheckList: () => {
@@ -77,18 +63,12 @@ function Checks() {
         }
         var options = {};
         options = {
-            place: place,
-            message: (
+            place: place, message: (<div>
                 <div>
-                    <div>
-                        Welcome to <b>Paper Dashboard React</b> - a beautiful freebie for
-                        every web developer.
-                    </div>
+                    Welcome to <b>Paper Dashboard React</b> - a beautiful freebie for
+                    every web developer.
                 </div>
-            ),
-            type: type,
-            icon: "nc-icon nc-bell-55",
-            autoDismiss: 7
+            </div>), type: type, icon: "nc-icon nc-bell-55", autoDismiss: 7
         };
         notificationAlert.current.notificationAlert(options);
     };
@@ -99,8 +79,6 @@ function Checks() {
         const response = await fetch('http://127.0.0.1:8000/check/list/');
         const data = await response.json();
         setCheckList(data.data);
-
-        // console.log(data.data);
     }
 
 
@@ -123,142 +101,132 @@ function Checks() {
         console.log("Run all checks")
     }
 
-    return (
-        <>
-            <CheckListContext.Provider value={{checkList, fetchCheckList}}>
-                <CategoryListContext.Provider value={{categoryList, fetchCategoryList}}>
-                    <div className="content">
-                        <NotificationAlert ref={notificationAlert}/>
-                        <Row>
-                            <Col md="12">
-                                <Card>
-                                    <CardHeader>
+    return (<>
+        <CheckListContext.Provider value={{checkList, fetchCheckList}}>
+            <CategoryListContext.Provider value={{categoryList, fetchCategoryList}}>
+                <div className="content">
+                    <NotificationAlert ref={notificationAlert}/>
+                    <Row>
+                        <Col md="12">
+                            <Card>
+                                <CardHeader>
+                                    <Row>
+                                        <Col md="10">
+                                            <CardTitle tag="h5">Checks</CardTitle>
+                                            <p>Check the status of your system by running these checks</p>
+                                        </Col>
+                                        <Col md="2">
+                                            <Button className="btn-round" color="primary" outline type="submit"
+                                                    onClick={() => runAllChecks()}>
+                                                <i className="nc-icon nc-spaceship"/> Run All
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </CardHeader>
+                                <CardBody>
+                                    {categoryList.map((category, index) => (
+                                        <Card className="card-check m-1" key={index}>
+                                            <CardBody>
+                                                <h5>{category}</h5>
+                                                <Row>
+                                                    {checkList.filter((check) => check.category === category).map((check) => (
+                                                        <CheckCard check={check} key={check.id}/>))}
+                                                </Row>
+                                            </CardBody>
+                                        </Card>))}
+
+
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                    {/* Next section below */}
+                    <Row>
+                        <Col md="12">
+                            <Card>
+                                <CardBody>
+                                    <div className="places-buttons">
                                         <Row>
-                                            <Col md="10">
-                                               <CardTitle tag="h5">Checks</CardTitle>
-                                        <p>Check the status of your system by running these checks</p>
-                                            </Col>
-                                            <Col md="2">
-                                               <Button className="btn-round" color="primary" outline type="submit"
-                                               onClick={() => runAllChecks()}>
-                                            <i className="nc-icon nc-spaceship"/> Run All
-                                        </Button>
-
-
+                                            <Col className="ml-auto mr-auto text-center" md="6">
+                                                <CardTitle tag="h4">Notifications Places</CardTitle>
+                                                <p className="category">Click to view notifications</p>
                                             </Col>
                                         </Row>
-
-
-
-                                    </CardHeader>
-                                    <CardBody>
-                                        {categoryList.map((category, index) => (
-                                            <Card className="card-check m-1" key={index}>
-                                                <CardBody>
-                                                    <h5>{category}</h5>
-                                                    <Row>
-                                                        {checkList.filter((check) => check.category === category).map((check) => (
-                                                            <CheckCard check={check} key={check.id}/>
-                                                        ))}
-                                                    </Row>
-                                                </CardBody>
-                                            </Card>
-                                        ))}
-
-
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                        </Row>
-                        {/* Next section below */}
-                        <Row>
-                            <Col md="12">
-                                <Card>
-                                    <CardBody>
-                                        <div className="places-buttons">
-                                            <Row>
-                                                <Col className="ml-auto mr-auto text-center" md="6">
-                                                    <CardTitle tag="h4">Notifications Places</CardTitle>
-                                                    <p className="category">Click to view notifications</p>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col className="ml-auto mr-auto" lg="8">
-                                                    <Row>
-                                                        <Col md="4">
-                                                            <Button
-                                                                block
-                                                                color="primary"
-                                                                onClick={() => notify("tl")}
-                                                            >
-                                                                Top Left
-                                                            </Button>
-                                                        </Col>
-                                                        <Col md="4">
-                                                            <Button
-                                                                block
-                                                                color="primary"
-                                                                onClick={() => notify("tc")}
-                                                            >
-                                                                Top Center
-                                                            </Button>
-                                                        </Col>
-                                                        <Col md="4">
-                                                            <Button
-                                                                block
-                                                                color="primary"
-                                                                onClick={() => notify("tr")}
-                                                            >
-                                                                Top Right
-                                                            </Button>
-                                                        </Col>
-                                                    </Row>
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col className="ml-auto mr-auto" lg="8">
-                                                    <Row>
-                                                        <Col md="4">
-                                                            <Button
-                                                                block
-                                                                color="primary"
-                                                                onClick={() => notify("bl")}
-                                                            >
-                                                                Bottom Left
-                                                            </Button>
-                                                        </Col>
-                                                        <Col md="4">
-                                                            <Button
-                                                                block
-                                                                color="primary"
-                                                                onClick={() => notify("bc")}
-                                                            >
-                                                                Bottom Center
-                                                            </Button>
-                                                        </Col>
-                                                        <Col md="4">
-                                                            <Button
-                                                                block
-                                                                color="primary"
-                                                                onClick={() => notify("br")}
-                                                            >
-                                                                Bottom Right
-                                                            </Button>
-                                                        </Col>
-                                                    </Row>
-                                                </Col>
-                                            </Row>
-                                        </div>
-                                    </CardBody>
-                                </Card>
-                            </Col>
-                        </Row>
-                    </div>
-                </CategoryListContext.Provider>
-            </CheckListContext.Provider>
-
-        </>
-    );
+                                        <Row>
+                                            <Col className="ml-auto mr-auto" lg="8">
+                                                <Row>
+                                                    <Col md="4">
+                                                        <Button
+                                                            block
+                                                            color="primary"
+                                                            onClick={() => notify("tl")}
+                                                        >
+                                                            Top Left
+                                                        </Button>
+                                                    </Col>
+                                                    <Col md="4">
+                                                        <Button
+                                                            block
+                                                            color="primary"
+                                                            onClick={() => notify("tc")}
+                                                        >
+                                                            Top Center
+                                                        </Button>
+                                                    </Col>
+                                                    <Col md="4">
+                                                        <Button
+                                                            block
+                                                            color="primary"
+                                                            onClick={() => notify("tr")}
+                                                        >
+                                                            Top Right
+                                                        </Button>
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <Col className="ml-auto mr-auto" lg="8">
+                                                <Row>
+                                                    <Col md="4">
+                                                        <Button
+                                                            block
+                                                            color="primary"
+                                                            onClick={() => notify("bl")}
+                                                        >
+                                                            Bottom Left
+                                                        </Button>
+                                                    </Col>
+                                                    <Col md="4">
+                                                        <Button
+                                                            block
+                                                            color="primary"
+                                                            onClick={() => notify("bc")}
+                                                        >
+                                                            Bottom Center
+                                                        </Button>
+                                                    </Col>
+                                                    <Col md="4">
+                                                        <Button
+                                                            block
+                                                            color="primary"
+                                                            onClick={() => notify("br")}
+                                                        >
+                                                            Bottom Right
+                                                        </Button>
+                                                    </Col>
+                                                </Row>
+                                            </Col>
+                                        </Row>
+                                    </div>
+                                </CardBody>
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
+            </CategoryListContext.Provider>
+        </CheckListContext.Provider>
+    </>);
 }
 
 export default Checks;

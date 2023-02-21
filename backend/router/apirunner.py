@@ -109,7 +109,7 @@ async def get_status(task_id):
         }
         return result
     elif 'fault' in task_result.result:
-        logging.debug(task_result)
+        # logging.debug(task_result)
         raise HTTPException(status_code=200, detail=task_result.result)
 
     result = {
@@ -133,3 +133,9 @@ async def get_check_list():
             status_code=200)
 async def get_check_categories():
     return {"data": check.get_cateogry_list()}
+
+@router.get("/list/length",
+            summary="Get the number of checks",
+            status_code=200)
+async def get_check_length():
+    return {"data": check.get_check_count()}
