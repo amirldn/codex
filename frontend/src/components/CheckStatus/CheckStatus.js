@@ -9,6 +9,8 @@ import CheckStatusResultError from "../CheckStatusResultError/CheckStatusResultE
 
 export default function CheckStatus({check, taskId}) {
 
+    console.log('checkstatus called for ' + check.api_name + ' with: ' + taskId.task_id)
+
     function GetOverallStatus({results}) {
         let overallStatus = 'Ok'
         let textColour = 'text-success'
@@ -30,6 +32,7 @@ export default function CheckStatus({check, taskId}) {
     const [status, setStatus] = React.useState('');
     const fetchStatus = async () => {
         if (taskId !== '') {
+            // console.log('fetching status for ' + check.api_name + ' with: ' + taskId.task_id)
 
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
@@ -50,7 +53,7 @@ export default function CheckStatus({check, taskId}) {
         }, 1000);
         fetchStatus()
         return () => clearInterval(interval);
-    }, [shouldRefresh]);
+    }, [shouldRefresh, taskId]);
 
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
