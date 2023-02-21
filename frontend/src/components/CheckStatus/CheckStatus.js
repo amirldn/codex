@@ -9,7 +9,7 @@ import CheckStatusResultError from "../CheckStatusResultError/CheckStatusResultE
 
 export default function CheckStatus({check, taskId}) {
 
-    console.log('checkstatus called for ' + check.api_name + ' with: ' + taskId.task_id)
+    // console.log('checkstatus called for ' + check.api_name + ' with: ' + taskId.task_id)
 
     function GetOverallStatus({results}) {
         let overallStatus = 'Ok'

@@ -8,7 +8,7 @@ export default function CheckCard(props) {
     const [taskId, setTaskId] = React.useState('');
 
     function RunCheck(api_name) {
-        console.log("Running check: " + api_name)
+        // console.log("Running check: " + api_name)
         // Send the data then store the response
         fetch(("http://127.0.0.1:8000/check/run/?check_name=" + api_name), {
             method: "POST", headers: {"Content-Type": "application/json"},
@@ -17,8 +17,8 @@ export default function CheckCard(props) {
             .then(data => {
                 // console.log(data)  // Print the data
                 setTaskId(data);
-                console.log('run_check data: ' + data.task_id)
-                console.log('run_check id: ' + taskId.task_id)
+                // console.log('run_check data: ' + data.task_id)
+                // console.log('run_check id: ' + taskId.task_id)
             })
     }
     //
@@ -43,14 +43,14 @@ export default function CheckCard(props) {
     // TODO: Maybe delete TaskIDContext - don't think it's needed
 
     function getLatest(api_name) {
-        console.log("Getting latest task id for check: " + api_name)
+        // console.log("Getting latest task id for check: " + api_name)
         // Send the data then store the response
         fetch(("http://127.0.0.1:8000/check/id/latest/" + api_name), {
             method: "GET", headers: {"Content-Type": "application/json"},
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)  // Print the data
+                // console.log(data)  // Print the data
                 setTaskId(data);
             })
         // console.log('getlatest after async: ' + taskId)
