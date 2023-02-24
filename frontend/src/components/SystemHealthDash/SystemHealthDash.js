@@ -26,6 +26,47 @@ export default function SystemHealthDash(props) {
         fetchIssueCount();
     }, []);
 
+
+    function displayIssueIcon(type) {
+        if (type === 'Warn') {
+            return (<Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-exclamation-circle fa-2x text-warning"/></h1></Col>)
+        }
+        if (type === 'Crit') {
+            return (<Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-times-circle fa-2x text-danger"/></h1></Col>)
+        }
+        if (type === 'Ok') {
+            return (<Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-check-circle fa-2x text-success"/></h1></Col>)
+        }
+    }
+
+    function displayWarnCritText() {
+        if (issueCount.Warn === 1 && issueCount.Crit === 0) {
+            return (<h2>{issueCount.Warn} warning</h2>)
+        }
+        if (issueCount.Warn > 1 && issueCount.Crit === 0) {
+            return (<h2>{issueCount.Warn} warnings</h2>)
+        }
+        if (issueCount.Warn === 0 && issueCount.Crit === 1) {
+            return (<h2>{issueCount.Crit} critical issue</h2>)
+        }
+        if (issueCount.Warn === 0 && issueCount.Crit > 1) {
+            return (<h2>{issueCount.Crit} critical issues</h2>)
+        }
+        if (issueCount.Warn === 1 && issueCount.Crit === 1) {
+            return (<h2>{issueCount.Warn} warning and {issueCount.Crit} critical issue</h2>)
+        }
+        if (issueCount.Warn > 1 && issueCount.Crit === 1) {
+            return (<h2>{issueCount.Warn} warnings and {issueCount.Crit} critical issue</h2>)
+        }
+        if (issueCount.Warn === 1 && issueCount.Crit > 1) {
+            return (<h2>{issueCount.Warn} warning and {issueCount.Crit} critical issues</h2>)
+        }
+        if (issueCount.Warn > 1 && issueCount.Crit > 1) {
+            return (<h2>{issueCount.Warn} warnings and {issueCount.Crit} critical issues</h2>)
+        }
+    }
+
+
     function displayIssueCount() {
         // TODO: need to make this display how I want it to
         console.log(issueCount)
@@ -33,13 +74,11 @@ export default function SystemHealthDash(props) {
             return (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
             </div>)
-        } else if (issueCount.Warn > 0) {
+        } else if (issueCount.Warn > 0 || issueCount.Crit > 0) {
             return (<Row>
-                <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                {displayIssueIcon('Warn')}
                 <Col md="10">
-
-                    <h2>{issueCount.Warn} warnings and {issueCount.Crit} criticals</h2>
-
+                    {displayWarnCritText()}
                     <p>On the last run, we saw some issues with your cyber security setup.</p>
                     <p>Last Run: 12 Sep - 08:38</p>
                 </Col>
