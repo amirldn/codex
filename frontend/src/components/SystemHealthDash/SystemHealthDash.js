@@ -29,13 +29,17 @@ export default function SystemHealthDash(props) {
 
     function displayIssueIcon(type) {
         if (type === 'Warn') {
-            return (<Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-exclamation-circle fa-2x text-warning"/></h1></Col>)
+            return (<Col md="2"><h1 style={{textAlign: "center"}}><i
+                className="fa fa-exclamation-circle fa-2x text-warning"/></h1></Col>)
         }
         if (type === 'Crit') {
-            return (<Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-times-circle fa-2x text-danger"/></h1></Col>)
+            return (
+                <Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-times-circle fa-2x text-danger"/></h1>
+                </Col>)
         }
         if (type === 'Ok') {
-            return (<Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-check-circle fa-2x text-success"/></h1></Col>)
+            return (<Col md="2"><h1 style={{textAlign: "center"}}><i className="fa fa-check-circle fa-2x text-success"/>
+            </h1></Col>)
         }
     }
 
@@ -84,7 +88,7 @@ export default function SystemHealthDash(props) {
                 </Col>
             </Row>)
         } else {
-                        return (<Row>
+            return (<Row>
                 <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
                 <Col md="10">
 
@@ -99,7 +103,7 @@ export default function SystemHealthDash(props) {
     }
 
 
-    return (// <TipContext.Provider value={{tip, fetchTip}}>
+    return (
 
         <div className="animate__animated animate__fadeInUp rounded p-1">
             <Confetti
@@ -109,17 +113,56 @@ export default function SystemHealthDash(props) {
             />
             <Card className="card-status">
                 <CardHeader>
-                    <CardTitle tag="h5">Status</CardTitle>
-                    <p className="card-category">System Cyber Health</p>
+                    <CardTitle tag="h4"><b>Status</b></CardTitle>
+                    <hr/>
+                    {/*<p className="card-category">System Cyber Health</p>*/}
                 </CardHeader>
                 <CardBody>
                     {displayIssueCount()}
                 </CardBody>
-                {/*<CardFooter>*/}
-                {/*</CardFooter>*/}
+                <CardFooter>
+                    <hr/>
+                    <div className="checkCategories">
+                        <Row>
+                            <Card>
+                                <CardBody>
+                                    <Row>
+                                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                                        <Col md="10">
+                                            <h2>Security</h2>
+                                            <p>On the last run, we saw no issues with your system.</p>
+                                        </Col>
+                                    </Row>
+                                </CardBody>
+                            </Card>
+                            <Card>
+                                <CardBody>
+                                    <Row>
+                                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                                        <Col md="10">
+                                            <h2>Patching</h2>
+                                            <p>On the last run, we saw no issues with your system.</p>
+                                        </Col>
+                                    </Row>
+                                </CardBody>
+                            </Card>
+                            <Card>
+                                <CardBody>
+                                    <Row>
+                                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                                        <Col md="10">
+                                            <h2>Testing</h2>
+                                            <p>On the last run, we saw no issues with your system.</p>
+                                        </Col>
+                                    </Row>
+                                </CardBody>
+                            </Card>
+                        </Row>
+
+                    </div>
+                </CardFooter>
             </Card>
         </div>
-        // </TipContext.Provider>
 
     )
 }
