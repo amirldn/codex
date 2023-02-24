@@ -123,8 +123,8 @@ export default function SystemHealthDash(props) {
                 <CardFooter>
                     <hr/>
                     <div className="checkCategories">
-                        <Row>
-                            <Card>
+                        <Row style={{'padding-left': '2%'}}>
+                            <Card style={{'margin-right': '2%'}}>
                                 <CardBody>
                                     <Row>
                                         <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
@@ -135,7 +135,7 @@ export default function SystemHealthDash(props) {
                                     </Row>
                                 </CardBody>
                             </Card>
-                            <Card>
+                           <Card style={{'margin-right': '2%'}}>
                                 <CardBody>
                                     <Row>
                                         <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
@@ -146,7 +146,7 @@ export default function SystemHealthDash(props) {
                                     </Row>
                                 </CardBody>
                             </Card>
-                            <Card>
+                            <Card style={{'margin-right': '2%'}}>
                                 <CardBody>
                                     <Row>
                                         <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
