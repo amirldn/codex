@@ -145,7 +145,7 @@ async def get_check_list():
             summary="Get a list of all the check categories",
             status_code=200)
 async def get_check_categories():
-    return {"data": check.get_cateogry_list()}
+    return {"data": check.get_category_list()}
 
 
 @router.get("/list/length",
@@ -153,6 +153,43 @@ async def get_check_categories():
             status_code=200)
 async def get_check_length():
     return {"data": check.get_check_count()}
+
+
+@router.get("/list/category",
+            summary="Get a list of all the check categories",
+            status_code=200)
+async def get_check_categories():
+    return {"data": check.get_category_list()}
+
+
+@router.get("/list/latest/category",
+            summary="Get a list of all the check categories and the number of issues within them",
+            status_code=200)
+async def get_check_categories_and_issues():
+    results = {}
+    checks_dict = check.get_check_list()
+    for checki in checks_dict:
+        check_name = checki['api_name']
+        friendly_name = checki['friendly_name']
+        category = checki['category']
+        if category not in results:
+            results[category] = []
+        task_id = redisi.get(check_name)
+        if task_id:
+            task_result = celeryi.AsyncResult(task_id)
+            try:
+                result = {
+                    "check_name": check_name,
+                    "friendly_name": friendly_name,
+                    "task_id": task_id,
+                    "task_status": task_result.status,
+                    "task_result": task_result.result,
+                    "date_done": task_result._cache['date_done']
+                }
+                results[category].append(result)
+            except Exception as e:
+                continue
+    return {"data": results}
 
 
 @router.get("/list/latest/results",

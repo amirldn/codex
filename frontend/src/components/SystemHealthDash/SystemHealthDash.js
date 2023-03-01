@@ -123,7 +123,8 @@ export default function SystemHealthDash(props) {
                 <CardFooter>
                     <hr/>
                     <div className="checkCategories">
-                        <Row style={{'padding-left': '2%'}}>
+                        <Row style={{'padding-left': '2%',
+                        'flex-wrap': 'nowrap'}}>
                             <Card style={{'margin-right': '2%'}}>
                                 <CardBody>
                                     <Row>

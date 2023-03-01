@@ -31,8 +31,12 @@ def get_check_list():
 def get_check_count():
     return len(checks_dict)
 
-def get_cateogry_list():
+def get_category_list():
     return list(set([check['category'] for check in checks_dict]))
+
+
+
+
 
 #
 # def get_check_latest_results():
