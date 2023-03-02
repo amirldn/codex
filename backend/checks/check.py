@@ -34,10 +34,6 @@ def get_check_count():
 def get_category_list():
     return list(set([check['category'] for check in checks_dict]))
 
-
-
-
-
 #
 # def get_check_latest_results():
 # # Get the latest results from Redis

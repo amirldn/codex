@@ -168,14 +168,16 @@ async def get_check_categories():
 async def get_check_categories_and_issues():
     results = {}
     checks_dict = check.get_check_list()
+    # TODO: Think about just grabbing the number of issues from the DB or just the name of the checks
     for checki in checks_dict:
         check_name = checki['api_name']
         friendly_name = checki['friendly_name']
         category = checki['category']
         if category not in results:
-            results[category] = []
+            results[category] = {'Critical': 0, 'Warning': 0, 'Ok': 0, 'Unknown': 0}
         task_id = redisi.get(check_name)
         if task_id:
+
             task_result = celeryi.AsyncResult(task_id)
             try:
                 result = {
@@ -186,9 +188,29 @@ async def get_check_categories_and_issues():
                     "task_result": task_result.result,
                     "date_done": task_result._cache['date_done']
                 }
-                results[category].append(result)
+                try:
+                    if result['task_result']['data']:
+                        for issue in result['task_result']['data']:
+                            if issue['State'] == 'Warn':
+                                results[category]['Warning'] += 1
+                            elif issue['State'] == 'Crit':
+                                results[category]['Critical'] += 1
+                            elif issue['State'] == 'Unknown':
+                                results[category]['Unknown'] += 1
+                            elif issue['State'] == 'Ok':
+                                results[category]['Ok'] += 1
+                except Exception as e:
+                    try:
+                        if result['task_result']['fault']:
+                            results[category]['Unknown'] += 1
+                    except Exception as e:
+                        logging.error("Something other than fault or data was found in redis result for ", check_name)
+                        pass
+                    continue
             except Exception as e:
+                print(e)
                 continue
+
     return {"data": results}
 
 
@@ -243,6 +265,7 @@ async def get_issue_total():
                         ok += 1
                     results.append(item)
             except Exception as e:
+
                 continue
     return {"data":
                 {'OK': ok,
