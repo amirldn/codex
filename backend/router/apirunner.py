@@ -168,7 +168,6 @@ async def get_check_categories():
 async def get_check_categories_and_issues():
     results = {}
     checks_dict = check.get_check_list()
-    # TODO: Think about just grabbing the number of issues from the DB or just the name of the checks
     for checki in checks_dict:
         check_name = checki['api_name']
         friendly_name = checki['friendly_name']
