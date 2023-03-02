@@ -124,7 +124,7 @@ export default function SystemHealthDash(props) {
                     <Row>
                         <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
                         <Col md="10">
-                            <h2>Security</h2>
+                            <h2>{category.category}</h2>
                             <p>On the last run, we saw no issues with your system.</p>
                         </Col>
                     </Row>
@@ -155,7 +155,7 @@ export default function SystemHealthDash(props) {
                             'paddingLeft': '2%', 'flexWrap': 'nowrap'
                         }}>
                             {console.log(categoryIssueCount)}
-                            {/*{categoryIssueCount.map((category) => createCategoryCard(category))}*/}
+                            {categoryIssueCount.map((category) => createCategoryCard(category))}
                             {/*<Card style={{'marginRight': '2%'}}>*/}
                             {/*    <CardBody>*/}
                             {/*        <Row>*/}

@@ -166,18 +166,20 @@ async def get_check_categories():
             summary="Get a list of all the check categories and the number of issues within them",
             status_code=200)
 async def get_check_categories_and_issues():
-    results = {}
+    # results = {}
+    results = []
+    results_index = []
     checks_dict = check.get_check_list()
     for checki in checks_dict:
         check_name = checki['api_name']
         friendly_name = checki['friendly_name']
         category = checki['category']
-        if category not in results:
-            # results.append({} : {})
-            results[category] = {'Critical': 0, 'Warning': 0, 'Ok': 0, 'Unknown': 0}
+        if category not in results_index:
+            results.append({'category': category,
+                            'statuses': {'critical': 0, 'warning': 0, 'ok': 0, 'unknown': 0}})
+            results_index.append(category)
         task_id = redisi.get(check_name)
         if task_id:
-
             task_result = celeryi.AsyncResult(task_id)
             try:
                 result = {
@@ -192,17 +194,17 @@ async def get_check_categories_and_issues():
                     if result['task_result']['data']:
                         for issue in result['task_result']['data']:
                             if issue['State'] == 'Warn':
-                                results[category]['Warning'] += 1
+                                results[results_index.index(category)]['statuses']['warning'] += 1
                             elif issue['State'] == 'Crit':
-                                results[category]['Critical'] += 1
+                                results[results_index.index(category)]['statuses']['critical'] += 1
                             elif issue['State'] == 'Unknown':
-                                results[category]['Unknown'] += 1
+                                results[results_index.index(category)]['statuses']['unknown'] += 1
                             elif issue['State'] == 'Ok':
-                                results[category]['Ok'] += 1
+                                results[results_index.index(category)]['statuses']['ok'] += 1
                 except Exception as e:
                     try:
                         if result['task_result']['fault']:
-                            results[category]['Unknown'] += 1
+                            results[results_index.index(category)]['statuses']['unknown'] += 1
                     except Exception as e:
                         logging.error("Something other than fault or data was found in redis result for ", check_name)
                         pass
