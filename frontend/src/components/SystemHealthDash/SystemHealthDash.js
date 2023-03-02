@@ -5,6 +5,20 @@ import 'animate.css';
 import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 
+function SystemHealthDashCategoryCard({props}) {
+    console.log(props.statuses)
+    return (<Card style={{'marginRight': '2%'}}>
+        <CardBody>
+            <Row>
+                <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                <Col md="10">
+                    <h2>{props.category}</h2>
+                    <p>On the last run, we saw no issues with your system.</p>
+                </Col>
+            </Row>
+        </CardBody>
+    </Card>)
+}
 
 export default function SystemHealthDash(props) {
 
@@ -89,7 +103,6 @@ export default function SystemHealthDash(props) {
 
     function displayIssueCount() {
         // TODO: need to make this display how I want it to
-        console.log(issueCount)
         if (issueCount === []) {
             return (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
@@ -117,20 +130,21 @@ export default function SystemHealthDash(props) {
         }
     }
 
-    function createCategoryCard(category) {
-        console.log(category)
-        return (<Card style={{'marginRight': '2%'}}>
-                <CardBody>
-                    <Row>
-                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
-                        <Col md="10">
-                            <h2>{category.category}</h2>
-                            <p>On the last run, we saw no issues with your system.</p>
-                        </Col>
-                    </Row>
-                </CardBody>
-            </Card>)
-    }
+   // function createCategoryCard({props}) {
+   //      console.log(props)
+   //      return (<Card style={{'marginRight': '2%'}}>
+   //              <CardBody>
+   //                  <Row>
+   //                      <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+   //                      <Col md="10">
+   //                          <h2>{props.category}</h2>
+   //                          <p>On the last run, we saw no issues with your system.</p>
+   //                      </Col>
+   //                  </Row>
+   //              </CardBody>
+   //          </Card>)
+   //  }
+
 
 
     return (<div className="animate__animated animate__fadeInUp rounded p-1">
@@ -143,7 +157,6 @@ export default function SystemHealthDash(props) {
                 <CardHeader>
                     <CardTitle tag="h4"><b>Status</b></CardTitle>
                     <hr/>
-                    {/*<p className="card-category">System Cyber Health</p>*/}
                 </CardHeader>
                 <CardBody>
                     {displayIssueCount()}
@@ -154,41 +167,9 @@ export default function SystemHealthDash(props) {
                         <Row style={{
                             'paddingLeft': '2%', 'flexWrap': 'nowrap'
                         }}>
-                            {console.log(categoryIssueCount)}
-                            {categoryIssueCount.map((category) => createCategoryCard(category))}
-                            {/*<Card style={{'marginRight': '2%'}}>*/}
-                            {/*    <CardBody>*/}
-                            {/*        <Row>*/}
-                            {/*            <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>*/}
-                            {/*            <Col md="10">*/}
-                            {/*                <h2>Security</h2>*/}
-                            {/*                <p>On the last run, we saw no issues with your system.</p>*/}
-                            {/*            </Col>*/}
-                            {/*        </Row>*/}
-                            {/*    </CardBody>*/}
-                            {/*</Card>*/}
-                            {/*<Card style={{'marginRight': '2%'}}>*/}
-                            {/*    <CardBody>*/}
-                            {/*        <Row>*/}
-                            {/*            <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>*/}
-                            {/*            <Col md="10">*/}
-                            {/*                <h2>Patching</h2>*/}
-                            {/*                <p>On the last run, we saw no issues with your system.</p>*/}
-                            {/*            </Col>*/}
-                            {/*        </Row>*/}
-                            {/*    </CardBody>*/}
-                            {/*</Card>*/}
-                            {/*<Card style={{'marginRight': '2%'}}>*/}
-                            {/*    <CardBody>*/}
-                            {/*        <Row>*/}
-                            {/*            <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>*/}
-                            {/*            <Col md="10">*/}
-                            {/*                <h2>Testing</h2>*/}
-                            {/*                <p>On the last run, we saw no issues with your system.</p>*/}
-                            {/*            </Col>*/}
-                            {/*        </Row>*/}
-                            {/*    </CardBody>*/}
-                            {/*</Card>*/}
+                            {/*{console.log(categoryIssueCount)}*/}
+                            {categoryIssueCount.map((category) => (<SystemHealthDashCategoryCard key={category.category} props={category} />))}
+
                         </Row>
 
                     </div>

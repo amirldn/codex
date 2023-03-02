@@ -16,8 +16,6 @@ function DrawStatusIcon({status}) {
 }
 
 export default function CheckStatusResult({props}) {
-
-
     const [isOpen, setIsOpen] = useState(false);
     const toggle = () => setIsOpen(!isOpen);
 
