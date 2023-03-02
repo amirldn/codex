@@ -27,6 +27,32 @@ import 'animate.css';
 
 function Learning() {
 
+    // TODO: display the content of the selected tip in the main card and make multiple tips
+    const [content, setContent] = useState({});
+
+    const passwordTips = {
+        title: "Passwords", body: (<div>
+                <h6>What is a password?</h6>
+                <p>A password is a secret word or phrase that allows you to gain access to your account.</p>
+                <br/>
+                <h6>Why is it important?</h6>
+                <p>Having a strong password is the first line of defense against hackers. If your password
+                    is too
+                    weak, hackers can easily guess it and gain access to your account.</p>
+                <br/>
+                <h6>How do I make a strong password?</h6>
+                <p>There are a few things to consider when making a strong password. First, it should be at
+                    least 12 characters long. Next, it should include at least one number, one uppercase
+                    letter, and one symbol. Finally, it should not include any of your personal information
+                    (such as your name, birthday, etc.).</p>
+                <br/>
+                <h6>Why should I use a password manager?</h6>
+                <p>A password manager is a software application that stores all of your passwords in an
+                    encrypted file. It is a good idea to use a password manager because it allows you to
+                    have strong, unique passwords for all of your accounts. It also allows you to have a
+                    different password for each account.</p>
+            </div>)
+    }
 
     return (<div className="content">
         <Row>
