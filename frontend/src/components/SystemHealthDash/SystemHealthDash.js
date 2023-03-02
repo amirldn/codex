@@ -196,7 +196,7 @@ export default function SystemHealthDash(props) {
     }
 
     function displayIssueCount() {
-        // TODO: need to make this display how I want it to
+        // TODO: need to update the time
         if (issueCount === []) {
             return (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>

@@ -64,32 +64,7 @@ function Dashboard() {
     return (<>
         <div className="content">
             <Row>
-                <Col lg="3" md="6" sm="6">
-                    <Card className="card-stats">
-                        <CardBody>
-                            <Row>
-                                <Col md="4" xs="5">
-                                    <div className="icon-big text-center icon-warning">
-                                        <i className="nc-icon nc-globe text-warning"/>
-                                    </div>
-                                </Col>
-                                <Col md="8" xs="7">
-                                    <div className="numbers">
-                                        <p className="card-category">Total Checks</p>
-                                        {displayCheckCount()}
-                                        <p/>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </CardBody>
-                        <CardFooter>
-                            <hr/>
-                            <div className="stats">
-                                <i className="fas fa-sync-alt"/> Update Now
-                            </div>
-                        </CardFooter>
-                    </Card>
-                </Col>
+
                 <Col lg="3" md="6" sm="6">
                     <Card className="card-stats">
                         <CardBody>
@@ -101,8 +76,8 @@ function Dashboard() {
                                 </Col>
                                 <Col md="8" xs="7">
                                     <div className="numbers">
-                                        <p className="card-category">Latest Scan</p>
-                                        <CardTitle tag="p">4h ago</CardTitle>
+                                        <p className="card-category">Total Ok's</p>
+                                        <CardTitle tag="p">86</CardTitle>
                                         <p/>
                                     </div>
                                 </Col>
@@ -127,8 +102,8 @@ function Dashboard() {
                                 </Col>
                                 <Col md="8" xs="7">
                                     <div className="numbers">
-                                        <p className="card-category">Errors</p>
-                                        <CardTitle tag="p">23</CardTitle>
+                                        <p className="card-category">Total Warnings</p>
+                                        <CardTitle tag="p">63</CardTitle>
                                         <p/>
                                     </div>
                                 </Col>
@@ -153,8 +128,8 @@ function Dashboard() {
                                 </Col>
                                 <Col md="8" xs="7">
                                     <div className="numbers">
-                                        <p className="card-category">Followers</p>
-                                        <CardTitle tag="p">+45K</CardTitle>
+                                        <p className="card-category">Total Criticals</p>
+                                        <CardTitle tag="p">38</CardTitle>
                                         <p/>
                                     </div>
                                 </Col>
@@ -164,6 +139,32 @@ function Dashboard() {
                             <hr/>
                             <div className="stats">
                                 <i className="fas fa-sync-alt"/> Update now
+                            </div>
+                        </CardFooter>
+                    </Card>
+                </Col>
+                 <Col lg="3" md="6" sm="6">
+                    <Card className="card-stats">
+                        <CardBody>
+                            <Row>
+                                <Col md="4" xs="5">
+                                    <div className="icon-big text-center icon-warning">
+                                        <i className="nc-icon nc-globe text-warning"/>
+                                    </div>
+                                </Col>
+                                <Col md="8" xs="7">
+                                    <div className="numbers">
+                                        <p className="card-category">Total Checks</p>
+                                        {displayCheckCount()}
+                                        <p/>
+                                    </div>
+                                </Col>
+                            </Row>
+                        </CardBody>
+                        <CardFooter>
+                            <hr/>
+                            <div className="stats">
+                                <i className="fas fa-sync-alt"/> Update Now
                             </div>
                         </CardFooter>
                     </Card>

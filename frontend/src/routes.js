@@ -26,6 +26,7 @@ import UserPage from "views/User.js";
 // import UpgradeToPro from "views/Upgrade.js";
 import Checks from "./views/Checks";
 import Password from "./views/Password";
+import Learning from "./views/Learning";
 
 var routes = [
   {
@@ -46,7 +47,7 @@ var routes = [
     path: "/learning",
     name: "Learning",
     icon: "nc-icon nc-ruler-pencil",
-    component: Password,
+    component: Learning,
     layout: "/admin"
   },
   {
