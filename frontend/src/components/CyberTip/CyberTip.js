@@ -25,9 +25,9 @@ export default function CyberTip(props) {
         <div className="animate__animated animate__fadeInUp rounded p-1">
             <Card className="card-tip-of-the-day m-1">
                 <CardBody>
-                    <h3><i className="nc-icon nc-bulb-63"/> Cyber Tip of the Day</h3>
-                    <h2>{tip.title}</h2>
-                    <p>{tip.description}</p>
+                    <h3 style={{'marginBottom' : '2%'}}><i className="nc-icon nc-bulb-63"/> Cyber Tips</h3>
+                    <h2 style={{'marginBottom' : '1%'}}>{tip.title}</h2>
+                    <p >{tip.description}</p>
                 </CardBody>
             </Card>
         </div>

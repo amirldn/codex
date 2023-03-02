@@ -6,7 +6,6 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 
 function SystemHealthDashCategoryCard({props}) {
-    // console.log(props.statuses)
     let statuses = props.statuses;
     let type = 'Unknown';
 
