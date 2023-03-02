@@ -16,6 +16,7 @@ export default function SystemHealthDash(props) {
     // Issue Count
     const [issueCount, setIssueCount] = React.useState([]);
 
+
     function fetchIssueCount() {
         fetch('http://127.0.0.1:8000/check/list/latest/issuetotal')
             .then(response => response.json())
@@ -24,6 +25,21 @@ export default function SystemHealthDash(props) {
 
     useEffect(() => {
         fetchIssueCount();
+    }, []);
+
+
+    // Category Issue Count
+    const [categoryIssueCount, setCategoryIssueCount] = React.useState([]);
+
+    function fetchCategoryIssueCount() {
+        fetch('http://127.0.0.1:8000/check/list/latest/category')
+            .then(response => response.json())
+            .then(data => setCategoryIssueCount(data.data))
+        ;
+    }
+
+    useEffect(() => {
+        fetchCategoryIssueCount();
     }, []);
 
 
@@ -99,13 +115,25 @@ export default function SystemHealthDash(props) {
                 </Col>
             </Row>)
         }
+    }
 
+    function createCategoryCard(category) {
+        console.log(category)
+        return (<Card style={{'marginRight': '2%'}}>
+                <CardBody>
+                    <Row>
+                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                        <Col md="10">
+                            <h2>Security</h2>
+                            <p>On the last run, we saw no issues with your system.</p>
+                        </Col>
+                    </Row>
+                </CardBody>
+            </Card>)
     }
 
 
-    return (
-
-        <div className="animate__animated animate__fadeInUp rounded p-1">
+    return (<div className="animate__animated animate__fadeInUp rounded p-1">
             <Confetti
                 width={width}
                 height={height}
@@ -123,41 +151,44 @@ export default function SystemHealthDash(props) {
                 <CardFooter>
                     <hr/>
                     <div className="checkCategories">
-                        <Row style={{'padding-left': '2%',
-                        'flex-wrap': 'nowrap'}}>
-                            <Card style={{'margin-right': '2%'}}>
-                                <CardBody>
-                                    <Row>
-                                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
-                                        <Col md="10">
-                                            <h2>Security</h2>
-                                            <p>On the last run, we saw no issues with your system.</p>
-                                        </Col>
-                                    </Row>
-                                </CardBody>
-                            </Card>
-                           <Card style={{'margin-right': '2%'}}>
-                                <CardBody>
-                                    <Row>
-                                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
-                                        <Col md="10">
-                                            <h2>Patching</h2>
-                                            <p>On the last run, we saw no issues with your system.</p>
-                                        </Col>
-                                    </Row>
-                                </CardBody>
-                            </Card>
-                            <Card style={{'margin-right': '2%'}}>
-                                <CardBody>
-                                    <Row>
-                                        <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
-                                        <Col md="10">
-                                            <h2>Testing</h2>
-                                            <p>On the last run, we saw no issues with your system.</p>
-                                        </Col>
-                                    </Row>
-                                </CardBody>
-                            </Card>
+                        <Row style={{
+                            'paddingLeft': '2%', 'flexWrap': 'nowrap'
+                        }}>
+                            {console.log(categoryIssueCount)}
+                            {/*{categoryIssueCount.map((category) => createCategoryCard(category))}*/}
+                            {/*<Card style={{'marginRight': '2%'}}>*/}
+                            {/*    <CardBody>*/}
+                            {/*        <Row>*/}
+                            {/*            <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>*/}
+                            {/*            <Col md="10">*/}
+                            {/*                <h2>Security</h2>*/}
+                            {/*                <p>On the last run, we saw no issues with your system.</p>*/}
+                            {/*            </Col>*/}
+                            {/*        </Row>*/}
+                            {/*    </CardBody>*/}
+                            {/*</Card>*/}
+                            {/*<Card style={{'marginRight': '2%'}}>*/}
+                            {/*    <CardBody>*/}
+                            {/*        <Row>*/}
+                            {/*            <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>*/}
+                            {/*            <Col md="10">*/}
+                            {/*                <h2>Patching</h2>*/}
+                            {/*                <p>On the last run, we saw no issues with your system.</p>*/}
+                            {/*            </Col>*/}
+                            {/*        </Row>*/}
+                            {/*    </CardBody>*/}
+                            {/*</Card>*/}
+                            {/*<Card style={{'marginRight': '2%'}}>*/}
+                            {/*    <CardBody>*/}
+                            {/*        <Row>*/}
+                            {/*            <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>*/}
+                            {/*            <Col md="10">*/}
+                            {/*                <h2>Testing</h2>*/}
+                            {/*                <p>On the last run, we saw no issues with your system.</p>*/}
+                            {/*            </Col>*/}
+                            {/*        </Row>*/}
+                            {/*    </CardBody>*/}
+                            {/*</Card>*/}
                         </Row>
 
                     </div>

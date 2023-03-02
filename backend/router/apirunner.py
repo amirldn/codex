@@ -174,6 +174,7 @@ async def get_check_categories_and_issues():
         friendly_name = checki['friendly_name']
         category = checki['category']
         if category not in results:
+            # results.append({} : {})
             results[category] = {'Critical': 0, 'Warning': 0, 'Ok': 0, 'Unknown': 0}
         task_id = redisi.get(check_name)
         if task_id:
