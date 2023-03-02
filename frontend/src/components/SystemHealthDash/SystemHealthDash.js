@@ -6,14 +6,111 @@ import useWindowSize from 'react-use/lib/useWindowSize'
 import Confetti from 'react-confetti'
 
 function SystemHealthDashCategoryCard({props}) {
-    console.log(props.statuses)
+    // console.log(props.statuses)
+    let statuses = props.statuses;
+    let type = 'Unknown';
+
+
+    function displayIssueText() {
+        if (statuses.critical === 1 && statuses.warning === 0 && statuses.unknown === 0) {
+            return ('There is one critical issue.')
+        } else if (statuses.critical === 0 && statuses.warning === 1 && statuses.unknown === 0) {
+            return ('There is one warning.')
+        } else if (statuses.critical === 0 && statuses.warning === 0 && statuses.unknown === 1) {
+            return ('There is one check that could not be ran.')
+        } else if (statuses.critical === 1 && statuses.warning === 1 && statuses.unknown === 0) {
+            return ('There is one critical issue and one warning.')
+        } else if (statuses.critical === 1 && statuses.warning === 0 && statuses.unknown === 1) {
+            return ('There is one critical issue and one check that could not be ran.')
+        } else if (statuses.critical === 0 && statuses.warning === 1 && statuses.unknown === 1) {
+            return ('There is one warning and one check that could not be ran.')
+        } else if (statuses.critical === 1 && statuses.warning === 1 && statuses.unknown === 1) {
+            return ('There is one critical issue, one warning, and one check that could not be ran.')
+        } else if (statuses.critical > 1 && statuses.warning === 0 && statuses.unknown === 0) {
+            return ('There are ' + statuses.critical + ' critical issues.')
+        } else if (statuses.critical === 0 && statuses.warning > 1 && statuses.unknown === 0) {
+            return ('There are ' + statuses.warning + ' warnings.')
+        } else if (statuses.critical === 0 && statuses.warning === 0 && statuses.unknown > 1) {
+            return ('There are ' + statuses.unknown + ' checks that could not be ran.')
+        } else if (statuses.critical > 1 && statuses.warning > 1 && statuses.unknown === 0) {
+            return ('There are ' + statuses.critical + ' critical issues and ' + statuses.warning + ' warnings.')
+        } else if (statuses.critical > 1 && statuses.warning === 0 && statuses.unknown > 1) {
+            return ('There are ' + statuses.critical + ' critical issues and ' + statuses.unknown + ' checks that could not be ran.')
+        } else if (statuses.critical === 0 && statuses.warning > 1 && statuses.unknown > 1) {
+            return ('There are ' + statuses.warning + ' warnings and ' + statuses.unknown + ' checks that could not be ran.')
+        } else if (statuses.critical > 1 && statuses.warning > 1 && statuses.unknown > 1) {
+            return ('There are ' + statuses.critical + ' critical issues, ' + statuses.warning + ' warnings, and ' + statuses.unknown + ' checks that could not be ran.')
+        } else if (statuses.critical === 1 && statuses.warning === 1 && statuses.unknown === 1) {
+            return ('There is one critical issue, one warning, and one check that could not be ran.')
+        } else if (statuses.critical === 1 && statuses.warning === 1 && statuses.unknown > 1) {
+            return ('There is one critical issue, one warning, and ' + statuses.unknown + ' checks that could not be ran.')
+        } else if (statuses.critical === 1 && statuses.warning > 1 && statuses.unknown === 1) {
+            return ('There is one critical issue, ' + statuses.warning + ' warnings, and one check that could not be ran.')
+        } else if (statuses.critical > 1 && statuses.warning === 1 && statuses.unknown === 1) {
+            return ('There is one warning, ' + statuses.critical + ' critical issues, and one check that could not be ran.')
+        } else if (statuses.critical > 1 && statuses.warning > 1 && statuses.unknown === 1) {
+            return ('There is one check that could not be ran, ' + statuses.critical + ' critical issues, and ' + statuses.warning + ' warnings.')
+        } else if (statuses.critical === 1 && statuses.warning > 1 && statuses.unknown > 1) {
+            return ('There is one critical issue, ' + statuses.warning + ' warnings, and ' + statuses.unknown + ' checks that could not be ran.')
+        } else if (statuses.critical > 1 && statuses.warning === 1 && statuses.unknown > 1) {
+            return ('There is one warning, ' + statuses.critical + ' critical issues, and ' + statuses.unknown + ' checks that could not be ran.')
+        }
+        // 0 critical issues, 0 warnings, 0 checks that could not be ran
+        else {
+            return ('No checks have been found for this category.')
+        }
+    }
+
+    function okText() {
+        if (statuses.ok === 1) {
+            return ('1 check passed ok!')
+        } else if (statuses.ok > 1) {
+            const string = statuses.ok + ' checks passed ok!'
+            return (string)
+        } else {
+            return ('No checks have passed for this category.')
+        }
+    }
+
+    function displayIssueIcon(type) {
+        console.log('in displayIssueIcon')
+        console.log(statuses)
+        if (statuses.critical > 0) {
+            type = 'Crit'
+        } else if (statuses.warning > 0) {
+            type = 'Warn'
+        } else if (statuses.unknown > 0) {
+            type = 'Unknown'
+        } else {
+            let type = 'Ok'
+        }
+        if (type === 'Unknown') {
+            return (<Col md="2"><h2><i
+                className="fa fa-question-circle fa text-info"/></h2></Col>)
+        }
+        if (type === 'Warn') {
+            return (<Col md="2"><i
+                className="fa fa-exclamation-circle fa text-warning"/></Col>)
+        }
+        if (type === 'Crit') {
+            return (<Col md="2"><h2><i
+                className="fa fa-times-circle fa text-danger"/></h2></Col>)
+        }
+        if (type === 'Ok') {
+            return (<Col md="2"><h2><i
+                className="fa fa-check-circle fa text-success"/></h2></Col>)
+        }
+    }
+
+
     return (<Card style={{'marginRight': '2%'}}>
         <CardBody>
             <Row>
-                <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                {displayIssueIcon(type)}
                 <Col md="10">
                     <h2>{props.category}</h2>
-                    <p>On the last run, we saw no issues with your system.</p>
+                    <p>{okText()}</p>
+                    <p>{displayIssueText()}</p>
                 </Col>
             </Row>
         </CardBody>
@@ -48,8 +145,7 @@ export default function SystemHealthDash(props) {
     function fetchCategoryIssueCount() {
         fetch('http://127.0.0.1:8000/check/list/latest/category')
             .then(response => response.json())
-            .then(data => setCategoryIssueCount(data.data))
-        ;
+            .then(data => setCategoryIssueCount(data.data));
     }
 
     useEffect(() => {
@@ -100,7 +196,6 @@ export default function SystemHealthDash(props) {
         }
     }
 
-
     function displayIssueCount() {
         // TODO: need to make this display how I want it to
         if (issueCount === []) {
@@ -130,23 +225,6 @@ export default function SystemHealthDash(props) {
         }
     }
 
-   // function createCategoryCard({props}) {
-   //      console.log(props)
-   //      return (<Card style={{'marginRight': '2%'}}>
-   //              <CardBody>
-   //                  <Row>
-   //                      <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
-   //                      <Col md="10">
-   //                          <h2>{props.category}</h2>
-   //                          <p>On the last run, we saw no issues with your system.</p>
-   //                      </Col>
-   //                  </Row>
-   //              </CardBody>
-   //          </Card>)
-   //  }
-
-
-
     return (<div className="animate__animated animate__fadeInUp rounded p-1">
             <Confetti
                 width={width}
@@ -168,10 +246,9 @@ export default function SystemHealthDash(props) {
                             'paddingLeft': '2%', 'flexWrap': 'nowrap'
                         }}>
                             {/*{console.log(categoryIssueCount)}*/}
-                            {categoryIssueCount.map((category) => (<SystemHealthDashCategoryCard key={category.category} props={category} />))}
-
+                            {categoryIssueCount.map((category) => (
+                                <SystemHealthDashCategoryCard key={category.category} props={category}/>))}
                         </Row>
-
                     </div>
                 </CardFooter>
             </Card>
