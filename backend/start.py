@@ -44,3 +44,4 @@ if __name__ == '__main__':
     celeryThread.start()
 
     start_uvicorn()
+
