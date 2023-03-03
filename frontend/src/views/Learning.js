@@ -28,31 +28,63 @@ import 'animate.css';
 function Learning() {
 
     // TODO: display the content of the selected tip in the main card and make multiple tips
-    const [content, setContent] = useState({});
 
-    const passwordTips = {
+
+    const tips = [{
+        title: "Introduction", body: (<div>
+            <h6>What is Cybersecurity?</h6>
+            <p>Cybersecurity is the practice of protecting your computer, network, and data from
+                unauthorized access or attacks. It is important to keep your computer and network
+                secure
+                because hackers can steal your personal information, such as your credit card
+                numbers,
+                passwords, and social security numbers.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Having a secure computer and network is important because hackers can steal your
+                personal
+                information, such as your credit card numbers, passwords, and social security
+                numbers.</p>
+            <br/>
+            <h6>How do I keep my computer and network secure?</h6>
+            <p>There are a few things you can do to keep your computer and network secure. First,
+                you
+                should make sure that your computer and network are up to date. Next, you should
+                install
+                antivirus software and keep it up to date. Finally, you should use strong passwords
+                and
+                never share them with anyone.</p>
+        </div>)
+    }, {
         title: "Passwords", body: (<div>
-                <h6>What is a password?</h6>
-                <p>A password is a secret word or phrase that allows you to gain access to your account.</p>
-                <br/>
-                <h6>Why is it important?</h6>
-                <p>Having a strong password is the first line of defense against hackers. If your password
-                    is too
-                    weak, hackers can easily guess it and gain access to your account.</p>
-                <br/>
-                <h6>How do I make a strong password?</h6>
-                <p>There are a few things to consider when making a strong password. First, it should be at
-                    least 12 characters long. Next, it should include at least one number, one uppercase
-                    letter, and one symbol. Finally, it should not include any of your personal information
-                    (such as your name, birthday, etc.).</p>
-                <br/>
-                <h6>Why should I use a password manager?</h6>
-                <p>A password manager is a software application that stores all of your passwords in an
-                    encrypted file. It is a good idea to use a password manager because it allows you to
-                    have strong, unique passwords for all of your accounts. It also allows you to have a
-                    different password for each account.</p>
-            </div>)
-    }
+            <h6>What is a password?</h6>
+            <p>A password is a secret word or phrase that allows you to gain access to your account.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Having a strong password is the first line of defense against hackers. If your password
+                is too
+                weak, hackers can easily guess it and gain access to your account.</p>
+            <br/>
+            <h6>How do I make a strong password?</h6>
+            <p>There are a few things to consider when making a strong password. First, it should be at
+                least 12 characters long. Next, it should include at least one number, one uppercase
+                letter, and one symbol. Finally, it should not include any of your personal information
+                (such as your name, birthday, etc.).</p>
+            <br/>
+            <h6>Why should I use a password manager?</h6>
+            <p>A password manager is a software application that stores all of your passwords in an
+                encrypted file. It is a good idea to use a password manager because it allows you to
+                have strong, unique passwords for all of your accounts. It also allows you to have a
+                different password for each account.</p>
+        </div>)
+
+    }]
+
+
+    const [selectedTip, setSelectedTip] = useState(0);
+
+    const [tipTitle, setTipTitle] = useState(tips[selectedTip].title);
+    const [tipBody, setTipBody] = useState(tips[selectedTip].body);
 
     return (<div className="content">
         <Row>
@@ -70,16 +102,13 @@ function Learning() {
             </Col>
         </Row>
 
-        {/*    Create a sidebar with several cybersecurity topics then create a main card with detailed information about the topic from the sidebar*/}
         <Row>
-
             <Col md="3">
                 <Card className="card-category">
                     <CardHeader>
                         <CardTitle tag="h4">Cyber Categories</CardTitle>
                     </CardHeader>
                     <CardBody>
-                        <CardText>
                             <ul>
                                 <li><a href="#passwords">Passwords</a></li>
                                 <li><a href="#phishing">Phishing</a></li>
@@ -92,44 +121,18 @@ function Learning() {
                                 <li><a href="#adware">Adware</a></li>
                                 <li><a href="#botnet">Botnets</a></li>
                             </ul>
-                        </CardText>
                     </CardBody>
                 </Card>
             </Col>
             <Col md="9">
                 <Card className="card-user">
                     <CardBody>
-                        <CardText>
-                            <h3>Passwords</h3>
-                            <br/>
-                            <h6>What is a password?</h6>
-                            <p>A password is a secret word or phrase that allows you to gain access to your account.</p>
-                            <br/>
-                            <h6>Why is it important?</h6>
-                            <p>Having a strong password is the first line of defense against hackers. If your password
-                                is too
-                                weak, hackers can easily guess it and gain access to your account.</p>
-                            <br/>
-                            <h6>How do I make a strong password?</h6>
-                            <p>There are a few things to consider when making a strong password. First, it should be at
-                                least 12 characters long. Next, it should include at least one number, one uppercase
-                                letter, and one symbol. Finally, it should not include any of your personal information
-                                (such as your name, birthday, etc.).</p>
-                            <br/>
-                            <h6>Why should I use a password manager?</h6>
-                            <p>A password manager is a software application that stores all of your passwords in an
-                                encrypted file. It is a good idea to use a password manager because it allows you to
-                                have strong, unique passwords for all of your accounts. It also allows you to have a
-                                different password for each account.</p>
-                        </CardText>
+                            <h3>{tipTitle}</h3>
+                            {tipBody}
                     </CardBody>
                 </Card>
             </Col>
-
-
         </Row>
-
-
     </div>);
 }
 
