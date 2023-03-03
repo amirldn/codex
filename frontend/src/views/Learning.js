@@ -77,25 +77,254 @@ function Learning() {
                 have strong, unique passwords for all of your accounts. It also allows you to have a
                 different password for each account.</p>
         </div>)
+    }, {
+        title: "Phishing", body: (<div>
+            <h6>What is phishing?</h6>
+            <p>Phishing is a type of cyberattack in which hackers send fake emails or text messages to
+                trick
+                you into giving them your personal information.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Phishing is important because hackers can use your personal information to steal your
+                money
+                or identity.</p>
+            <br/>
+            <h6>How do I avoid phishing?</h6>
+            <p>There are a few things you can do to avoid phishing. First, you should never click on
+                links
+                or attachments in emails or text messages from people you don't know. Next, you
+                should
+                never give out your personal information over the phone or in an email. Finally, you
+                should
+                never give out your personal information to anyone who calls you.</p>
+        </div>)
+    }, {
+        title: "Malware", body: (<div>
+            <h6>What is malware?</h6>
+            <p>Malware is a type of software that is designed to cause damage to your computer or
+                network.</p>
+            <br/>
+            <h6>Why is it important?</h6>
 
-    }]
+            <p>Malware is important because it can cause damage to your computer or network.</p>
+            <br/>
+            <h6>How do I avoid malware?</h6>
+            <p>There are a few things you can do to avoid malware. First, you should never download
+                software from untrusted sources. Next, you should never open emails or text messages
+                from
+                people you don't know. Finally, you should never click on links or attachments in
+                emails
+                or text messages from people you don't know.</p>
+        </div>)
+    }, {
+        title: "Social Engineering", body: (<div>
+            <h6>What is social engineering?</h6>
+
+            <p>Social engineering is a type of cyberattack in which hackers use social skills to trick
+                you
+                into giving them your personal information.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Social engineering is important because hackers can use your personal information to
+                steal
+                your money or identity.</p>
+            <br/>
+            <h6>How do I avoid social engineering?</h6>
+            <p>There are a few things you can do to avoid social engineering. First, you should never
+                give
+                out your personal information over the phone or in an email. Next, you should never
+                give
+                out your personal information to anyone who calls you. Finally, you should never
+
+                click on links or attachments in emails or text messages from people you don't know.</p>
+        </div>)
+    }, {
+        title: "Ransomware", body: (<div>
+            <h6>What is ransomware?</h6>
+            <p>Ransomware is a type of malware that locks your computer or network until you pay a
+                ransom.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+
+            <p>Ransomware is important because it can lock your computer or network until you pay a
+                ransom.</p>
+            <br/>
+
+            <h6>How do I avoid ransomware?</h6>
+
+            <p>There are a few things you can do to avoid ransomware. First, you should never click on
+                links or attachments in emails or text messages from people you don't know. Next, you
+                should
+                never download software from untrusted sources. Finally, you should never open emails
+                or
+                text messages from people you don't know.</p>
+        </div>)
+    }, {
+        title: "Viruses", body: (<div>
+            <h6>What is a virus?</h6>
+            <p>A virus is a type of malware that can replicate itself and spread to other computers
+                and
+                networks.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Viruses can quickly spread across networks (including your own local home environment) and infect other
+                devices.
+            </p>
+            <br/>
+            <h6>How do I avoid viruses?</h6>
+            <p>There are a few things you can do to avoid viruses. First, you should never click on
+                links
+                or attachments in emails or text messages from people you don't know. Next, you
+                should
+
+                never download software from untrusted sources. Finally, you should never open emails
+                or
+                text messages from people you don't know.</p>
+        </div>)
+    }, {
+        title: "Trojans", body: (<div>
+            <h6>What is a Trojan?</h6>
+            <p>A Trojan is a type of malware that is disguised as a legitimate program. They can be in the form of
+                malware
+                or a virus.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Trojans are important because they can be disguised as legitimate programs and can be difficult to
+                detect.
+                When downloading files or programs from the internet, even a trusted source could become compromised
+                and
+                infect your device with a trojan.
+            </p>
+
+            <br/>
+            <h6>How do I avoid Trojans?</h6>
+            <p>There are a few things you can do to avoid Trojans. First, you should never click on
+                links
+                or attachments in emails or text messages from people you don't know. Next, you
+                should
+                never download software from untrusted sources. You should ensure you have some form of real time
+                malware
+                protection set up on your machine. To go the extra mile, often a website will display the 'hash' of
+                a
+                file
+                which indicates a form of mathematical signature for a file that they have created. After a file has
+                been
+                downloaded, you can generate a mathemtical signature using your file and double check it is the same
+                as
+                what
+                the site have provided.</p>
+        </div>),
+    }, {
+        title: "Spyware", body: (<div>
+            <h6>What is spyware?</h6>
+            <p>Spyware is a type of malware that is designed to collect information about you without your
+                knowledge.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Spyware is important because it can collect information about you without your knowledge.</p>
+            <br/>
+            <h6>How do I avoid spyware?</h6>
+            <p>There are a few things you can do to avoid spyware. First, you should never click on
+                links
+                or attachments in emails or text messages from people you don't know. Next, you
+                should
+                never download software from untrusted sources. Finally, you should never open emails
+                or
+                text messages from people you don't know.</p>
+        </div>),
+    }, {
+        title: "Adware", body: (<div>
+            <h6>What is adware?</h6>
+
+            <p>Adware is a type of malware that is designed to display advertisements on your computer or mobile
+                device.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Adware is important because it means that your device will be constantly fetching adverts and distrupting
+                your experience. It can also lead to slowness on your machine as processing power is spent displaying
+                ads instead of running the applications that you want.</p>
+            <br/>
+            <h6>How do I avoid adware?</h6>
+            <p>There are a few things you can do to avoid adware. First, you should avoid clicking on links or
+                attachments in emails or text messages from people you don't know. An adblocker is a great way to
+                avoid
+                adware. You can install an adblocker on your browser or on your device. If you are using a mobile
+                device,
+                you can find one on your device's app store. If you are using a desktop, you can install an adblocker as
+                a browser extension.</p>
+        </div>),
+    }, {
+        title: "Botnet", body: (<div>
+            <h6>What is a botnet?</h6>
+            <p>A botnet is a network of computers that have been infected with malware and are controlled by a
+                hacker.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>Botnets are important because they can be used to launch attacks on other computers and networks.</p>
+            <br/>
+            <h6>How do I avoid botnets?</h6>
+            <p>There are a few things you can do to avoid botnets. First, you should never click on
+                links
+                or attachments in emails or text messages from people you don't know. Next, you
+                should
+                never download software from untrusted sources. Having a real-time system scanner is also valuable as it
+                will be able to scan for suspicious activity on your system.</p>
+        </div>)
+    }];
 
 
     const [selectedTip, setSelectedTip] = useState(0);
-
     const [tipTitle, setTipTitle] = useState(tips[selectedTip].title);
     const [tipBody, setTipBody] = useState(tips[selectedTip].body);
+
+    useEffect(() => {
+
+        setTipTitle(tips[selectedTip].title);
+        setTipBody(tips[selectedTip].body);
+    }, [selectedTip]);
+
+    useEffect(() => {
+        console.log(window.location.href);
+        if (window.location.href.includes("passwords")) {
+            setSelectedTip(1);
+        } else if (window.location.href.includes("phishing")) {
+            setSelectedTip(2);
+        } else if (window.location.href.includes("malware")) {
+            setSelectedTip(3);
+        } else if (window.location.href.includes("social")) {
+            setSelectedTip(4);
+        } else if (window.location.href.includes("ransomware")) {
+            setSelectedTip(5);
+        } else if (window.location.href.includes("virus")) {
+            setSelectedTip(6);
+        } else if (window.location.href.includes("trojan")) {
+            setSelectedTip(7);
+        } else if (window.location.href.includes("spyware")) {
+            setSelectedTip(8);
+        } else if (window.location.href.includes("adware")) {
+            setSelectedTip(9);
+        } else if (window.location.href.includes("botnet")) {
+            setSelectedTip(10);
+        } else {
+            setSelectedTip(0);
+        }
+
+    }, [window.location.href]);
 
     return (<div className="content">
         <Row>
             <Col md="12">
                 <h2 className="mb-2">Expand your knowledge</h2>
                 <p>
-                    This page provides you with helpful tips and tricks to keep your data, identity and system safe.
+                    This page provides you with helpful tips and tricks to keep your data, identity and system
+                    safe.
                     <br/>
                     <br/>
-                    As easy as a one click Amazon purchase is, it can be just as easy for a hacker to do the same thing
-                    but with your credit card for example! Keeping your data safe involves more than just a password,
+                    As easy as a one click Amazon purchase is, it can be just as easy for a hacker to do the
+                    same
+                    thing
+                    but with your credit card! Keeping your data safe involves more than just a
+                    password,
                     vigilance is key.
                 </p>
                 <hr/>
@@ -104,31 +333,32 @@ function Learning() {
 
         <Row>
             <Col md="3">
-                <Card className="card-category">
+                <Card className="card-category" style={{height: '100%', marginBottom: '0'}}>
                     <CardHeader>
                         <CardTitle tag="h4">Cyber Categories</CardTitle>
                     </CardHeader>
                     <CardBody>
-                            <ul>
-                                <li><a href="#passwords">Passwords</a></li>
-                                <li><a href="#phishing">Phishing</a></li>
-                                <li><a href="#social">Social Engineering</a></li>
-                                <li><a href="#malware">Malware</a></li>
-                                <li><a href="#ransomware">Ransomware</a></li>
-                                <li><a href="#virus">Viruses</a></li>
-                                <li><a href="#trojan">Trojans</a></li>
-                                <li><a href="#spyware">Spyware</a></li>
-                                <li><a href="#adware">Adware</a></li>
-                                <li><a href="#botnet">Botnets</a></li>
-                            </ul>
+                        <ul>
+                            <li><a href="#">Introduction</a></li>
+                            <li><a href="#passwords">Passwords</a></li>
+                            <li><a href="#phishing">Phishing</a></li>
+                            <li><a href="#social">Social Engineering</a></li>
+                            <li><a href="#malware">Malware</a></li>
+                            <li><a href="#ransomware">Ransomware</a></li>
+                            <li><a href="#virus">Viruses</a></li>
+                            <li><a href="#trojan">Trojans</a></li>
+                            <li><a href="#spyware">Spyware</a></li>
+                            <li><a href="#adware">Adware</a></li>
+                            <li><a href="#botnet">Botnets</a></li>
+                        </ul>
                     </CardBody>
                 </Card>
             </Col>
             <Col md="9">
                 <Card className="card-user">
                     <CardBody>
-                            <h3>{tipTitle}</h3>
-                            {tipBody}
+                        <h3>{tipTitle}</h3>
+                        {tipBody}
                     </CardBody>
                 </Card>
             </Col>
