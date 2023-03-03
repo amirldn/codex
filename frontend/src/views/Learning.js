@@ -54,6 +54,11 @@ function Learning() {
                 antivirus software and keep it up to date. Finally, you should use strong passwords
                 and
                 never share them with anyone.</p>
+            <p>The National Cyber Security Centre is a government agency that provides advice on how
+                to keep your computer and network secure.
+                <br/>
+                You can find more information on their website <a href="https://www.ncsc.gov.uk/"> here</a>.
+            </p>
         </div>)
     }, {
         title: "Passwords", body: (<div>
@@ -70,6 +75,11 @@ function Learning() {
                 least 12 characters long. Next, it should include at least one number, one uppercase
                 letter, and one symbol. Finally, it should not include any of your personal information
                 (such as your name, birthday, etc.).</p>
+            <br/>
+            You can use the password generator tool built into Codex to generate a strong password for you!
+            <br/>
+            Try using it <a href={"/admin/tools/password"}> here</a>.
+            <br/>
             <br/>
             <h6>Why should I use a password manager?</h6>
             <p>A password manager is a software application that stores all of your passwords in an
