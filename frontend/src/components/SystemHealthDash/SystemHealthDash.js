@@ -72,8 +72,6 @@ function SystemHealthDashCategoryCard({props}) {
     }
 
     function displayIssueIcon(type) {
-        console.log('in displayIssueIcon')
-        console.log(statuses)
         if (statuses.critical > 0) {
             type = 'Crit'
         } else if (statuses.warning > 0) {
