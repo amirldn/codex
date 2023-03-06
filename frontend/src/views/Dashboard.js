@@ -18,7 +18,6 @@
 */
 import React, {useEffect} from "react";
 // react plugin used to create charts
-import {Line, Pie} from "react-chartjs-2";
 // reactstrap components
 import {
     Card, CardHeader, CardBody, CardFooter, CardTitle, Row, Col
