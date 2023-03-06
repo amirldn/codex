@@ -9,6 +9,7 @@
     "animate.css": "^4.1.1",
     "bootstrap": "4.6.0",
     "chart.js": "3.2.1",
+    "electron-squirrel-startup": "^1.0.0",
     "jquery": "3.6.0",
     "perfect-scrollbar": "1.5.5",
     "react": ">=16.8.0",
@@ -23,7 +24,7 @@
     "webpack-cli": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "electron-forge start",
     "start-electron": "electron .",
     "build": "react-scripts build && gulp licenses",
     "build-electron": "react-scripts build && gulp licenses && electron .",
@@ -32,7 +33,9 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "compile-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css",
     "minify-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.min.css --output-style compressed",
-    "map-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css --source-map true"
+    "map-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css --source-map true",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -52,6 +55,10 @@
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
     "electron": "^23.1.2",
     "gulp": "4.0.2",
     "gulp-append-prepend": "1.0.9"
