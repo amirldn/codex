@@ -174,7 +174,6 @@ function Use-CodexModule
     # Check if module requires Administrator
     if ($ModuleName -eq 'PSWindowsUpdate')
     {
-
         if ($isAdmin)
         {
             Install-Module PSWindowsUpdate -Force

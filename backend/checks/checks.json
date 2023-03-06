@@ -12,7 +12,8 @@
       "os": [
         "Windows",
         "MacOS"
-      ]
+      ],
+      "admin": false
     },
     {
       "id": "2",
@@ -26,7 +27,8 @@
       "os": [
         "Windows",
         "MacOS"
-      ]
+      ],
+      "admin": false
     },
     {
       "id": "3",
@@ -39,7 +41,8 @@
       "category": "Patching",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": true
     },
     {
       "id": "4",
@@ -52,7 +55,8 @@
       "category": "Security",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": false
     },
     {
       "id": "5",
@@ -65,7 +69,8 @@
       "category": "Security",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": false
     },
     {
       "id": "6",
@@ -78,7 +83,8 @@
       "category": "Security",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": false
     },
     {
       "id": "7",
@@ -91,7 +97,8 @@
       "category": "Security",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": true
     },
     {
       "id": "8",
@@ -104,7 +111,8 @@
       "category": "Patching",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": false
     },
     {
       "id": "9",
@@ -117,7 +125,8 @@
       "category": "Testing",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": false
     },
     {
       "id": "10",
@@ -130,9 +139,10 @@
       "category": "Testing",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": false
     },
-        {
+    {
       "id": "11",
       "name": "Check-Disk",
       "friendly_name": "Check Disk",
@@ -143,7 +153,8 @@
       "category": "Security",
       "os": [
         "Windows"
-      ]
+      ],
+      "admin": true
     }
   ]
 }
