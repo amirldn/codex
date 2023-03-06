@@ -23,10 +23,9 @@ import {
     Card,
     CardHeader,
     CardBody,
-    CardFooter,
     CardTitle,
     Row,
-    Col, Button, Form, FormGroup, Label, Input, CardText
+    Col, Button, Form, FormGroup, Input, CardText
 } from "reactstrap";
 // core components
 import 'animate.css';
@@ -75,138 +74,6 @@ function Password() {
                     <hr/>
                 </Col>
             </Row>
-
-            {/*            <Form>*/}
-            {/*                <Row className="pt-2 pl-5 pr-5">*/}
-            {/*                    <Col lg="6" md="12" sm="12">*/}
-            {/*                        <Card className="card-stats">*/}
-            {/*                            <CardBody>*/}
-            {/*                                <Row>*/}
-            {/*                                    <Col md="4" xs="5">*/}
-            {/*                                        <div className="icon-big text-center icon-warning">*/}
-            {/*                                            <i className="nc-icon nc-globe text-warning"/>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                    <Col md="8" xs="7">*/}
-            {/*                                        <div className="numbers">*/}
-            {/*                                            <p className="card-category">Length</p>*/}
-            {/*                                            <CardTitle tag="p">12 Chars</CardTitle>*/}
-            {/*                                            <p/>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                </Row>*/}
-            {/*                            </CardBody>*/}
-            {/*                            <CardFooter>*/}
-            {/*                                <hr/>*/}
-            {/*                                <div className="stats">*/}
-            {/*                                    /!*    Create a slider input value from 0 to 36*!/*/}
-            {/*                                    <FormGroup>*/}
-            {/*                                        <Label for="passwordLength">*/}
-            {/*                                           Length of Password*/}
-            {/*                                        </Label>*/}
-            {/*                                        <Input*/}
-            {/*                                            id="passwordLength"*/}
-            {/*                                            name="range"*/}
-            {/*                                            type="range"*/}
-            {/*                                        />*/}
-            {/*                                    </FormGroup>*/}
-            {/*                                </div>*/}
-            {/*                            </CardFooter>*/}
-            {/*                        </Card>*/}
-            {/*                    </Col>*/}
-            {/*                    <Col lg="6" md="12" sm="12">*/}
-            {/*                        <Card className="card-stats">*/}
-            {/*                            <CardBody>*/}
-            {/*                                <Row>*/}
-            {/*                                    <Col md="3" xs="5">*/}
-            {/*                                        <div className="icon-big text-center icon-warning">*/}
-            {/*                                            <i className="nc-icon nc-money-coins text-success"/>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                    <Col md="9" xs="7">*/}
-            {/*                                        <div className="numbers">*/}
-            {/*                                            <p className="card-category">Upper-Case Chars</p>*/}
-            {/*                                            <CardTitle tag="p">Yes</CardTitle>*/}
-            {/*                                            <p/>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                </Row>*/}
-            {/*                            </CardBody>*/}
-            {/*                            <CardFooter>*/}
-            {/*                                <hr/>*/}
-            {/*                                <div className="stats">*/}
-            {/*                                    <i className="far fa-calendar"/> Last day*/}
-            {/*                                </div>*/}
-            {/*                            </CardFooter>*/}
-            {/*                        </Card>*/}
-            {/*                    </Col>*/}
-            {/*                </Row>*/}
-            {/*                <Row className="pl-5 pr-5">*/}
-            {/*                    <Col lg="6" md="12" sm="12">*/}
-            {/*                        <Card className="card-stats">*/}
-            {/*                            <CardBody>*/}
-            {/*                                <Row>*/}
-            {/*                                    <Col md="4" xs="5">*/}
-            {/*                                        <div className="icon-big text-center icon-warning">*/}
-            {/*                                            <i className="nc-icon nc-vector text-danger"/>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                    <Col md="8" xs="7">*/}
-            {/*                                        <div className="numbers">*/}
-            {/*                                            <p className="card-category">Symbols</p>*/}
-            {/*                                            <CardTitle tag="p">Yes</CardTitle>*/}
-            {/*                                            <p/>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                </Row>*/}
-            {/*                            </CardBody>*/}
-            {/*                            <CardFooter>*/}
-            {/*                                <hr/>*/}
-            {/*                                <div className="stats">*/}
-            {/*                                    <FormGroup switch={symbolState.toString()}>*/}
-            {/*<Label for="symbolSwitch">Include Symbols</Label>*/}
-            {/*                                        <Input*/}
-            {/*                                            id="symbolSwitch"*/}
-            {/*                                            type="switch"*/}
-            {/*                                            name="switch"*/}
-            {/*                                            onChange={() => setSymbolState(!symbolState)}*/}
-            {/*                                            checked={symbolState}*/}
-            {/*                                        />*/}
-            {/*      </FormGroup>*/}
-            {/*                                </div>*/}
-            {/*                            </CardFooter>*/}
-            {/*                        </Card>*/}
-            {/*                    </Col>*/}
-            {/*                    <Col lg="6" md="12" sm="12">*/}
-            {/*                        <Card className="card-stats">*/}
-            {/*                            <CardBody>*/}
-            {/*                                <Row>*/}
-            {/*                                    <Col md="4" xs="5">*/}
-            {/*                                        <div className="icon-big text-center icon-warning">*/}
-            {/*                                            <i className="nc-icon nc-favourite-28 text-primary"/>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                    <Col md="8" xs="7">*/}
-            {/*                                        <div className="numbers">*/}
-            {/*                                            <p className="card-category">Numbers</p>*/}
-            {/*                                            <CardTitle tag="p">Yes</CardTitle>*/}
-            {/*                                        </div>*/}
-            {/*                                    </Col>*/}
-            {/*                                </Row>*/}
-            {/*                            </CardBody>*/}
-            {/*                            <CardFooter>*/}
-            {/*                                <hr/>*/}
-            {/*                                <div className="stats">*/}
-            {/*                                    <i className="fas fa-sync-alt"/> Update now*/}
-            {/*                                </div>*/}
-            {/*                            </CardFooter>*/}
-            {/*                        </Card>*/}
-            {/*                    </Col>*/}
-            {/*                </Row>*/}
-            {/*            </Form>*/}
-
-            {/* Create a form that has the option of symbols, length, numbers and upper case chars*/}
-            {/* Create a button that generates a password based on the form*/}
 
             <Row>
                 <Col className="ml-auto mr-auto" md="6">
