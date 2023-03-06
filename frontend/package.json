@@ -4,6 +4,8 @@
   "private": true,
   "homepage": "./",
   "main": "main.js",
+  "author": "Amir Maula",
+  "description": "Codex Cybersecurity Tool",
   "dependencies": {
     "@babel/core": "7.18.6",
     "animate.css": "^4.1.1",
@@ -25,17 +27,15 @@
   },
   "scripts": {
     "start": "electron-forge start",
-    "start-electron": "electron .",
     "build": "react-scripts build && gulp licenses",
-    "build-electron": "react-scripts build && gulp licenses && electron .",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start",
     "compile-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css",
     "minify-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.min.css --output-style compressed",
-    "map-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css --source-map true",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "map-sass": "node-sass src/assets/scss/paper-dashboard.scss src/assets/css/paper-dashboard.css --source-map true"
   },
   "eslintConfig": {
     "extends": "react-app"
