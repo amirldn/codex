@@ -43,6 +43,15 @@ async def run_test_output():
     return result
 
 
+@router.get("/checkdisk/",
+            summary="Runs the Check-Disk pwsh script")
+async def run_test_output():
+    result = pwsh.run_and_return("Check-Disk.ps1", True)
+    if 'fault' in result:
+        raise HTTPException(status_code=500, detail=result)
+    return result
+
+
 @router.get("/testnewfile/",
             summary="Runs the Test-NewFile pwsh script")
 async def run_test_output():
