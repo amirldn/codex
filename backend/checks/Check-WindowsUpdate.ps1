@@ -14,9 +14,11 @@ Use-CodexModule -ModuleName PSWindowsUpdate
 # Check Windows Update service is running
 $service = Get-Service -Name wuauserv
 if ($service.Status -ne "Running") {
-    Add-CodexOutput -CheckName "Windows Update Service is Disabled" -State Crit -Message "Windows Update service is not running"
+    Add-CodexOutput -CheckName "Windows Update Service is Disabled" -State Crit -Message "The Windows Update service is not running - you should enable this service to ensure your operating system and other software is up to date."
     Write-CodexOutput
     return
+
+#    TODO: Add a fix option
 }
 else
 {

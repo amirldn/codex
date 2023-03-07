@@ -13,10 +13,10 @@ Import-Module $modulePath -Force
 $firewall = Get-NetFirewallProfile
 $firewall | ForEach-Object {
     if ($_.Enabled -eq 'True') {
-        Add-CodexOutput -CheckName "$_.Name Firewall Disabled" -State Ok -Message "$_.Name is enabled"
+        Add-CodexOutput -CheckName "$($_.Name) Firewall Disabled" -State Ok -Message "$(($_.Name) + ' is enabled')"
     }
     else {
-        Add-CodexOutput -CheckName "$_.Name Firewall Disabled" -State Crit -Message "$_.Name is disabled"
+        Add-CodexOutput -CheckName "$($_.Name) Firewall Disabled" -State Crit -Message "The firewall for the profile '$($_.Name)' is disabled - you should enable it to protect your system from malicious traffic (e.g. intrusion attempts, ransomware attacks, etc.)."
     }
 }
 
