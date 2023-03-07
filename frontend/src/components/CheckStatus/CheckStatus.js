@@ -58,18 +58,28 @@ export default function CheckStatus({check, taskId, updateLastRan}) {
     if (taskId !== '' && status.task_status) {
         if (status.task_status === 'PENDING') {
             return (<div>
-                <p>Status: <b><span
-                    className="text-info animate__animated animate__pulse">{status.task_status}</span></b></p>
+                <p>
+                    Status:
+                    <br/>
+                    <b>
+                        <span
+                            className="text-info animate__animated animate__pulse">{status.task_status}</span>
+                    </b>
+                </p>
             </div>)
         }
         if (status.task_status === 'SUCCESS') {
             updateLastRan(status.date_done)
             return (<div>
-                <p>Status: <b>
+                <p>
+                    Status:
+                    <br/>
+                    <b>
                         <span className="text-success animate__animated animate__pulse">
-                        <GetOverallStatus results={status.task_result.data}/>
-                        </span
-                        ></b></p>
+                            <GetOverallStatus results={status.task_result.data}/>
+                        </span>
+                    </b>
+                </p>
                 <p><b>Result:</b></p>
                 <br/>
                 {status.task_result.data.map((item) => (<CheckStatusResult props={item} key={item.ID}/>))}
@@ -82,8 +92,13 @@ export default function CheckStatus({check, taskId, updateLastRan}) {
     if (taskId !== '' && status.detail) {
         updateLastRan('N/A')
         return (<div>
-                <p>Status: <b><span
-                    className="text-danger animate__animated animate__pulse">Unknown - Internal Error</span></b></p>
+                <p>Status: <br/>
+                    <b>
+                        <span
+                            className="text-danger animate__animated animate__pulse">Unknown - Internal Error
+                        </span>
+                    </b>
+                </p>
                 <CheckStatusResultError props={status}/>
 
             </div>

@@ -13,10 +13,10 @@ Import-Module $modulePath -Force
 $firewall = Get-NetFirewallProfile
 $firewall | ForEach-Object {
     if ($_.Enabled -eq 'True') {
-        Add-CodexOutput -CheckName 'Check-WindowsFirewall' -State Ok -Message "$_.Name is enabled"
+        Add-CodexOutput -CheckName "$_.Name Firewall Disabled" -State Ok -Message "$_.Name is enabled"
     }
     else {
-        Add-CodexOutput -CheckName 'Check-WindowsFirewall' -State Crit -Message "$_.Name is disabled"
+        Add-CodexOutput -CheckName "$_.Name Firewall Disabled" -State Crit -Message "$_.Name is disabled"
     }
 }
 
