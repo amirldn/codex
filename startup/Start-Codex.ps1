@@ -21,7 +21,7 @@ if (-not (Test-Path $codexBackEndPath))
     Write-Error "Codex backend path does not exist. Please double check the path in the Codex startup script."
 #    exit 1
 }
-Start-Process -FilePath $codexBackEndPath
+Start-Process -FilePath $codexBackEndPath -WindowStyle Hidden
 
 # Start the Codex frontend
 if (-not (Test-Path $codexFrontEndPath))

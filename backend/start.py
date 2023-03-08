@@ -25,7 +25,6 @@ class thread(threading.Thread):
 def start_uvicorn():
     uvicorn.run("backend.main:app", host="127.0.0.1", port=8000, reload=False, workers=2)
 
-
 def start_celery():
     worker = celeryi.Worker(
         include=['backend.runner.tasks'],
