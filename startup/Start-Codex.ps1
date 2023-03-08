@@ -1,5 +1,5 @@
-$codexFrontEndPath = "C:\Program Files (x86)\Codex\Codex-frontend.exe"
-$codexBackEndPath = "C:\Program Files (x86)\Codex\Codex-backend.exe"
+$codexFrontEndPath = "C:\Program Files (x86)\Codex\codex-io.exe"
+$codexBackEndPath = "C:\Program Files (x86)\Codex\codex-io-backend.exe"
 $redisPath = "C:\Program Files\Memurai\memurai.exe"
 
 # Check Redis is running
