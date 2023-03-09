@@ -210,13 +210,15 @@ export default function SystemHealthDash(props) {
             </Row>)
         } else {
             return (<Row>
-                <Col md="2"><h1><i className="nc-icon nc-check-2"></i></h1></Col>
+                <Col md="2">
+                    <h1>
+                        <div className="spinner-border" role="status" style={{width: '3rem', height: '3rem'}}>
+                            <h2 className="sr-only">Loading...</h2>
+                        </div>
+                    </h1>
+                </Col>
                 <Col md="10">
-
-                    <h2>All good!</h2>
-
-                    <p>On the last run, we saw no issues with your system.</p>
-                    <p>Last Run: 12 Sep - 08:38</p>
+                    <h4>Codex is setting up...</h4>
                 </Col>
             </Row>)
         }
@@ -242,7 +244,6 @@ export default function SystemHealthDash(props) {
                         <Row style={{
                             'paddingLeft': '2%', 'flexWrap': 'nowrap'
                         }}>
-                            {/*{console.log(categoryIssueCount)}*/}
                             {categoryIssueCount.map((category) => (
                                 <SystemHealthDashCategoryCard key={category.category} props={category}/>))}
                         </Row>
