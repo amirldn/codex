@@ -180,16 +180,16 @@ export default function SystemHealthDash(props) {
             return (<h2>{issueCount.Crit} critical issues</h2>)
         }
         if (issueCount.Warn === 1 && issueCount.Crit === 1) {
-            return (<h2>{issueCount.Warn} warning and {issueCount.Crit} critical issue</h2>)
+            return (<h2>{issueCount.Crit} critical issue and {issueCount.Warn} warning</h2>)
         }
         if (issueCount.Warn > 1 && issueCount.Crit === 1) {
-            return (<h2>{issueCount.Warn} warnings and {issueCount.Crit} critical issue</h2>)
+            return (<h2>{issueCount.Crit} critical issue and {issueCount.Warn} warnings</h2>)
         }
         if (issueCount.Warn === 1 && issueCount.Crit > 1) {
-            return (<h2>{issueCount.Warn} warning and {issueCount.Crit} critical issues</h2>)
+            return (<h2>{issueCount.Crit} critical issues and {issueCount.Warn} warning</h2>)
         }
         if (issueCount.Warn > 1 && issueCount.Crit > 1) {
-            return (<h2>{issueCount.Warn} warnings and {issueCount.Crit} critical issues</h2>)
+            return (<h2>{issueCount.Crit} critical issues and {issueCount.Warn} warnings</h2>)
         }
     }
 
