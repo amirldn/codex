@@ -1,5 +1,7 @@
 import React from "react";
-import {Card, CardBody, CardFooter, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row} from "reactstrap";
+import {
+    Button, Card, CardBody, CardFooter, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row
+} from "reactstrap";
 
 import 'animate.css';
 
@@ -32,16 +34,16 @@ export default function CheckStatusResolveSteps({props}) {
     function displayImage() {
         if (props.resolveImg[stepView]) {
             let imgDir = 'https://i.imgur.com/' + props.resolveImg[stepView]
-            return (<div className="image" style={{height : 'auto'}}>
+            return (<div className="image" style={{height: 'auto'}}>
                 <img src={imgDir} alt=''/>
             </div>)
         }
     }
 
-    function displayStepContent(){
+    function displayStepContent() {
         if (props.resolveSteps[stepView]) {
             return (<div className="">
-               <p>{props.resolveSteps[stepView]}</p>
+                <p>{props.resolveSteps[stepView]}</p>
             </div>)
         }
     }
@@ -60,11 +62,19 @@ export default function CheckStatusResolveSteps({props}) {
                 <CardBody>
                     <Row>
                         <Col>
-                            <b>Steps</b>
-                                <br/>
-                                {displayStepContent()}
-                                {displayImage()}
-
+                            <Row>
+                                <Col>
+                                    <b>Steps</b>
+                                </Col>
+                                <Col>
+                                    <Button
+                                        className="btn btn-link rounded"
+                                        onClick={() => updateStep(-2)}>Apply Fix</Button>
+                                </Col>
+                            </Row>
+                            <br/>
+                            {displayStepContent()}
+                            {displayImage()}
                         </Col>
                     </Row>
 
@@ -78,7 +88,7 @@ export default function CheckStatusResolveSteps({props}) {
                             </PaginationItem>
 
                             {props.resolveSteps.map((step, index) => {
-                                return <PaginationItem key={props.resolveSteps[index]} >
+                                return <PaginationItem key={props.resolveSteps[index]}>
                                     <PaginationLink tag="button"
                                                     onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
                                 </PaginationItem>
