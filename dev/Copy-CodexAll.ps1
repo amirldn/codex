@@ -24,3 +24,11 @@ foreach ($filename in $filenames)
     Write-Output $filename.name
     Copy-Item -Path ('/Users/amaula/GitHub/codex/backend/' + $filename.name) -Destination ("/Volumes/`[C`] Windows 11 (ARM)/codex-windows/backend") -Recurse -Force -ErrorAction Continue
 }
+
+
+$filenames = Get-ChildItem '/Users/amaula/GitHub/codex/redist' | Select-Object name
+foreach ($filename in $filenames)
+{
+    Write-Output $filename.name
+    Copy-Item -Path ('/Users/amaula/GitHub/codex/redist/' + $filename.name) -Destination ("/Volumes/`[C`] Windows 11 (ARM)/codex-windows/redist") -Recurse -ErrorAction Continue
+}
