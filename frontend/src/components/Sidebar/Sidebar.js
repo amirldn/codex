@@ -28,7 +28,7 @@ var ps;
 
 function Sidebar(props) {
 
-  console.log('sidebar:' + window.location.href);
+  // console.log('sidebar:' + window.location.href);
   const sidebar = React.useRef();
   // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {

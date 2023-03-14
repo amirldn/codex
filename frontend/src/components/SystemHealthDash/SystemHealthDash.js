@@ -238,7 +238,7 @@ export default function SystemHealthDash(props) {
 
 
     function displayCategories(){
-        console.log(issueCount)
+        // console.log(issueCount)
         if (!(issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0)){
            return(
                <CardFooter>

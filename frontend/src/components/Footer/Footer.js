@@ -18,49 +18,42 @@
 */
 /*eslint-disable*/
 import React from "react";
-import { Container, Row } from "reactstrap";
+import {Container, Row} from "reactstrap";
 // used for making the prop types of this component
 import PropTypes from "prop-types";
 
 function Footer(props) {
-  return (
-    <footer className={"footer" + (props.default ? " footer-default" : "")}>
-      <Container fluid={props.fluid ? true : false}>
-        <Row>
-          <nav className="footer-nav">
-            <ul>
-              <li>
-                <a href="https://www.creative-tim.com" target="_blank">
-                  Creative Tim
-                </a>
-              </li>
-              <li>
-                <a href="https://blog.creative-tim.com" target="_blank">
-                  Blog
-                </a>
-              </li>
-              <li>
-                <a href="https://www.creative-tim.com/license" target="_blank">
-                  Licenses
-                </a>
-              </li>
-            </ul>
-          </nav>
-          <div className="credits ml-auto">
-            <div className="copyright">
-              &copy; {1900 + new Date().getYear()}, made with{" "}
-              <i className="fa fa-heart heart" /> by Creative Tim
-            </div>
-          </div>
-        </Row>
-      </Container>
-    </footer>
-  );
+    return (<footer className={"footer" + (props.default ? " footer-default" : "")}>
+            <Container fluid={props.fluid ? true : false}>
+                <Row>
+                    <nav className="footer-nav">
+                        <ul>
+                            <li>
+                                <div className="logo-img">
+                                    <img src="https://svgshare.com/i/r7L.svg" alt="react-logo"
+                                         style={{'width': '40px'}}/>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);" target="_blank">
+                                    Codex
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div className="credits ml-auto">
+                        <div className="copyright">
+                            &copy; {1900 + new Date().getYear()}, made with{" "}
+                            <i className="fa fa-heart heart"/> by Amir Maula
+                        </div>
+                    </div>
+                </Row>
+            </Container>
+        </footer>);
 }
 
 Footer.propTypes = {
-  default: PropTypes.bool,
-  fluid: PropTypes.bool
+    default: PropTypes.bool, fluid: PropTypes.bool
 };
 
 export default Footer;
