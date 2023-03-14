@@ -208,6 +208,18 @@ export default function SystemHealthDash(props) {
                     <p>Last Run: 12 Sep - 08:38</p>
                 </Col>
             </Row>)
+        } else if (issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0) {
+            return (<Row>
+                <Col md="2">
+                    <h1 style={{textAlign: "center"}}><i
+                        className="fa fa-exclamation-circle fa-2x text-info"/></h1>
+                </Col>
+                <Col md="10">
+                    <h4>No Codex checks have been ran</h4>
+                    <p>You'll need to run some checks first before we can see how your system is doing.</p>
+                    <p>Take a look at the <a href='/admin/checks/'>checks</a> page to get started.</p>
+                </Col>
+            </Row>)
         } else {
             return (<Row>
                 <Col md="2">
@@ -221,6 +233,26 @@ export default function SystemHealthDash(props) {
                     <h4>Codex is setting up...</h4>
                 </Col>
             </Row>)
+        }
+    }
+
+
+    function displayCategories(){
+        console.log(issueCount)
+        if (!(issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0)){
+           return(
+               <CardFooter>
+                    <hr/>
+                    <div className="checkCategories">
+                        <Row style={{
+                            'paddingLeft': '2%', 'flexWrap': 'nowrap'
+                        }}>
+                            {categoryIssueCount.map((category) => (
+                                <SystemHealthDashCategoryCard key={category.category} props={category}/>))}
+                        </Row>
+                    </div>
+                </CardFooter>
+           )
         }
     }
 
@@ -238,17 +270,7 @@ export default function SystemHealthDash(props) {
                 <CardBody>
                     {displayIssueCount()}
                 </CardBody>
-                <CardFooter>
-                    <hr/>
-                    <div className="checkCategories">
-                        <Row style={{
-                            'paddingLeft': '2%', 'flexWrap': 'nowrap'
-                        }}>
-                            {categoryIssueCount.map((category) => (
-                                <SystemHealthDashCategoryCard key={category.category} props={category}/>))}
-                        </Row>
-                    </div>
-                </CardFooter>
+                {displayCategories()}
             </Card>
         </div>
 

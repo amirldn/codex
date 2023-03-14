@@ -350,16 +350,16 @@ function Learning() {
                     <CardBody>
                         <ul>
                             {/*TODO: Change this from href to link that changes state instead*/}
-                            <li><a href="#" onClick={() => handleTipChange(0)}>Introduction</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(1)}>Passwords</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(2)}>Phishing</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(4)}>Malware</a></li>
-                           <li><a href="#" onClick={() => handleTipChange(5)}>Ransomeware</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(6)}>Viruses</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(7)}>Trojan</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(8)}>Spyware</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(9)}>Adware</a></li>
-                            <li><a href="#" onClick={() => handleTipChange(10)}>Botnets</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(0)}>Introduction</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(1)}>Passwords</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(2)}>Phishing</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(4)}>Malware</a></li>
+                           <li><a href="javascript:void(0);" onClick={() => handleTipChange(5)}>Ransomeware</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(6)}>Viruses</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(7)}>Trojan</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(8)}>Spyware</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(9)}>Adware</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(10)}>Botnets</a></li>
                         </ul>
                     </CardBody>
                 </Card>
