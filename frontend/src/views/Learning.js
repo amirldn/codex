@@ -27,9 +27,6 @@ import 'animate.css';
 
 function Learning() {
 
-    // TODO: display the content of the selected tip in the main card and make multiple tips
-
-
     const tips = [{
         title: "Introduction", body: (<div>
             <h6>What is Cybersecurity?</h6>
@@ -288,10 +285,13 @@ function Learning() {
     const [tipBody, setTipBody] = useState(tips[selectedTip].body);
 
     useEffect(() => {
-
         setTipTitle(tips[selectedTip].title);
         setTipBody(tips[selectedTip].body);
     }, [selectedTip]);
+
+    function handleTipChange(newValue) {
+        setSelectedTip(newValue);
+    }
 
     // useEffect(() => {
     //     console.log(window.location.href);
@@ -350,19 +350,16 @@ function Learning() {
                     <CardBody>
                         <ul>
                             {/*TODO: Change this from href to link that changes state instead*/}
-                            <li><a href="#">Introduction</a></li>
-                            {/*<li><a href="#passwords">Passwords</a></li>*/}
-                            <a onClick={setSelectedTip(1)}>Passwords</a>
-                            <a onClick={setSelectedTip(2)}>Phishing</a>
-                            {/*<li><a href="#phishing">Phishing</a></li>*/}
-                            {/*<li><a href="#social">Social Engineering</a></li>*/}
-                            {/*<li><a href="#malware">Malware</a></li>*/}
-                            {/*<li><a href="#ransomware">Ransomware</a></li>*/}
-                            {/*<li><a href="#virus">Viruses</a></li>*/}
-                            {/*<li><a href="#trojan">Trojans</a></li>*/}
-                            {/*<li><a href="#spyware">Spyware</a></li>*/}
-                            {/*<li><a href="#adware">Adware</a></li>*/}
-                            {/*<li><a href="#botnet">Botnets</a></li>*/}
+                            <li><a href="#" onClick={() => handleTipChange(0)}>Introduction</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(1)}>Passwords</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(2)}>Phishing</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(4)}>Malware</a></li>
+                           <li><a href="#" onClick={() => handleTipChange(5)}>Ransomeware</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(6)}>Viruses</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(7)}>Trojan</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(8)}>Spyware</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(9)}>Adware</a></li>
+                            <li><a href="#" onClick={() => handleTipChange(10)}>Botnets</a></li>
                         </ul>
                     </CardBody>
                 </Card>
