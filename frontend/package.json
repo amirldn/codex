@@ -27,6 +27,7 @@
   },
   "scripts": {
     "start": "export NODE_ENV=development && electron-forge start",
+    "start-browser": "react-scripts start",
     "build": "react-scripts build && gulp licenses",
     "build-run": "react-scripts build && electron-forge start",
     "package": "electron-forge package",

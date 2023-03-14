@@ -293,33 +293,33 @@ function Learning() {
         setTipBody(tips[selectedTip].body);
     }, [selectedTip]);
 
-    useEffect(() => {
-        console.log(window.location.href);
-        if (window.location.href.includes("passwords")) {
-            setSelectedTip(1);
-        } else if (window.location.href.includes("phishing")) {
-            setSelectedTip(2);
-        } else if (window.location.href.includes("malware")) {
-            setSelectedTip(3);
-        } else if (window.location.href.includes("social")) {
-            setSelectedTip(4);
-        } else if (window.location.href.includes("ransomware")) {
-            setSelectedTip(5);
-        } else if (window.location.href.includes("virus")) {
-            setSelectedTip(6);
-        } else if (window.location.href.includes("trojan")) {
-            setSelectedTip(7);
-        } else if (window.location.href.includes("spyware")) {
-            setSelectedTip(8);
-        } else if (window.location.href.includes("adware")) {
-            setSelectedTip(9);
-        } else if (window.location.href.includes("botnet")) {
-            setSelectedTip(10);
-        } else {
-            setSelectedTip(0);
-        }
-
-    }, [window.location.href]);
+    // useEffect(() => {
+    //     console.log(window.location.href);
+    //     if (window.location.href.includes("passwords")) {
+    //         setSelectedTip(1);
+    //     } else if (window.location.href.includes("phishing")) {
+    //         setSelectedTip(2);
+    //     } else if (window.location.href.includes("malware")) {
+    //         setSelectedTip(3);
+    //     } else if (window.location.href.includes("social")) {
+    //         setSelectedTip(4);
+    //     } else if (window.location.href.includes("ransomware")) {
+    //         setSelectedTip(5);
+    //     } else if (window.location.href.includes("virus")) {
+    //         setSelectedTip(6);
+    //     } else if (window.location.href.includes("trojan")) {
+    //         setSelectedTip(7);
+    //     } else if (window.location.href.includes("spyware")) {
+    //         setSelectedTip(8);
+    //     } else if (window.location.href.includes("adware")) {
+    //         setSelectedTip(9);
+    //     } else if (window.location.href.includes("botnet")) {
+    //         setSelectedTip(10);
+    //     } else {
+    //         setSelectedTip(0);
+    //     }
+    //
+    // }, [window.location.href]);
 
     return (<div className="content">
         <Row>
@@ -353,15 +353,16 @@ function Learning() {
                             <li><a href="#">Introduction</a></li>
                             {/*<li><a href="#passwords">Passwords</a></li>*/}
                             <a onClick={setSelectedTip(1)}>Passwords</a>
-                            <li><a href="#phishing">Phishing</a></li>
-                            <li><a href="#social">Social Engineering</a></li>
-                            <li><a href="#malware">Malware</a></li>
-                            <li><a href="#ransomware">Ransomware</a></li>
-                            <li><a href="#virus">Viruses</a></li>
-                            <li><a href="#trojan">Trojans</a></li>
-                            <li><a href="#spyware">Spyware</a></li>
-                            <li><a href="#adware">Adware</a></li>
-                            <li><a href="#botnet">Botnets</a></li>
+                            <a onClick={setSelectedTip(2)}>Phishing</a>
+                            {/*<li><a href="#phishing">Phishing</a></li>*/}
+                            {/*<li><a href="#social">Social Engineering</a></li>*/}
+                            {/*<li><a href="#malware">Malware</a></li>*/}
+                            {/*<li><a href="#ransomware">Ransomware</a></li>*/}
+                            {/*<li><a href="#virus">Viruses</a></li>*/}
+                            {/*<li><a href="#trojan">Trojans</a></li>*/}
+                            {/*<li><a href="#spyware">Spyware</a></li>*/}
+                            {/*<li><a href="#adware">Adware</a></li>*/}
+                            {/*<li><a href="#botnet">Botnets</a></li>*/}
                         </ul>
                     </CardBody>
                 </Card>
