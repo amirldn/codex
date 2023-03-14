@@ -1,6 +1,8 @@
 module.exports = {
   packagerConfig: {
-    "asar": true
+    "asar": true,
+    "icon": '/favicon', // no file extension required
+    icon: '/favicon'
   },
   rebuildConfig: {},
   makers: [
@@ -22,3 +24,4 @@ module.exports = {
     },
   ],
 };
+
