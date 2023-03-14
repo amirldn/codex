@@ -16,14 +16,19 @@ if (-not(Test-Path $redisPath))
     switch ($result)
     {
         0{
+            #           Test path for setup
+            if (-not (Test-Path "C:\Program Files (x86)\Codex\redist\memurai-v3.1.4.msi")){
+            Write-Error "Memurai (Redis) MSI is not found in the Codex installation directory. Please install it manually. Exiting."
+            exit 1
+            }
             msiexec /i "C:\Program Files (x86)\Codex\redist\memurai-v3.1.4.msi" /qn /norestart
             Write-Host "Memurai (Redis) is installing in the background. Please wait."
             # Wait until installation is complete
             $redisProcess = Get-Process -Name memurai -ErrorAction SilentlyContinue
             while (-not $redisProcess)
             {
-                Start-Sleep -Seconds 5
-                $redisProcess = Get-Process -Name memurai -ErrorAction SilentlyContinue
+            Start-Sleep -Seconds 5
+            $redisProcess = Get-Process -Name memurai -ErrorAction SilentlyContinue
             }
 
         }1{
