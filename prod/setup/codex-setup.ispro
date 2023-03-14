@@ -1,0 +1,42 @@
+; InstallSimple project
+
+[Setup]
+WindowTitle=Install | Codex
+ProductName=Codex Cybersecurity Toolkit
+
+[Graphics]
+SplashScreen=
+SplashScreenDelay=3
+Header=
+HeaderJustify=Right
+HeaderFontColor=0
+WizardBitmap=
+WizardFontColor=0
+
+[FirstMessage]
+
+[LastMessage]
+Thank you for installing Codex!
+
+[LicenseAgreement]
+
+[SetupFiles]
+SourceFolder=C:\codex-windows\prod
+SpecialFolder=Program Files
+SetupPath=Codex
+SetupFile=C:\codex-windows\codex-setup.exe
+
+[Shortcuts]
+ProgramGroup=Codex
+codex-io.exe=dm
+
+[Registry]
+
+[Requirements]
+OperatingSystem=0
+NetFramework=0
+NetFrameworkLink=http://www.microsoft.com/en-us/download/details.aspx?id=17718
+AdminRights=0
+
+[AfterInstalling]
+Reboot=0
