@@ -14,6 +14,8 @@ function createWindow () {
   win.once('ready-to-show', () => {
     win.webContents.setZoomFactor(0.8);
   });
+
+  win.webContents.openDevTools()
 }
 
 app.whenReady().then(() => {
@@ -31,3 +33,15 @@ app.on('window-all-closed', function () {
 try {
   require('electron-reloader')(module)
 } catch (_) {}
+
+
+const path = require('path')
+const env = process.env.NODE_ENV || 'development';
+
+// If development environment
+if (env === 'development') {
+    require('electron-reload')(__dirname, {
+        electron: path.join(__dirname, 'node_modules', '.bin', 'electron'),
+        hardResetMethod: 'exit'
+    });
+}

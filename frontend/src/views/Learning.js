@@ -349,8 +349,10 @@ function Learning() {
                     </CardHeader>
                     <CardBody>
                         <ul>
+                            {/*TODO: Change this from href to link that changes state instead*/}
                             <li><a href="#">Introduction</a></li>
-                            <li><a href="#passwords">Passwords</a></li>
+                            {/*<li><a href="#passwords">Passwords</a></li>*/}
+                            <a onClick={setSelectedTip(1)}>Passwords</a>
                             <li><a href="#phishing">Phishing</a></li>
                             <li><a href="#social">Social Engineering</a></li>
                             <li><a href="#malware">Malware</a></li>

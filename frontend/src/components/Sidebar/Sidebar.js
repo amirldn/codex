@@ -22,7 +22,7 @@ import { Nav } from "reactstrap";
 // javascript plugin used to create scrollbars on windows
 import PerfectScrollbar from "perfect-scrollbar";
 
-import logo from "logo.svg";
+import logo from "../../assets/img/logo.svg";
 
 var ps;
 
@@ -55,7 +55,7 @@ function Sidebar(props) {
     >
       <div className="logo">
         <a
-          href="http://localhost:3000/"
+          // href="/admin/dashboard"
           className="simple-text logo-mini"
         >
           <div className="logo-img">
@@ -63,7 +63,7 @@ function Sidebar(props) {
           </div>
         </a>
         <a
-          href="http://localhost:3000/"
+          // href="/admin/dashboard"
           className="simple-text logo-normal"
         >
           codex.io
@@ -79,6 +79,7 @@ function Sidebar(props) {
                 }
                 key={key}
               >
+                {/*{console.log(prop.layout + prop.path)}*/}
                 <NavLink
                   to={prop.layout + prop.path}
                   className="nav-link"
