@@ -6,7 +6,7 @@ Invoke-Command -Command { cd C:\codex-windows\frontend\; npm run install }
 Invoke-Command -Command { cd C:\codex-windows\frontend\; npm run build }
 Invoke-Command -Command { cd C:\codex-windows\frontend\; npm run make }
 
-Invoke-Command  -Command { cd C:/codex-windows/startup; Invoke-PS2EXE .\Start-Codex.ps1 ./codex.exe -title 'Codex | Cybersecurity Toolkit' -description 'Codex is a cybersecurity toolkit used to secure your Windows machine and teach you about cybersecurity practices.' -company 'Amir Maula' -copyright 'Amir Maula' -trademark 'Amir Maula' -version '1.0.0' -requireAdmin -noconsole }
+Invoke-Command  -Command { cd C:/codex-windows/startup; Invoke-PS2EXE .\Start-Codex.ps1 ./codex.exe -title 'Codex | Cybersecurity Toolkit' -description 'Codex is a cybersecurity toolkit used to secure your Windows machine and teach you about cybersecurity practices.' -iconfile 'C:/codex-windows/frontend/public/favicon.ico' -company 'Amir Maula' -copyright 'Amir Maula' -trademark 'Amir Maula' -version '1.0.0' -requireAdmin -noconsole }
 
 
 Copy-Item -Recurse -Path C:\codex-windows\frontend\out\codex-io-win32-x64\* -Destination C:\codex-windows\prod\package -Force
