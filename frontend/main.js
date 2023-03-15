@@ -8,6 +8,7 @@ function createWindow() {
     })
 
     win.loadFile('build/index.html')
+    win.setIcon(__dirname + '/favicon.ico')
     win.once('ready-to-show', () => {
         win.webContents.setZoomFactor(0.8);
     });

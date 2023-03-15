@@ -79,6 +79,15 @@ async def run_check_guest():
     return result
 
 
+@router.get("/fix/checkguest",
+            summary="Disables the guest account and fixes Check-GuestAccount check")
+async def run_check_guest():
+    result = pwsh.run_and_return("Fix-GuestAccount.ps1")
+    if 'fault' in result:
+        raise HTTPException(status_code=500, detail=result)
+    return result
+
+
 # Async Runs
 
 @router.post(path="/run/",
