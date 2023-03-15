@@ -95,14 +95,28 @@ async def run_check_guest():
              status_code=201)
 async def run_check(check_name: str):
     if check.exists(check_name):
-        # TODO: Validate OS is able to run check (or maybe we only give the front end checks they can run?)
-        task = create_task.delay(check_name)
+        task = create_task.delay(check_name, "check")
         logging.info(f"New Task Created for {check_name} - ID: {task.id}")
         redisi.set(check_name, task.id)
-        logging.info(f"Task ID {task.id} saved to Redis for {check_name}")
+        logging.info(f"Task ID {task.id} saved to Redis for check: {check_name}")
         return {"task_id": task.id}
     else:
         raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
+
+
+@router.post(path="/fix/",
+             summary="Runs a fix script specified in the request body",
+             status_code=201)
+async def run_check(fix_name: str):
+    if check.fix_exists(fix_name):
+        # TODO: see what .delay is doing here with the fix name (FIX NAME IS API NAME)
+        task = create_task.delay(fix_name, "fix")
+        logging.info(f"New Task Created for {fix_name} - ID: {task.id}")
+        redisi.set(fix_name, task.id)
+        logging.info(f"Task ID {task.id} saved to Redis for fix script: {fix_name}")
+        return {"task_id": task.id}
+    else:
+        raise HTTPException(status_code=422, detail="Fix name does not exist - {}".format(fix_name))
 
 
 @router.get("/id/latest/{check_name}",

@@ -8,6 +8,7 @@
       "icon": "fa fa-terminal",
       "api_name": "testoutput",
       "filename": "Test-Output.ps1",
+      "fix_name": "",
       "category": "Testing",
       "os": [
         "Windows",
@@ -22,6 +23,7 @@
       "icon": "fa fa-flag",
       "api_name": "testflagfileexists",
       "filename": "Test-FlagFileExists.ps1",
+      "fix_name": "",
       "category": "Testing",
       "os": [
         "Windows",
@@ -36,6 +38,7 @@
       "icon": "fa fa-windows",
       "api_name": "checkwindowsupdate",
       "filename": "Check-WindowsUpdate.ps1",
+      "fix_name": "",
       "category": "Patching",
       "os": [
         "Windows"
@@ -50,6 +53,7 @@
       "api_name": "checkwindowsfirewall",
       "filename": "Check-WindowsFirewall.ps1",
       "category": "Security",
+      "fix_name": "",
       "os": [
         "Windows"
       ]
@@ -62,6 +66,7 @@
       "icon": "fa fa-shield",
       "api_name": "checkwindowsdefender",
       "filename": "Check-WindowsDefender.ps1",
+      "fix_name": "",
       "category": "Security",
       "os": [
         "Windows"
@@ -75,6 +80,8 @@
       "icon": "fa fa-user",
       "api_name": "checkguestaccount",
       "filename": "Check-GuestAccount.ps1",
+      "fix_name": "fixguestaccount",
+      "fix_filename": "Fix-GuestAccount.ps1",
       "category": "Security",
       "os": [
         "Windows"
@@ -88,6 +95,7 @@
       "icon": "fa fa-user",
       "api_name": "checkprocessrunningasadmin",
       "filename": "Check-ProcessRunningAsAdmin.ps1",
+      "fix_name": "",
       "category": "Security",
       "os": [
         "Windows"
@@ -101,6 +109,7 @@
       "icon": "fa fa-cog",
       "api_name": "checksoftwareupdate",
       "filename": "Check-SoftwareUpdate.ps1",
+      "fix_name": "",
       "category": "Patching",
       "os": [
         "Windows"
@@ -114,6 +123,7 @@
       "icon": "fa fa-cog",
       "api_name": "testnewfile",
       "filename": "Test-NewFile.ps1",
+      "fix_name": "",
       "category": "Testing",
       "os": [
         "Windows"
@@ -127,12 +137,13 @@
       "icon": "fa fa-cog",
       "api_name": "testoutputslow",
       "filename": "Test-Output.ps1",
+      "fix_name": "",
       "category": "Testing",
       "os": [
         "Windows"
       ]
     },
-        {
+    {
       "id": "11",
       "name": "Check-Disk",
       "friendly_name": "Check Disk",
@@ -140,6 +151,7 @@
       "icon": "fa fa-cog",
       "api_name": "checkdisk",
       "filename": "Check-Disk.ps1",
+      "fix_name": "",
       "category": "Security",
       "os": [
         "Windows"

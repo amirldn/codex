@@ -15,12 +15,22 @@ def exists(check_name: str):
             return True
     return False
 
+def fix_exists(fix_name: str):
+    for check in checks_dict:
+        if check['fix_name'] == fix_name:
+            return True
+    return False
+
 
 # Function that takes api_name and returns the filename
-def get_filename(check_name: str):
+def get_filename(api_name: str, type_of_script: str):
     for check in checks_dict:
-        if check['api_name'] == check_name:
-            return check['filename']
+        if type_of_script == 'check':
+            if check['api_name'] == api_name:
+                return check['filename']
+        elif type_of_script == 'fix':
+            if check['fix_name'] == api_name:
+                return check['fix_filename']
     return None
 
 
