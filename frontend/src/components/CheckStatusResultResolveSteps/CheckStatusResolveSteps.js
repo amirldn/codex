@@ -14,6 +14,8 @@ export default function CheckStatusResolveSteps({props}) {
     // The pagination bar should be hidden if there are no steps to resolve
 
     const [stepView, setStepView] = React.useState(0);
+    const [taskId, setTaskId] = React.useState('');
+    console.log(props)
 
     function updateStep(step) {
         if (step === -2) {
@@ -57,6 +59,17 @@ export default function CheckStatusResolveSteps({props}) {
         }
     }
 
+    function runFix(fix_name) {
+        // Send the data then store the response
+        fetch(("http://127.0.0.1:8000/check/fix/?fix_name=" + fix_name), {
+            method: "POST", headers: {"Content-Type": "application/json"},
+        })
+            .then(response => response.json())
+            .then(data => {
+                setTaskId(data);
+            })
+    }
+
 
     if (props === null) {
         return (<div/>)
@@ -72,13 +85,13 @@ export default function CheckStatusResolveSteps({props}) {
                     <Row style={{'paddingLeft': 'inherit'}}>
                         <Col>
                             <Row style={{'marginLeft': 'auto'}}>
-                                <b >Automated Fix</b>
+                                <b>Automated Fix</b>
                             </Row>
                             <Row className='pl-1'>
                                 <Button className="btn-round" color="info" outline
-                                onClick={console.log('1')}>
-                            <i className="nc-icon nc-check-2"/> Apply Fix
-                        </Button>
+                                        onClick={() => runFix(props.check.fix_name)}>
+                                    <i className="nc-icon nc-check-2"/> Apply Fix
+                                </Button>
 
                             </Row>
                         </Col>

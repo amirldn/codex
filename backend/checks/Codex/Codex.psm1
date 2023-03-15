@@ -26,6 +26,7 @@ function Add-CodexOutput
         "Message" = $Message
         "ResolveSteps" = $ResolveSteps
         "ResolveImg" = $ResolveImg
+        "ResolveScript" = $ResolveScript
     }
     $script:codexOutput += $checkResult
 }

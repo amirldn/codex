@@ -109,7 +109,7 @@ async def run_check(check_name: str):
              status_code=201)
 async def run_check(fix_name: str):
     if check.fix_exists(fix_name):
-        task = create_task.delay((fix_name, "fix"))
+        task = create_task.delay(fix_name, "fix")
         logging.info(f"New Task Created for {fix_name} - ID: {task.id}")
         redisi.set(fix_name, task.id)
         logging.info(f"Task ID {task.id} saved to Redis for fix script: {fix_name}")

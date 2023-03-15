@@ -24,7 +24,8 @@ export default function CheckStatusResult({props}) {
             // Combine props.ResolveSteps with props.ResolveImg
             let resolveProps = {
                 resolveSteps: props.ResolveSteps,
-                resolveImg: props.ResolveImg
+                resolveImg: props.ResolveImg,
+                fixName: props.FixName
             }
             return (<CheckStatusResolveSteps props={resolveProps}/>)
         }

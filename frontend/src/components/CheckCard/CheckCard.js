@@ -8,7 +8,7 @@ export default function CheckCard(props) {
     const [taskId, setTaskId] = React.useState('');
     const [lastRun, setLastRun] = React.useState('N/A');
 
-    function RunCheck(api_name) {
+    function runCheck(api_name) {
         // Send the data then store the response
         fetch(("http://127.0.0.1:8000/check/run/?check_name=" + api_name), {
             method: "POST", headers: {"Content-Type": "application/json"},
@@ -71,7 +71,7 @@ export default function CheckCard(props) {
                     </Col>
                     <Col md="6">
                         <Button className="btn-round" color="success" outline
-                                onClick={() => RunCheck(props.check.api_name)}>
+                                onClick={() => runCheck(props.check.api_name)}>
                             <i className="nc-icon nc-check-2"/> Run Check
                         </Button>
                     </Col>

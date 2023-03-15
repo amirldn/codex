@@ -3,7 +3,6 @@
     <toRun name="api" type="Python.FastAPI" />
     <toRun name="start" type="js.build_tools.npm" />
     <toRun name="Start Celery" type="ShConfigurationType" />
-    <toRun name="Start Celery Flower" type="ShConfigurationType" />
     <toRun name="Start redis" type="ShConfigurationType" />
     <method v="2" />
   </configuration>
