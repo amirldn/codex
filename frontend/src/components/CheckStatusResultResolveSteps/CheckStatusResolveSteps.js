@@ -69,12 +69,23 @@ export default function CheckStatusResolveSteps({props}) {
                     <h5>Steps to Resolve</h5>
                 </CardHeader>
                 <CardBody>
-                    <Row>
-                        <Button
-                            className="btn btn-link rounded" onClick={() => updateStep(-2)}>
-                            Apply Fix
-                        </Button>
+                    <Row style={{'paddingLeft': 'inherit'}}>
                         <Col>
+                            <Row style={{'marginLeft': 'auto'}}>
+                                <b >Automated Fix</b>
+                            </Row>
+                            <Row className='pl-1'>
+                                <Button className="btn-round" color="info" outline
+                                onClick={console.log('1')}>
+                            <i className="nc-icon nc-check-2"/> Apply Fix
+                        </Button>
+
+                            </Row>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+
                             <Col>
                                 <b>Manual Steps</b>
                             </Col>
@@ -85,7 +96,6 @@ export default function CheckStatusResolveSteps({props}) {
                                     {displayImage()}
                                 </CardBody>
                             </Card>
-
                         </Col>
                     </Row>
 
