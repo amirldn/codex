@@ -3,6 +3,7 @@ import {
     Button, Card, CardBody, CardFooter, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row
 } from "reactstrap";
 
+
 import 'animate.css';
 
 export default function CheckStatusResolveSteps({props}) {
@@ -34,9 +35,17 @@ export default function CheckStatusResolveSteps({props}) {
     function displayImage() {
         if (props.resolveImg[stepView]) {
             let imgDir = 'https://i.imgur.com/' + props.resolveImg[stepView]
-            return (<div className="image" style={{height: 'auto'}}>
-                <img src={imgDir} alt=''/>
-            </div>)
+            return (<div className="image"
+                         style={{
+                             height: '100%',
+                             display: 'flex',
+                             alignItems: 'center',
+                             justifyContent: 'center',
+                             maxWidth: '40rem',
+                             paddingBottom: '4rem'
+                         }}>
+                <img src={imgDir} alt='' style={{maxHeight: '100%', maxWidth: '100%'}}/>
+            </div>);
         }
     }
 
@@ -61,44 +70,51 @@ export default function CheckStatusResolveSteps({props}) {
                 </CardHeader>
                 <CardBody>
                     <Row>
+                        <Button
+                            className="btn btn-link rounded" onClick={() => updateStep(-2)}>
+                            Apply Fix
+                        </Button>
                         <Col>
-                            <Row>
-                                <Col>
-                                    <b>Steps</b>
-                                </Col>
-                                <Col>
-                                    <Button
-                                        className="btn btn-link rounded"
-                                        onClick={() => updateStep(-2)}>Apply Fix</Button>
-                                </Col>
-                            </Row>
+                            <Col>
+                                <b>Manual Steps</b>
+                            </Col>
                             <br/>
-                            {displayStepContent()}
-                            {displayImage()}
+                            <Card>
+                                <CardBody>
+                                    {displayStepContent()}
+                                    {displayImage()}
+                                </CardBody>
+                            </Card>
+
                         </Col>
                     </Row>
 
                 </CardBody>
                 <CardFooter>
                     <Row>
-                        <Pagination size={'sm'}>
-                            <PaginationItem>
-                                <PaginationLink previous tag="button"
-                                                onClick={() => updateStep(-1)}>Prev</PaginationLink>
-                            </PaginationItem>
-
-                            {props.resolveSteps.map((step, index) => {
-                                return <PaginationItem key={props.resolveSteps[index]}>
-                                    <PaginationLink tag="button"
-                                                    onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
+                        <Col className="d-flex justify-content-end">
+                            <Pagination size={'sm'}>
+                                {/*TODO: Grey out if at its last step*/}
+                                <PaginationItem>
+                                    <PaginationLink previous tag="button"
+                                                    onClick={() => updateStep(-1)}>Prev</PaginationLink>
                                 </PaginationItem>
-                            })}
-                            <PaginationItem>
-                                <PaginationLink next tag="button" onClick={() => updateStep(-2)}>Next</PaginationLink>
-                            </PaginationItem>
+
+                                {props.resolveSteps.map((step, index) => {
+                                    return <PaginationItem key={props.resolveSteps[index]}>
+                                        <PaginationLink tag="button"
+                                                        onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
+                                    </PaginationItem>
+                                })}
+                                <PaginationItem>
+                                    <PaginationLink next tag="button"
+                                                    onClick={() => updateStep(-2)}>Next</PaginationLink>
+                                </PaginationItem>
 
 
-                        </Pagination>
+                            </Pagination>
+                        </Col>
+
                     </Row>
                 </CardFooter>
             </Card>
