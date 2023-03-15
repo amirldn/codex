@@ -1,10 +1,120 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     Button, Card, CardBody, CardFooter, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row
 } from "reactstrap";
 
 
 import 'animate.css';
+import CheckStatusResult from "../CheckStatusResult/CheckStatusResult";
+import CheckStatusResultError from "../CheckStatusResultError/CheckStatusResultError";
+
+function FixStatus({fixName, taskId}) {
+    const [shouldRefresh, setShouldRefresh] = React.useState(false);
+    const [status, setStatus] = React.useState('');
+
+    const fetchStatus = async () => {
+        if (taskId !== '' && (taskId.hasOwnProperty('task_id'))) {
+            console.log(taskId.hasOwnProperty('task_id'))
+            console.log(taskId)
+            // console.log('fetching status for ' + fixName + ' with: ' + taskId.task_id)
+            const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
+            const data = await response.json();
+            setStatus(data);
+            if (data.task_status === 'PENDING' || status === '') {
+                setShouldRefresh(true);
+            } else {
+                setShouldRefresh(false);
+            }
+        }
+    }
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (shouldRefresh) {
+                fetchStatus();
+            }
+        }, 1000);
+        fetchStatus()
+        return () => clearInterval(interval);
+    }, [shouldRefresh, taskId]);
+
+    if (taskId.hasOwnProperty('detail')) {
+        console.log('taskId returned an error')
+        return (<div>
+                <p><b>Fix Status:</b> <br/>
+                    <b>
+                        <span
+                            className="text-danger animate__animated animate__pulse">
+                            Unknown - Internal Error
+                        </span>
+                    </b>
+                    <br/>
+                    Please try the manual steps below
+                </p>
+
+            </div>
+
+        )
+    }
+
+
+    if (status.task_status === 'PENDING') {
+        return (<div>
+            <p>
+                <b>Fix Status:</b>
+                <br/>
+                <b><span className="text-info animate__animated animate__pulse">{status.task_status}</span>
+                </b>
+            </p>
+        </div>)
+    }
+
+    function displayResult(result) {
+        console.log('display result')
+        console.log(result)
+        if (result.State === "Crit") {
+            return (<div>
+                <p>
+                    <b>
+                        <span
+                            className="text-danger animate__animated animate__pulse">
+                            Error - {result.Message}
+                        </span>
+                    </b>
+                    <br/>
+                    Please try the manual steps below instead.
+                </p>
+                <br/>
+            </div>)
+        }
+        if (result.State === "Ok") {
+            return (<div>
+
+                    <b>
+                        <span
+                            className="text-success animate__animated animate__pulse">
+                            Success - {result.Message}
+                        </span>
+                    </b>
+                <br/>
+                Please refresh the check above.
+                <br/>
+                <br/>
+            </div>)
+
+        }
+    }
+
+    if (status.task_status === 'SUCCESS') {
+        return (<div>
+            <b>Fix Results:</b>
+            {status.task_result.data.map((item) => (displayResult(item)))}
+        </div>)
+    }
+
+
+    return null;
+}
 
 export default function CheckStatusResolveSteps({props}) {
 
@@ -15,6 +125,7 @@ export default function CheckStatusResolveSteps({props}) {
 
     const [stepView, setStepView] = React.useState(0);
     const [taskId, setTaskId] = React.useState('');
+    const [fixApplied, setFixApplied] = React.useState(false);
     console.log(props)
 
     function updateStep(step) {
@@ -61,6 +172,8 @@ export default function CheckStatusResolveSteps({props}) {
 
     function runFix(fix_name) {
         // Send the data then store the response
+        console.log('runFix ran with fix_name: ' + fix_name)
+        setFixApplied(true)
         fetch(("http://127.0.0.1:8000/check/fix/?fix_name=" + fix_name), {
             method: "POST", headers: {"Content-Type": "application/json"},
         })
@@ -70,7 +183,60 @@ export default function CheckStatusResolveSteps({props}) {
             })
     }
 
+    function displayAutomatedFix() {
+        if (props.fixName) {
+            if (fixApplied) {
+                return (<Row style={{'paddingLeft': 'inherit'}}>
+                    <Col>
+                        <Row style={{'marginLeft': 'auto'}}>
+                            <b>Automated Fix</b>
+                        </Row>
+                        <Row className='pl-1'>
+                            <Button className="btn-round" color="success" outline
+                            >
+                                <i className="nc-icon nc-check-2"/> Fix Applied
+                            </Button>
+                        </Row>
+                        <Row>
+                            <FixStatus
+                                fixName={props.fixName}
+                                taskId={taskId}/>
+                        </Row>
+                    </Col>
+                </Row>)
+            }
+            return (<Row style={{'paddingLeft': 'inherit'}}>
+                <Col>
+                    <Row style={{'marginLeft': 'auto'}}>
+                        <b>Automated Fix</b>
+                    </Row>
+                    <Row className='pl-1'>
+                        <Button className="btn-round" color="info" outline
+                                onClick={() => runFix(props.fixName)}>
+                            <i className="nc-icon nc-check-2"/> Apply Fix
+                        </Button>
 
+                    </Row>
+                </Col>
+            </Row>)
+        } else {
+            return (<Row style={{'paddingLeft': 'inherit'}}>
+                <Col>
+                    <Row style={{'marginLeft': 'auto'}}>
+                        <b>Automated Fix</b>
+                    </Row>
+                    <Row className='pl-1'>
+                        <Button className="btn-round" color="disabled" outline
+                        >
+                            None Available
+                        </Button>
+                    </Row>
+                </Col>
+            </Row>)
+        }
+    }
+
+    // Conditional Rendering
     if (props === null) {
         return (<div/>)
     } else {
@@ -82,20 +248,7 @@ export default function CheckStatusResolveSteps({props}) {
                     <h5>Steps to Resolve</h5>
                 </CardHeader>
                 <CardBody>
-                    <Row style={{'paddingLeft': 'inherit'}}>
-                        <Col>
-                            <Row style={{'marginLeft': 'auto'}}>
-                                <b>Automated Fix</b>
-                            </Row>
-                            <Row className='pl-1'>
-                                <Button className="btn-round" color="info" outline
-                                        onClick={() => runFix(props.check.fix_name)}>
-                                    <i className="nc-icon nc-check-2"/> Apply Fix
-                                </Button>
-
-                            </Row>
-                        </Col>
-                    </Row>
+                    {displayAutomatedFix()}
                     <Row>
                         <Col>
 

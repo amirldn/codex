@@ -17,7 +17,9 @@ function Add-CodexOutput
 
         [string[]]$ResolveSteps,
 
-        [string[]]$ResolveImg
+        [string[]]$ResolveImg,
+
+        [string]$ResolveScript
     )
 
     $checkResult = [PSCustomObject]@{

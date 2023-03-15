@@ -25,7 +25,7 @@ export default function CheckStatusResult({props}) {
             let resolveProps = {
                 resolveSteps: props.ResolveSteps,
                 resolveImg: props.ResolveImg,
-                fixName: props.FixName
+                fixName: props.ResolveScript
             }
             return (<CheckStatusResolveSteps props={resolveProps}/>)
         }

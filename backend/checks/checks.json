@@ -8,7 +8,8 @@
       "icon": "fa fa-terminal",
       "api_name": "testoutput",
       "filename": "Test-Output.ps1",
-      "fix_name": "",
+      "fix_name": "fixtestoutput",
+      "fix_filename": "Fix-TestOutput.ps1",
       "category": "Testing",
       "os": [
         "Windows",

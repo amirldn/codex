@@ -8,6 +8,7 @@ Import-Module $modulePath -Force
 # Add some Codex output and display it
 Add-CodexOutput -CheckName "Test_Ok" -State Ok -Message "This is OK test output"
 Add-CodexOutput -CheckName "Test_Warn" -State Warn -Message "This is WARN test output" -ResolveSteps @("Step 1 of resolving","Step 2 of resolving","Step 3 of resolving") -ResolveImg @("t2Eths8.png","","t2Eths8.png")
-Add-CodexOutput -CheckName "Test_Crit" -State Crit -Message "This is CRIT test output"
+Add-CodexOutput -CheckName "Test_Crit" -State Crit -Message "This is CRIT test output" -ResolveSteps @("Step 1 of resolving","Step 2 of resolving","Step 3 of resolving") -ResolveImg @("t2Eths8.png","","t2Eths8.png") -ResolveScript "fixtestoutput"
+Add-CodexOutput -CheckName "Test_Ok" -State Ok -Message "This is another OK test output"
 
 Write-CodexOutput
