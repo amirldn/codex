@@ -2,3 +2,9 @@
 /logs/*
 /frontend/node_modules/
 !/backend/log/codex-api.log
+/frontend/build/
+/backend/codex-api.log
+/frontend/out/make/zip/darwin/arm64/codex-io-darwin-arm64-1.0.0.zip
+/dump.rdb
+/frontend/src/logo-react.svg
+/tests/NewFile.txt
