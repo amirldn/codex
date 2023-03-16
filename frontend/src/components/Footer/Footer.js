@@ -26,11 +26,11 @@ function Footer(props) {
     return (<footer className={"footer" + (props.default ? " footer-default" : "")}>
             <Container fluid={props.fluid ? true : false}>
                 <Row>
-                    <nav className="footer-nav">
+                    <nav className="footer pl-4">
                         <ul>
                             <li>
                                 <div className="logo-img">
-                                    <img src="https://svgshare.com/i/r7L.svg" alt="react-logo"
+                                    <img src="https://i.imgur.com/NZ9guHn.png" alt="react-logo"
                                          style={{'width': '40px'}}/>
                                 </div>
                             </li>
@@ -41,7 +41,7 @@ function Footer(props) {
                             </li>
                         </ul>
                     </nav>
-                    <div className="credits ml-auto">
+                    <div className="credits ml-auto footer">
                         <div className="copyright">
                             &copy; {1900 + new Date().getYear()}, made with{" "}
                             <i className="fa fa-heart heart"/> by Amir Maula

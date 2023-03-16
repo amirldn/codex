@@ -14,7 +14,7 @@ $accounts = Get-LocalUser
 $guest = $accounts | Where-Object { $_.Name -eq 'Guest' }
 if ($guest.Enabled -eq 'True')
 {
-    Add-CodexOutput -CheckName 'Guest is Enabled' -State Warn -Message 'The Guest account on this machine is enabled. This is not inherently a security risk, but it is a potential security risk as it is a default account that could be used by potential attackers if access to the machine is gained.' -ResolveSteps @("Step 1 of resolving guest check","Step 2 of resolving guest check","Step 3 of resolving") -ResolveImg @("t2Eths8.png","","t2Eths8.png") -ResolveScript "fixguestaccount
+    Add-CodexOutput -CheckName 'Guest is Enabled' -State Warn -Message 'The Guest account on this machine is enabled. This is not inherently a security risk, but it is a potential security risk as it is a default account that could be used by potential attackers if access to the machine is gained.' -ResolveSteps @("Step 1 of resolving guest check","Step 2 of resolving guest check","Step 3 of resolving") -ResolveImg @("t2Eths8.png","","t2Eths8.png") -ResolveScript "fixguestaccount"
 }
 else
 {

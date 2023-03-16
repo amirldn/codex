@@ -56,7 +56,7 @@ function Sidebar(props) {
                 className="simple-text logo-mini"
             >
                 <div className="logo-img">
-                    <img src="https://svgshare.com/i/r7L.svg" alt="react-logo"/>
+                    <img src="https://i.imgur.com/NZ9guHn.png" alt="react-logo"/>
                     {/*<img src={logo} alt="react-logo"/>*/}
                 </div>
             </a>
