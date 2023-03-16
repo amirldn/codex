@@ -277,9 +277,34 @@ export default function CheckStatusResolveSteps({props}) {
                                 <b>Manual Steps</b>
                             </Col>
                             <br/>
+                            <Row>
+                                <Col className="d-flex justify-content-start">
+                                    <Pagination size={'sm'}>
+                                        {/*TODO: Grey out if at its last step*/}
+                                        <PaginationItem>
+                                            <PaginationLink previous tag="button"
+                                                            onClick={() => updateStep(-1)}>Prev</PaginationLink>
+                                        </PaginationItem>
+
+                                        {props.resolveSteps.map((step, index) => {
+                                            return <PaginationItem key={props.resolveSteps[index]}>
+                                                <PaginationLink tag="button"
+                                                                onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
+                                            </PaginationItem>
+                                        })}
+                                        <PaginationItem>
+                                            <PaginationLink next tag="button"
+                                                            onClick={() => updateStep(-2)}>Next</PaginationLink>
+                                        </PaginationItem>
+
+
+                                    </Pagination>
+                                </Col>
+
+                            </Row>
                             <Card>
                                 <CardHeader>
-                                    <b>Step {stepView+1}</b>
+                                    <b>Step {stepView + 1}</b>
                                 </CardHeader>
                                 <CardBody>
                                     {displayStepContent()}
@@ -290,33 +315,7 @@ export default function CheckStatusResolveSteps({props}) {
                     </Row>
 
                 </CardBody>
-                <CardFooter>
-                    <Row>
-                        <Col className="d-flex justify-content-end">
-                            <Pagination size={'sm'}>
-                                {/*TODO: Grey out if at its last step*/}
-                                <PaginationItem>
-                                    <PaginationLink previous tag="button"
-                                                    onClick={() => updateStep(-1)}>Prev</PaginationLink>
-                                </PaginationItem>
 
-                                {props.resolveSteps.map((step, index) => {
-                                    return <PaginationItem key={props.resolveSteps[index]}>
-                                        <PaginationLink tag="button"
-                                                        onClick={() => updateStep(index)}>{index + 1}</PaginationLink>
-                                    </PaginationItem>
-                                })}
-                                <PaginationItem>
-                                    <PaginationLink next tag="button"
-                                                    onClick={() => updateStep(-2)}>Next</PaginationLink>
-                                </PaginationItem>
-
-
-                            </Pagination>
-                        </Col>
-
-                    </Row>
-                </CardFooter>
             </Card>
         </div>
     }

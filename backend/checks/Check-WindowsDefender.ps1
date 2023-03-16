@@ -12,7 +12,7 @@ if ($defender.DisableRealtimeMonitoring -eq $false)
 else
 {
     $params = @{
-        "CheckName" = "Windows Defender"
+        "CheckName" = "Windows Defender Real Time Monitoring is Disabled"
         "State" = "Crit"
         "Message" = "Windows Defender is enabled but realtime monitoring is disabled. This means that files will not be scanned as they are created or modified. This is a potential security risk as it means that files could be created or modified by an attacker and then executed without being scanned."
         "ResolveSteps" = @("Search for 'Windows Security' from your start menu and click on it.",
@@ -35,24 +35,59 @@ if ($lastScan.QuickScanEndTime)
 }
 else
 {
-    Add-CodexOutput -CheckName "Windows Defender Last Quick Scan" -State Crit -Message "A Windows Defender scan has never been ran on this system."
-    return
+    $params = @{
+        "CheckName" = "Windows Defender Last Quick Scan"
+        "State" = "Crit"
+        "Message" = "A Windows Defender scan has never been ran on this system. This is a potential security risk as it means that malware could be present on the system without being detected. You should run a scan as soon as possible."
+        "ResolveSteps" = @("Search for 'Windows Security' from your start menu and click on it.",
+        "On the sidebar, click on 'Virus & threat protection'.",
+        "Click the 'Scan now' button next to 'Quick scan'.",
+        "Accept the UAC prompt."
+        )
+        "ResolveImg" = @("WggLeGY.png", "3dbdhuj.png", "1pC9Ug4.png", "5vx4Fu3.png")
+        "ResolveScript" = "fixwindowsdefender"
+    }
+    Add-CodexOutput @params
 }
 if ($lastScan.QuickScanEndTime -lt (Get-Date).AddDays(-7))
 {
 
     if ($lastScan.QuickScanEndTime -lt (Get-Date).AddDays(-30))
     {
-        Add-CodexOutput -CheckName "Windows Defender Last Scan" -State Crit -Message "Windows Defender has not run a scan in over 30 days. $( $lastScanRunString )"
+        $params = @{
+            "CheckName" = "Windows Defender Last Quick Scan"
+            "State" = "Crit"
+            "Message" = "A Windows Defender scan has not been ran in over 30 days. The last run was on $( $lastScanRunString ). Ensuring that scans are ran regularly will help to ensure that your system is protected from malware."
+            "ResolveSteps" = @("Search for 'Windows Security' from your start menu and click on it.",
+            "On the sidebar, click on 'Virus & threat protection'.",
+            "Click the 'Scan now' button next to 'Quick scan'.",
+            "Accept the UAC prompt."
+            )
+            "ResolveImg" = @("WggLeGY.png", "3dbdhuj.png", "1pC9Ug4.png", "5vx4Fu3.png")
+            "ResolveScript" = "fixwindowsdefender"
+        }
+        Add-CodexOutput @params
     }
     else
     {
-        Add-CodexOutput -CheckName "Windows Defender Last Scan" -State Warn -Message "Windows Defender has not run a scan in over 7 days. The last run was on $( $lastScanRunString )"
+        $params = @{
+            "CheckName" = "Windows Defender Last Quick Scan"
+            "State" = "Warn"
+            "Message" = "A Windows Defender scan has not been ran in over 7 days. The last run was on $( $lastScanRunString ). Ensuring that scans are ran regularly will help to ensure that your system is protected from malware"
+            "ResolveSteps" = @("Search for 'Windows Security' from your start menu and click on it.",
+            "On the sidebar, click on 'Virus & threat protection'.",
+            "Click the 'Scan now' button next to 'Quick scan'.",
+            "Accept the UAC prompt."
+            )
+            "ResolveImg" = @("WggLeGY.png", "3dbdhuj.png", "1pC9Ug4.png", "5vx4Fu3.png")
+            "ResolveScript" = "fixwindowsdefender"
+        }
+        Add-CodexOutput @params
     }
 }
 else
 {
-    Add-CodexOutput -CheckName "Windows Defender Last Scan" -State Ok -Message "Windows Defender scan has been run in the last 7 days. $( $lastScanRunString )"
+    Add-CodexOutput -CheckName "Windows Defender Last Scan" -State Ok -Message "A Windows Defender scan was last ran on $( $lastScanRunString ) which is less than 7 days ago. Ensuring that scans are ran regularly will help to ensure that your system is protected from malware."
 }
 
 

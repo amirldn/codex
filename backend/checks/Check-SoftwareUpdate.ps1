@@ -21,11 +21,21 @@ if ($chromeVersionInstalled)
         #   Compare the two versions
         if ($chromeVersionInstalled -ge $chromeVersionLatest)
         {
-            Add-CodexOutput -CheckName 'Google Chrome is up to date' -State Ok -Message "Google Chrome is up to date. Version $chromeVersionInstalled is installed."
+            Add-CodexOutput -CheckName 'Google Chrome is up to date' -State Ok -Message "Google Chrome is up to date. Version $chromeVersionInstalled is installed. Keeping software up to date is important to ensure that you have the latest security patches and bug fixes."
         }
         else
         {
-            Add-CodexOutput -CheckName 'Google Chrome is out of date' -State Warn -Message "Google Chrome is out of date. Version $chromeVersionInstalled is installed but version $chromeVersionLatest is available."
+            $params = @{
+                "CheckName" = "Google Chrome is out of date"
+                "State" = "Warn"
+                "Message" = "Google Chrome is out of date. Version $chromeVersionInstalled is installed but version $chromeVersionLatest is available. Keeping software up to date is important to ensure that you have the latest security patches and bug fixes."
+                "ResolveSteps" = @("Search for 'Google Chrome' from the start menu and click on it.",
+                "Click on the three dots in the top right corner and click 'Settings'.",
+                "Click on 'About Google Chrome' and click 'Relaunch'.")
+                "ResolveImg" = @("fapB8jz.png", "CnmRIak.png", "2CwPTAL.png")
+                "ResolveScript" = ""
+            }
+            Add-CodexOutput @params
         }
     }
     catch
