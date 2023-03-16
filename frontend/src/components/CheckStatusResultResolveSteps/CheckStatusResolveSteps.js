@@ -278,6 +278,9 @@ export default function CheckStatusResolveSteps({props}) {
                             </Col>
                             <br/>
                             <Card>
+                                <CardHeader>
+                                    <b>Step {stepView+1}</b>
+                                </CardHeader>
                                 <CardBody>
                                     {displayStepContent()}
                                     {displayImage()}
