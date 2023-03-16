@@ -216,7 +216,7 @@ $processes = Get-Process -Name "chrome", "firefox", "iexplore", "msedge", "opera
 $processes | ForEach-Object {
     if ($_ | Test-ProcessElevated )
     {
-        Add-CodexOutput -CheckName "$( $_.Name ) running with administrator permissions" -State Crit -Message "$( $_.Name ) is running as admin - this is a security risk as it allows malicious code to take control of your system. This application should generally be run with limited permissions."
+        Add-CodexOutput -CheckName "$( $_.Name ) running with administrator permissions" -State Crit -Message "$( $_.Name ) is running as admin - this is a security risk as it allows malicious code to take control of your system. This application should generally be run with limited permissions." -ResolveSteps @("Close the application and launch $( $_.Name ) again but with limited permissions")
     }
     else
     {

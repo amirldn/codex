@@ -39,7 +39,8 @@
       "icon": "fa fa-windows",
       "api_name": "checkwindowsupdate",
       "filename": "Check-WindowsUpdate.ps1",
-      "fix_name": "",
+      "fix_name": "enablewindowsupdateservice",
+      "fix_filename": "Fix-WindowsUpdateService.ps1",
       "category": "Patching",
       "os": [
         "Windows"
@@ -152,7 +153,8 @@
       "icon": "fa fa-cog",
       "api_name": "checkdisk",
       "filename": "Check-Disk.ps1",
-      "fix_name": "",
+      "fix_name": "enablebitlocker",
+        "fix_filename": "Fix-Bitlocker.ps1",
       "category": "Security",
       "os": [
         "Windows"
