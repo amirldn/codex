@@ -65,10 +65,11 @@
       "name": "Check-WindowsDefender",
       "friendly_name": "Windows Defender",
       "description": "Checks if Windows Defender is enabled. This should be enabled to prevent unauthorized software and malicious programs being installed/ran on your system.",
-      "icon": "fa fa-shield",
+      "icon": "fa-solid fa-pallet",
       "api_name": "checkwindowsdefender",
       "filename": "Check-WindowsDefender.ps1",
-      "fix_name": "",
+      "fix_name": "fixdefenderrealtime",
+      "filename": "Fix-DefenderRealtime.ps1"
       "category": "Security",
       "os": [
         "Windows"
@@ -94,7 +95,7 @@
       "name": "Check-ProcessRunningAsAdmin",
       "friendly_name": "Running Processes (Admin)",
       "description": "Checks if any processes are running as administrator that shouldn't be",
-      "icon": "fa fa-user",
+      "icon": "fa fa-superpowers",
       "api_name": "checkprocessrunningasadmin",
       "filename": "Check-ProcessRunningAsAdmin.ps1",
       "fix_name": "",
@@ -108,7 +109,7 @@
       "name": "Check-SoftwareUpdate",
       "friendly_name": "Software Updates",
       "description": "Checks if software is up to date",
-      "icon": "fa fa-cog",
+      "icon": "fa fa-arrow-up-right-dots",
       "api_name": "checksoftwareupdate",
       "filename": "Check-SoftwareUpdate.ps1",
       "fix_name": "",
@@ -150,11 +151,11 @@
       "name": "Check-Disk",
       "friendly_name": "Check Disk",
       "description": "Checks disk encryption (Bitlocker) and usage",
-      "icon": "fa fa-cog",
+      "icon": "fa fa-hard-drive",
       "api_name": "checkdisk",
       "filename": "Check-Disk.ps1",
       "fix_name": "enablebitlocker",
-        "fix_filename": "Fix-Bitlocker.ps1",
+      "fix_filename": "Fix-Bitlocker.ps1",
       "category": "Security",
       "os": [
         "Windows"

@@ -21,7 +21,7 @@ else
         "Accept the UAC prompt."
         )
         "ResolveImg" = @("WggLeGY.png", "3dbdhuj.png", "kWPJChv.png", "5vx4Fu3.png")
-        "ResolveScript" = "fixwindowsdefender"
+        "ResolveScript" = "fixdefenderrealtime"
     }
     Add-CodexOutput @params
 }
@@ -45,7 +45,7 @@ else
         "Accept the UAC prompt."
         )
         "ResolveImg" = @("WggLeGY.png", "3dbdhuj.png", "1pC9Ug4.png", "5vx4Fu3.png")
-        "ResolveScript" = "fixwindowsdefender"
+        "ResolveScript" = ""
     }
     Add-CodexOutput @params
 }
@@ -64,7 +64,7 @@ if ($lastScan.QuickScanEndTime -lt (Get-Date).AddDays(-7))
             "Accept the UAC prompt."
             )
             "ResolveImg" = @("WggLeGY.png", "3dbdhuj.png", "1pC9Ug4.png", "5vx4Fu3.png")
-            "ResolveScript" = "fixwindowsdefender"
+            "ResolveScript" = ""
         }
         Add-CodexOutput @params
     }
@@ -80,7 +80,7 @@ if ($lastScan.QuickScanEndTime -lt (Get-Date).AddDays(-7))
             "Accept the UAC prompt."
             )
             "ResolveImg" = @("WggLeGY.png", "3dbdhuj.png", "1pC9Ug4.png", "5vx4Fu3.png")
-            "ResolveScript" = "fixwindowsdefender"
+            "ResolveScript" = ""
         }
         Add-CodexOutput @params
     }
