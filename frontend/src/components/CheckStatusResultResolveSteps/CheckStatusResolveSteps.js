@@ -1,6 +1,16 @@
 import React, {useEffect} from "react";
 import {
-    Button, Card, CardBody, CardFooter, CardHeader, Col, Pagination, PaginationItem, PaginationLink, Row
+    Button,
+    Card,
+    CardBody,
+    CardFooter,
+    CardHeader,
+    Col,
+    Pagination,
+    PaginationItem,
+    PaginationLink,
+    Row,
+    UncontrolledTooltip
 } from "reactstrap";
 
 
@@ -90,12 +100,12 @@ function FixStatus({fixName, taskId}) {
         if (result.State === "Ok") {
             return (<div>
 
-                    <b>
+                <b>
                         <span
                             className="text-success animate__animated animate__pulse">
                             Success - {result.Message}
                         </span>
-                    </b>
+                </b>
                 <br/>
                 Please refresh the check above.
                 <br/>
@@ -192,10 +202,15 @@ export default function CheckStatusResolveSteps({props}) {
                             <b>Automated Fix</b>
                         </Row>
                         <Row className='pl-1'>
-                            <Button className="btn-round" color="success" outline
+                            {/*Make a tooltip around the button*/}
+
+                            <Button id='fixAppliedButton' className="btn-round" color="success" outline
                             >
                                 <i className="nc-icon nc-check-2"/> Fix Applied
                             </Button>
+                            <UncontrolledTooltip placement="right" target='fixAppliedButton'>
+                                The fix has already been applied.
+                            </UncontrolledTooltip>
                         </Row>
                         <Row>
                             <FixStatus
@@ -211,7 +226,10 @@ export default function CheckStatusResolveSteps({props}) {
                         <b>Automated Fix</b>
                     </Row>
                     <Row className='pl-1'>
-                        <Button className="btn-round" color="info" outline
+                        <UncontrolledTooltip placement="right" target='applyFixButton'>
+                            Codex can try to automatically resolve the issue. Click to run.
+                        </UncontrolledTooltip>
+                        <Button className="btn-round" color="info" outline id='applyFixButton'
                                 onClick={() => runFix(props.fixName)}>
                             <i className="nc-icon nc-check-2"/> Apply Fix
                         </Button>
@@ -226,7 +244,10 @@ export default function CheckStatusResolveSteps({props}) {
                         <b>Automated Fix</b>
                     </Row>
                     <Row className='pl-1'>
-                        <Button className="btn-round" color="disabled" outline
+                        <UncontrolledTooltip placement="right" target='noFixAvaliable'>
+                            Codex does not have an automated fix for this issue. Please try the manual steps.
+                        </UncontrolledTooltip>
+                        <Button className="btn-round" color="disabled" outline id='noFixAvaliable'
                         >
                             None Available
                         </Button>
