@@ -25,16 +25,6 @@ import {
 
 import CheckCard from "../components/CheckCard/CheckCard";
 
-const CheckListContext = React.createContext({
-    checkList: [], fetchCheckList: () => {
-    }
-})
-
-const CategoryListContext = React.createContext({
-    categoryList: [], fetchCategoryList: () => {
-    }
-})
-
 function Checks() {
 
     // API call to fetch list of checks
@@ -65,50 +55,42 @@ function Checks() {
         console.log("Run all checks")
     }
 
-    return (<>
-        <CheckListContext.Provider value={{checkList, fetchCheckList}}>
-            <CategoryListContext.Provider value={{categoryList, fetchCategoryList}}>
-                <div className="content">
-                    {/*<NotificationAlert ref={notificationAlert}/>*/}
-                    <Row>
-                        <Col md="12">
-                            <Card>
-                                <CardHeader>
-                                    <Row>
-                                        <Col md="10">
-                                            <CardTitle tag="h5">Checks</CardTitle>
-                                            <p>Check the status of your system by running these checks</p>
-                                        </Col>
-                                        <Col md="2">
-                                            <Button className="btn-round" color="primary" outline type="submit"
-                                                    onClick={() => runAllChecks()}>
-                                                <i className="nc-icon nc-spaceship"/> Run All
-                                            </Button>
-                                        </Col>
-                                    </Row>
-                                </CardHeader>
-                                <CardBody>
-                                    {categoryList.map((category, index) => (
-                                        <Card className="card-check m-1" key={index}>
-                                            <CardBody>
-                                                <h5>{category}</h5>
-                                                <Row>
-                                                    {checkList.filter((check) => check.category === category).map((check) => (
-                                                        <CheckCard check={check} key={check.id}/>))}
-                                                </Row>
-                                            </CardBody>
-                                        </Card>))}
+    return (<div className="content">
+        <Row>
+            <Col md="12">
+                <Card>
+                    <CardHeader>
+                        <Row>
+                            <Col md="10">
+                                <CardTitle tag="h5">Checks</CardTitle>
+                                <p>Check the status of your system by running these checks</p>
+                            </Col>
+                            <Col md="2">
+                                <Button className="btn-round" color="primary" outline type="submit"
+                                        onClick={() => runAllChecks()}>
+                                    <i className="nc-icon nc-spaceship"/> Run All
+                                </Button>
+                            </Col>
+                        </Row>
+                    </CardHeader>
+                    <CardBody>
+                        {categoryList.map((category, index) => (<Card className="card-check m-1" key={index}>
+                            <CardBody>
+                                <h5>{category}</h5>
+                                <Row>
+                                    {checkList.filter((check) => check.category === category).map((check) => (
+                                        <CheckCard check={check} key={check.id}/>))}
+                                </Row>
+                            </CardBody>
+                        </Card>))}
 
 
-                                </CardBody>
-                            </Card>
-                        </Col>
-                    </Row>
+                    </CardBody>
+                </Card>
+            </Col>
+        </Row>
 
-                </div>
-            </CategoryListContext.Provider>
-        </CheckListContext.Provider>
-    </>);
+    </div>);
 }
 
 export default Checks;
