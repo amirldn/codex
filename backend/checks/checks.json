@@ -69,7 +69,7 @@
       "api_name": "checkwindowsdefender",
       "filename": "Check-WindowsDefender.ps1",
       "fix_name": "fixdefenderrealtime",
-      "filename": "Fix-DefenderRealtime.ps1"
+      "filename": "Fix-DefenderRealtime.ps1",
       "category": "Security",
       "os": [
         "Windows"

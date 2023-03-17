@@ -86,8 +86,8 @@ function SystemHealthDashCategoryCard({props}) {
                 className="fa fa-question-circle fa text-info"/></h2></Col>)
         }
         if (type === 'Warn') {
-            return (<Col md="2"><i
-                className="fa fa-exclamation-circle fa text-warning"/></Col>)
+            return (<Col md="2"><h2>
+                <i className="fa fa-exclamation-circle fa text-warning"/></h2></Col>)
         }
         if (type === 'Crit') {
             return (<Col md="2"><h2><i
@@ -237,11 +237,11 @@ export default function SystemHealthDash(props) {
     }
 
 
-    function displayCategories(){
+    function displayCategories() {
         // console.log(issueCount)
-        if (!(issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0)){
-           return(
-               <CardFooter>
+        if (!(issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0)) {
+            return (
+                <CardFooter>
                     <hr/>
                     <div className="checkCategories">
                         <Row style={{
@@ -252,7 +252,7 @@ export default function SystemHealthDash(props) {
                         </Row>
                     </div>
                 </CardFooter>
-           )
+            )
         }
     }
 

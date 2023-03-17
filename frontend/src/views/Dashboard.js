@@ -32,17 +32,19 @@ import 'animate.css';
 import SystemHealthDash from "../components/SystemHealthDash/SystemHealthDash";
 
 function Dashboard() {
-    // Check Count
+
+    // Total No of Check Count
     const [checkCount, setCheckCount] = React.useState(0);
 
-    function fetchCheckCount() {
+    function fetchTotalCheckCount() {
+
         fetch('http://127.0.0.1:8000/check/list/length')
             .then(response => response.json())
             .then(data => setCheckCount(data.data));
     }
 
     useEffect(() => {
-        fetchCheckCount();
+        fetchTotalCheckCount();
     }, []);
 
     function displayCheckCount() {
@@ -56,8 +58,31 @@ function Dashboard() {
     }
 
 
+    // Individual Counts
+    const [issueCount, setIssueCount] = React.useState({});
+
+    function fetchIssueCount() {
+        fetch('http://127.0.0.1:8000/check/list/latest/issuetotal')
+            .then(response => response.json())
+            .then(data => setIssueCount(data.data));
+    }
+
+    useEffect(() => {
+        fetchIssueCount();
+    }, []);
 
 
+    function displayIssueCount(type) {
+        if (!issueCount.hasOwnProperty(type)) {
+            console.log('if conditional loading display issue count')
+            return (<div className="spinner-border" role="status">
+
+                <span className="sr-only">Loading...</span>
+            </div>)
+        } else {
+            return (<CardTitle tag="p">{issueCount[type]}</CardTitle>)
+        }
+    }
 
 
     return (<>
@@ -70,13 +95,13 @@ function Dashboard() {
                             <Row>
                                 <Col md="4" xs="5">
                                     <div className="icon-big text-center icon-warning">
-                                        <i className="nc-icon nc-money-coins text-success"/>
+                                        <i className="fa fa-vial-circle-check text-success"/>
                                     </div>
                                 </Col>
                                 <Col md="8" xs="7">
                                     <div className="numbers">
                                         <p className="card-category">Total Ok's</p>
-                                        <CardTitle tag="p">86</CardTitle>
+                                        {displayIssueCount('OK')}
                                         <p/>
                                     </div>
                                 </Col>
@@ -96,13 +121,13 @@ function Dashboard() {
                             <Row>
                                 <Col md="4" xs="5">
                                     <div className="icon-big text-center icon-warning">
-                                        <i className="nc-icon nc-vector text-danger"/>
+                                        <i className="fa fa-triangle-exclamation text-warning"/>
                                     </div>
                                 </Col>
                                 <Col md="8" xs="7">
                                     <div className="numbers">
                                         <p className="card-category">Total Warnings</p>
-                                        <CardTitle tag="p">63</CardTitle>
+                                        {displayIssueCount('Warn')}
                                         <p/>
                                     </div>
                                 </Col>
@@ -122,13 +147,13 @@ function Dashboard() {
                             <Row>
                                 <Col md="4" xs="5">
                                     <div className="icon-big text-center icon-warning">
-                                        <i className="nc-icon nc-favourite-28 text-primary"/>
+                                        <i className="fa fa-bomb" style={{color: '#ef8157'}}></i>
                                     </div>
                                 </Col>
                                 <Col md="8" xs="7">
                                     <div className="numbers">
                                         <p className="card-category">Total Criticals</p>
-                                        <CardTitle tag="p">38</CardTitle>
+                                        {displayIssueCount('Crit')}
                                         <p/>
                                     </div>
                                 </Col>
@@ -142,13 +167,13 @@ function Dashboard() {
                         </CardFooter>
                     </Card>
                 </Col>
-                 <Col lg="3" md="6" sm="6">
+                <Col lg="3" md="6" sm="6">
                     <Card className="card-stats">
                         <CardBody>
                             <Row>
                                 <Col md="4" xs="5">
                                     <div className="icon-big text-center icon-warning">
-                                        <i className="nc-icon nc-globe text-warning"/>
+                                        <i className="fa fa-circle-nodes text-info"/>
                                     </div>
                                 </Col>
                                 <Col md="8" xs="7">
@@ -175,9 +200,7 @@ function Dashboard() {
                     <SystemHealthDash/>
                 </Col>
                 <Col md="12">
-                    {/*<div className={"animate__animated animate__fadeInUp"}>*/}
                     <hr/>
-                    {/*</div>*/}
                     <CyberTip/>
                 </Col>
             </Row>
