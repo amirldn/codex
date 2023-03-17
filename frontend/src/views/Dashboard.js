@@ -48,7 +48,7 @@ function Dashboard() {
     // }, []);
 
     function displayCheckCount() {
-        console.log(checkCount)
+        // console.log(checkCount)
         let total = issueCount['OK'] + issueCount['Warn'] + issueCount['Crit']
         if (!issueCount.hasOwnProperty('OK')) {
             return (<div className="spinner-border" role="status">

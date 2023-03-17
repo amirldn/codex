@@ -24,8 +24,8 @@ function FixStatus({fixName, taskId}) {
 
     const fetchStatus = async () => {
         if (taskId !== '' && (taskId.hasOwnProperty('task_id'))) {
-            console.log(taskId.hasOwnProperty('task_id'))
-            console.log(taskId)
+            // console.log(taskId.hasOwnProperty('task_id'))
+            // console.log(taskId)
             // console.log('fetching status for ' + fixName + ' with: ' + taskId.task_id)
             const response = await fetch('http://127.0.0.1:8000/check/id/' + taskId.task_id);
             const data = await response.json();
@@ -49,7 +49,7 @@ function FixStatus({fixName, taskId}) {
     }, [shouldRefresh, taskId]);
 
     if (taskId.hasOwnProperty('detail')) {
-        console.log('taskId returned an error')
+        // console.log('taskId returned an error')
         return (<div>
                 <p><b>Fix Status:</b> <br/>
                     <b>
@@ -80,8 +80,8 @@ function FixStatus({fixName, taskId}) {
     }
 
     function displayResult(result) {
-        console.log('display result')
-        console.log(result)
+        // console.log('display result')
+        // console.log(result)
         if (result.State === "Crit") {
             return (<div>
                 <p>
@@ -136,7 +136,7 @@ export default function CheckStatusResolveSteps({props}) {
     const [stepView, setStepView] = React.useState(0);
     const [taskId, setTaskId] = React.useState('');
     const [fixApplied, setFixApplied] = React.useState(false);
-    console.log(props)
+    // console.log(props)
 
     function updateStep(step) {
         if (step === -2) {
@@ -182,7 +182,7 @@ export default function CheckStatusResolveSteps({props}) {
 
     function runFix(fix_name) {
         // Send the data then store the response
-        console.log('runFix ran with fix_name: ' + fix_name)
+        // console.log('runFix ran with fix_name: ' + fix_name)
         setFixApplied(true)
         fetch(("http://127.0.0.1:8000/check/fix/?fix_name=" + fix_name), {
             method: "POST", headers: {"Content-Type": "application/json"},
