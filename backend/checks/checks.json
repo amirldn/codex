@@ -55,7 +55,8 @@
       "api_name": "checkwindowsfirewall",
       "filename": "Check-WindowsFirewall.ps1",
       "category": "Security",
-      "fix_name": "",
+      "fix_name": "fixwindowsfirewall",
+      "fix_filename": "Fix-WindowsFirewall.ps1",
       "os": [
         "Windows"
       ]

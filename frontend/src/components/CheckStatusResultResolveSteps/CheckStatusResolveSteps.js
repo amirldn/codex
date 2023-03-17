@@ -49,13 +49,14 @@ function FixStatus({fixName, taskId}) {
     }, [shouldRefresh, taskId]);
 
     if (taskId.hasOwnProperty('detail')) {
-        // console.log('taskId returned an error')
+        console.log('taskId returned an error')
+        console.log(taskId)
         return (<div>
                 <p><b>Fix Status:</b> <br/>
                     <b>
                         <span
                             className="text-danger animate__animated animate__pulse">
-                            Unknown - Internal Error
+                            Failed - Internal Error Occurred
                         </span>
                     </b>
                     <br/>

@@ -141,7 +141,7 @@ def run_and_return(
     except Exception as e:
         logging.error("pwsh run_and_return exception occurred: {}".format(e))
         error = {"fault": {
-            "brief": "Pwsh Run  ner Non-Zero Error",
+            "brief": "Pwsh Runner Non-Zero Error",
             "stderr": "pwsh run_and_return exception occurred: {}".format(e),
             "stdout": "pwsh run_and_return exception occurred: {}".format(e),
             "code": 1}
