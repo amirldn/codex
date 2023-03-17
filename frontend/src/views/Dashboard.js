@@ -36,24 +36,26 @@ function Dashboard() {
     // Total No of Check Count
     const [checkCount, setCheckCount] = React.useState(0);
 
-    function fetchTotalCheckCount() {
-
-        fetch('http://127.0.0.1:8000/check/list/length')
-            .then(response => response.json())
-            .then(data => setCheckCount(data.data));
-    }
-
-    useEffect(() => {
-        fetchTotalCheckCount();
-    }, []);
+    // function fetchTotalCheckCount() {
+    //
+    //     fetch('http://127.0.0.1:8000/check/list/length')
+    //         .then(response => response.json())
+    //         .then(data => setCheckCount(data.data));
+    // }
+    //
+    // useEffect(() => {
+    //     fetchTotalCheckCount();
+    // }, []);
 
     function displayCheckCount() {
-        if (checkCount === 0) {
+        console.log(checkCount)
+        let total = issueCount['OK'] + issueCount['Warn'] + issueCount['Crit']
+        if (!issueCount.hasOwnProperty('OK')) {
             return (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
             </div>)
         } else {
-            return (<CardTitle tag="p">{checkCount}</CardTitle>)
+            return (<CardTitle tag="p">{total}</CardTitle>)
         }
     }
 
@@ -74,7 +76,6 @@ function Dashboard() {
 
     function displayIssueCount(type) {
         if (!issueCount.hasOwnProperty(type)) {
-            console.log('if conditional loading display issue count')
             return (<div className="spinner-border" role="status">
 
                 <span className="sr-only">Loading...</span>
