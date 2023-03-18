@@ -23,7 +23,11 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
                 textColour = 'text-warning'
             }
         }
-        return (<span className={`statusbar-button-container ${textColour}`}>{overallStatus}</span>)
+        return (<div>
+                <i className={`fa fa-circle ${textColour}`}/>
+           <span className={`statusbar-button-container ${textColour}`}>    {overallStatus}</span>
+        </div>
+            )
     }
 
     const [shouldRefresh, setShouldRefresh] = React.useState(false);
@@ -63,8 +67,9 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
                     Status:
                     <br/>
                     <b>
+                        <i className={`fa fa-circle text-disabled`}/>
                         <span
-                            className="text-disabled animate__animated animate__pulse">Not Ran</span>
+                            className="text-disabled animate__animated animate__pulse">     Not Ran</span>
                     </b>
                 </p>
             </div>)
@@ -110,6 +115,7 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
         return (<div>
                 <p>Status: <br/>
                     <b>
+                        <i className={"fa fa-exclamation-triangle fa-1x fa-fw"} style={{color: '#fbc658'}}/>
                         <span
                             className="text-danger animate__animated animate__pulse">Unknown - Internal Error
                         </span>
