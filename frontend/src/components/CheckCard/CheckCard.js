@@ -7,6 +7,7 @@ import CheckStatus from "../CheckStatus/CheckStatus";
 export default function CheckCard(props) {
     const [taskId, setTaskId] = React.useState('');
     const [lastRun, setLastRun] = React.useState('N/A');
+    const [instanceHasBeenRan, setInstanceHasBeenRan] = React.useState(false);
 
     function runCheck(api_name) {
         // Send the data then store the response
@@ -16,7 +17,10 @@ export default function CheckCard(props) {
             .then(response => response.json())
             .then(data => {
                 setTaskId(data);
-            })
+            }).then(() => {
+            setInstanceHasBeenRan(true);
+        })
+
     }
 
     useEffect(() => {
@@ -80,6 +84,7 @@ export default function CheckCard(props) {
                     check={props.check}
                     taskId={taskId}
                     updateLastRan={updateLastRan}
+                    instanceHasBeenRan={instanceHasBeenRan}
                 />
             </CardBody>
         </Card>

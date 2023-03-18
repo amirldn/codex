@@ -6,9 +6,9 @@ import CheckStatusResult from "../CheckStatusResult/CheckStatusResult";
 import CheckStatusResultError from "../CheckStatusResultError/CheckStatusResultError";
 
 
-export default function CheckStatus({check, taskId, updateLastRan}) {
+export default function CheckStatus({check, taskId, updateLastRan, instanceHasBeenRan}) {
 
-    // console.log('checkstatus called for ' + check.api_name + ' with: ' + taskId.task_id)
+    console.log('checkstatus called for ' + check.api_name + ' with: ' + taskId.task_id)
 
     function GetOverallStatus({results}) {
         let overallStatus = 'Ok'
@@ -29,6 +29,7 @@ export default function CheckStatus({check, taskId, updateLastRan}) {
     const [shouldRefresh, setShouldRefresh] = React.useState(false);
 
     const [status, setStatus] = React.useState('');
+
     const fetchStatus = async () => {
         if (taskId !== '') {
             // console.log('fetching status for ' + check.api_name + ' with: ' + taskId.task_id)
@@ -56,14 +57,29 @@ export default function CheckStatus({check, taskId, updateLastRan}) {
 
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
-        if (status.task_status === 'PENDING') {
+        if (status.task_status === 'PENDING' && instanceHasBeenRan === false) {
             return (<div>
                 <p>
                     Status:
                     <br/>
                     <b>
                         <span
-                            className="text-info animate__animated animate__pulse">{status.task_status}</span>
+                            className="text-disabled animate__animated animate__pulse">Not Ran</span>
+                    </b>
+                </p>
+            </div>)
+        }
+        else if (status.task_status === 'PENDING' && instanceHasBeenRan === true) {
+            return (<div>
+                <p>
+                    Status:
+                    <br/>
+                    <b>
+                        {/*Add a spinner icon*/}
+
+                        <i className="fa fa-spinner fa-spin fa-1x fa-fw"/>
+                        <span
+                            className="text-info animate__animated animate__pulse">   Running...</span>
                     </b>
                 </p>
             </div>)
