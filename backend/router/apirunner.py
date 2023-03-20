@@ -103,9 +103,10 @@ async def run_check(check_name: str):
     else:
         raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
 
+
 @router.post(path="/run/all",
-                summary="Runs all checks",
-                status_code=201)
+             summary="Runs all checks",
+             status_code=201)
 async def run_all_checks():
     task_ids = {}
     logging.info("Run all checks called")
@@ -283,6 +284,32 @@ async def get_check_results():
             except Exception as e:
                 continue
     return {"data": results}
+
+
+# Make a function that iterates through each check and returns the most recent date_done value
+@router.get("/list/latest/lastupdated",
+            summary="Get the date of the last time any check was run",
+            status_code=200)
+async def get_last_updated():
+    results = []
+    checks_dict = check.get_check_list()
+    for checki in checks_dict:
+        check_name = checki['api_name']
+        task_id = redisi.get(check_name)
+        if task_id:
+            task_result = celeryi.AsyncResult(task_id)
+            try:
+                result = {
+                    "task_id": task_id,
+                    "task_status": task_result.status,
+                    "task_result": task_result.result,
+                    "date_done": task_result._cache['date_done']
+                }
+                results.append(result)
+            except Exception as e:
+                continue
+    results.sort(key=lambda x: x['date_done'], reverse=True)
+    return {"data": results[0]['date_done']}
 
 
 @router.get("/list/latest/issuetotal",

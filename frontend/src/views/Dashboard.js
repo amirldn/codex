@@ -111,7 +111,7 @@ function Dashboard() {
                         <CardFooter>
                             <hr/>
                             <div className="stats">
-                                <i className="far fa-calendar"/> Last day
+                                <i className="fa fa-check"/> Successful Checks
                             </div>
                         </CardFooter>
                     </Card>
@@ -137,7 +137,7 @@ function Dashboard() {
                         <CardFooter>
                             <hr/>
                             <div className="stats">
-                                <i className="far fa-clock"/> In the last week
+                                <i className="fa fa-exclamation"/>Cautionary Checks
                             </div>
                         </CardFooter>
                     </Card>
@@ -163,7 +163,7 @@ function Dashboard() {
                         <CardFooter>
                             <hr/>
                             <div className="stats">
-                                <i className="fas fa-sync-alt"/> Update now
+                                <i className="fa fa-xmark"/> Critical Checks
                             </div>
                         </CardFooter>
                     </Card>
@@ -189,7 +189,7 @@ function Dashboard() {
                         <CardFooter>
                             <hr/>
                             <div className="stats">
-                                <i className="fas fa-sync-alt"/> Update Now
+                                <i className="fa fa-layer-group"/> Cumulative Checks
                             </div>
                         </CardFooter>
                     </Card>

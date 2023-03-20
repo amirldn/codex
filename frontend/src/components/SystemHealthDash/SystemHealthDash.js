@@ -150,6 +150,42 @@ export default function SystemHealthDash(props) {
     }, []);
 
 
+    // Latest Run Time
+    const [latestRunTime, setLatestRunTime] = React.useState([]);
+
+    function fetchLatestRunTime() {
+        fetch('http://127.0.0.1:8000/check/list/latest/lastupdated')
+            .then(response => response.json())
+            .then(data => updateLastRan(data.data));
+    }
+
+    useEffect(() => {
+        fetchLatestRunTime();
+    }, []);
+
+    function updateLastRan(date) {
+        let formattedDate;
+        if (date === '') {
+            formattedDate = 'N/A'
+        } else if (date === 'N/A') {
+            formattedDate = 'N/A'
+        } else {
+            const jsDate = new Date(date);
+            formattedDate = jsDate.toLocaleString('en-GB', {
+                day: 'numeric',
+                month: 'short',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: false
+            });
+            formattedDate = formattedDate.replace(',', ' @');
+        }
+        setLatestRunTime(formattedDate);
+    }
+
+
     function displayIssueIcon(type) {
         if (type === 'Warn') {
             return (<Col md="2"><h1 style={{textAlign: "center"}}><i
@@ -205,7 +241,7 @@ export default function SystemHealthDash(props) {
                 <Col md="10">
                     {displayWarnCritText()}
                     <p>On the last run, we saw some issues with your cyber security setup.</p>
-                    <p>Last Run: 12 Sep - 08:38</p>
+                    <p>Last Run: {latestRunTime}</p>
                 </Col>
             </Row>)
         } else if (issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0) {
@@ -240,8 +276,7 @@ export default function SystemHealthDash(props) {
     function displayCategories() {
         // console.log(issueCount)
         if (!(issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0)) {
-            return (
-                <CardFooter>
+            return (<CardFooter>
                     <hr/>
                     <div className="checkCategories">
                         <Row style={{
@@ -251,8 +286,7 @@ export default function SystemHealthDash(props) {
                                 <SystemHealthDashCategoryCard key={category.category} props={category}/>))}
                         </Row>
                     </div>
-                </CardFooter>
-            )
+                </CardFooter>)
         }
     }
 
