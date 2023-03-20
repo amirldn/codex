@@ -61,7 +61,7 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
 
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
-        console.log('status for ' + check.api_name + ' is: ' + status.task_status + ' with: ' + taskId.task_id + ' and instanceHasBeenRan: ' + instanceHasBeenRan)
+        // console.log('status for ' + check.api_name + ' is: ' + status.task_status + ' with: ' + taskId.task_id + ' and instanceHasBeenRan: ' + instanceHasBeenRan)
         if (status.task_status === 'PENDING' && instanceHasBeenRan === false) {
             return (<div>
                 <p>
