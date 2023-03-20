@@ -23,6 +23,14 @@ export default function CheckCard(props) {
 
     }
 
+
+    // When runAll is clicked, get latest taskIds
+    useEffect(() => {
+        getLatest(props.check.api_name);
+        setInstanceHasBeenRan(true);
+    }, [props.taskIdFromRunAll]);
+
+    // On first run, get latest taskIds
     useEffect(() => {
         getLatest(props.check.api_name);
     }, []);
@@ -80,6 +88,7 @@ export default function CheckCard(props) {
                         </Button>
                     </Col>
                 </Row>
+                {console.log("original taskId: " + taskId.task_id + " " + instanceHasBeenRan + " " + props.check.api_name + " new taskID: " + props.taskIdFromRunAll)}
                 <CheckStatus
                     check={props.check}
                     taskId={taskId}

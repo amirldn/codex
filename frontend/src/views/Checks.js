@@ -52,7 +52,6 @@ function Checks() {
     }, [])
 
 
-
     const [runAllTaskIds, setRunAllTaskIds] = React.useState({});
     const fetchRunAllTasksIds = async () => {
         console.log("fetchRunAllTasksIds")
@@ -68,6 +67,7 @@ function Checks() {
     }
 
     const [runAllHappened, setRunAllHappened] = React.useState(false);
+
     function handleRunAll() {
         setRunAllHappened(true)
         fetchRunAllTasksIds()
@@ -76,6 +76,12 @@ function Checks() {
     useEffect(() => {
         console.log("useEffect runAllHappened")
     }, [runAllHappened])
+
+    function getTaskIdForCheck (check) {
+        const checkApiName = check.api_name
+        return runAllTaskIds[checkApiName]
+    }
+
 
     return (<div className="content">
         <Row>
@@ -101,7 +107,7 @@ function Checks() {
                                 <h5>{category}</h5>
                                 <Row>
                                     {checkList.filter((check) => check.category === category).map((check) => (
-                                        <CheckCard check={check} key={check.id} taskIdFromRunAll={runAllHappened}/>))}
+                                        <CheckCard check={check} key={check.id} taskIdFromRunAll={getTaskIdForCheck(check)}/>))}
                                 </Row>
                             </CardBody>
                         </Card>))}
