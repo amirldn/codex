@@ -19,7 +19,9 @@ export default function CheckCard(props) {
                 setTaskId(data);
             }).then(() => {
             setInstanceHasBeenRan(true);
-        })
+        }).then(
+            props.setSomethingChanged(Math.random())
+        )
 
     }
 
@@ -88,12 +90,13 @@ export default function CheckCard(props) {
                         </Button>
                     </Col>
                 </Row>
-                {console.log("original taskId: " + taskId.task_id + " " + instanceHasBeenRan + " " + props.check.api_name + " new taskID: " + props.taskIdFromRunAll)}
+                {/*{console.log("original taskId: " + taskId.task_id + " " + instanceHasBeenRan + " " + props.check.api_name + " new taskID: " + props.taskIdFromRunAll)}*/}
                 <CheckStatus
                     check={props.check}
                     taskId={taskId}
                     updateLastRan={updateLastRan}
                     instanceHasBeenRan={instanceHasBeenRan}
+                    setSomethingChanged={props.setSomethingChanged}
                 />
             </CardBody>
         </Card>

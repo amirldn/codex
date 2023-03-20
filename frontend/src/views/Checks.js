@@ -20,10 +20,11 @@
 import React, {useEffect} from "react";
 // reactstrap components
 import {
-    UncontrolledAlert, Alert, Button, Card, CardHeader, CardBody, CardTitle, Row, Col,
+    UncontrolledAlert, Alert, Button, Card, CardHeader, CardBody, CardTitle, Row, Col, UncontrolledTooltip,
 } from "reactstrap";
 
 import CheckCard from "../components/CheckCard/CheckCard";
+import DashboardCard from "../components/DashboardCard/DashboardCard";
 
 function Checks() {
 
@@ -67,6 +68,7 @@ function Checks() {
     }
 
     const [runAllHappened, setRunAllHappened] = React.useState(false);
+    const [somethingChanged, setSomethingChanged] = React.useState('');
 
     function handleRunAll() {
         setRunAllHappened(true)
@@ -74,16 +76,114 @@ function Checks() {
     }
 
     useEffect(() => {
-        console.log("useEffect runAllHappened")
+        // console.log("useEffect runAllHappened")
     }, [runAllHappened])
 
-    function getTaskIdForCheck (check) {
+    function getTaskIdForCheck(check) {
         const checkApiName = check.api_name
         return runAllTaskIds[checkApiName]
     }
 
+    // Individual Counts
+    const [issueCount, setIssueCount] = React.useState({});
+
+    function fetchIssueCount() {
+        fetch('http://127.0.0.1:8000/check/list/latest/issuetotal')
+            .then(response => response.json())
+            .then(data => setIssueCount(data.data));
+    }
+
+    useEffect(() => {
+        fetchIssueCount();
+    }, [runAllHappened, somethingChanged]);
+
+    function displayIssueCount(type) {
+        if (!issueCount.hasOwnProperty(type)) {
+            return (<div className="spinner-border" role="status">
+
+                <span className="sr-only">Loading...</span>
+            </div>)
+        } else {
+            return (<CardTitle tag="p">{issueCount[type]}</CardTitle>)
+        }
+    }
+
+    // Total No of Check Count
+    const [checkCount, setCheckCount] = React.useState(0);
+
+
+    function displayCheckCount() {
+        // console.log(checkCount)
+        let total = issueCount['OK'] + issueCount['Warn'] + issueCount['Crit']
+        if (!issueCount.hasOwnProperty('OK')) {
+            return (<div className="spinner-border" role="status">
+                <span className="sr-only">Loading...</span>
+            </div>)
+        } else {
+            return (<CardTitle tag="p">{total}</CardTitle>)
+        }
+    }
+
+    function displayRunAllButton() {
+        if (runAllHappened) {
+            return (<Button className="btn-round" color="primary" outline type="submit"
+                            onClick={handleRunAll}
+                            id='runAll' disabled>
+                <i className="nc-icon nc-spaceship"/> Run All
+            </Button>)
+        } else {
+            return (<Button className="btn-round" color="primary" outline type="submit"
+                            onClick={handleRunAll}
+                            id='runAll'>
+                <i className="nc-icon nc-spaceship"/> Run All
+            </Button>)
+        }
+    }
+
 
     return (<div className="content">
+        <Row>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'OK'}
+                               icon={'fa fa-vial-circle-check text-success'}
+                               title={'Total Ok\'s'}
+                               issueCountValue={displayIssueCount('OK')}
+                               subtitle={'Successful Checks'}
+                               subtitleIcon={'fa fa-check'}
+                               somethingChanged={somethingChanged}
+                />
+            </Col>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'Warn'}
+                               icon={'fa fa-triangle-exclamation text-warning'}
+                               title={'Total Warnings'}
+                               issueCountValue={displayIssueCount('Warn')}
+                               subtitle={'Cautionary Checks'}
+                               subtitleIcon={'fa fa-exclamation'}
+                               somethingChanged={somethingChanged}
+                />
+            </Col>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'Crit'}
+                               icon={'fa fa-bomb text-danger'}
+                               title={'Total Criticals'}
+                               issueCountValue={displayIssueCount('Crit')}
+                               subtitle={'Critical Checks'}
+                               subtitleIcon={'fa fa-xmark'}
+                               somethingChanged={somethingChanged}
+                />
+            </Col>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'Total'}
+                               icon={'fa fa-circle-nodes text-info'}
+                               title={'Total Checks'}
+                               issueCountValue={displayCheckCount()}
+                               subtitle={'Cumulative Checks'}
+                               subtitleIcon={'fa fa-layer-group'}
+                               somethingChanged={somethingChanged}
+                />
+            </Col>
+        </Row>
         <Row>
             <Col md="12">
                 <Card>
@@ -94,10 +194,10 @@ function Checks() {
                                 <p>Check the status of your system by running these checks</p>
                             </Col>
                             <Col md="2">
-                                <Button className="btn-round" color="primary" outline type="submit"
-                                        onClick={handleRunAll}>
-                                    <i className="nc-icon nc-spaceship"/> Run All
-                                </Button>
+                                <UncontrolledTooltip target={"runAll"} placement='left'>
+                                    Runs all checks on the page
+                                </UncontrolledTooltip>
+                                {displayRunAllButton()}
                             </Col>
                         </Row>
                     </CardHeader>
@@ -107,7 +207,11 @@ function Checks() {
                                 <h5>{category}</h5>
                                 <Row>
                                     {checkList.filter((check) => check.category === category).map((check) => (
-                                        <CheckCard check={check} key={check.id} taskIdFromRunAll={getTaskIdForCheck(check)}/>))}
+                                        <CheckCard check={check}
+                                                   key={check.id}
+                                                   taskIdFromRunAll={getTaskIdForCheck(check)}
+                                                   setSomethingChanged={setSomethingChanged}
+                                        />))}
                                 </Row>
                             </CardBody>
                         </Card>))}

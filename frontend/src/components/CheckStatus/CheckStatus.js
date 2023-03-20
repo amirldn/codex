@@ -6,7 +6,7 @@ import CheckStatusResult from "../CheckStatusResult/CheckStatusResult";
 import CheckStatusResultError from "../CheckStatusResultError/CheckStatusResultError";
 
 
-export default function CheckStatus({check, taskId, updateLastRan, instanceHasBeenRan}) {
+export default function CheckStatus({check, taskId, updateLastRan, instanceHasBeenRan, setSomethingChanged}) {
 
     // console.log('checkstatus called for ' + check.api_name + ' with: ' + taskId.task_id)
 
@@ -45,6 +45,7 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
                 setShouldRefresh(true);
             } else {
                 setShouldRefresh(false);
+                setSomethingChanged(Math.random())
             }
         }
     }
