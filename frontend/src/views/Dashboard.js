@@ -30,22 +30,13 @@ import CyberTip from "../components/CyberTip/CyberTip";
 import 'animate.css';
 
 import SystemHealthDash from "../components/SystemHealthDash/SystemHealthDash";
+import DashboardCard from "../components/DashboardCard/DashboardCard";
 
 function Dashboard() {
 
     // Total No of Check Count
     const [checkCount, setCheckCount] = React.useState(0);
 
-    // function fetchTotalCheckCount() {
-    //
-    //     fetch('http://127.0.0.1:8000/check/list/length')
-    //         .then(response => response.json())
-    //         .then(data => setCheckCount(data.data));
-    // }
-    //
-    // useEffect(() => {
-    //     fetchTotalCheckCount();
-    // }, []);
 
     function displayCheckCount() {
         // console.log(checkCount)
@@ -86,114 +77,42 @@ function Dashboard() {
     }
 
 
-    return (<>
-        <div className="content">
+    return (<div className="content">
             <Row>
 
                 <Col lg="3" md="6" sm="6">
-                    <Card className="card-stats">
-                        <CardBody>
-                            <Row>
-                                <Col md="4" xs="5">
-                                    <div className="icon-big text-center icon-warning">
-                                        <i className="fa fa-vial-circle-check text-success"/>
-                                    </div>
-                                </Col>
-                                <Col md="8" xs="7">
-                                    <div className="numbers">
-                                        <p className="card-category">Total Ok's</p>
-                                        {displayIssueCount('OK')}
-                                        <p/>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </CardBody>
-                        <CardFooter>
-                            <hr/>
-                            <div className="stats">
-                                <i className="fa fa-check"/> Successful Checks
-                            </div>
-                        </CardFooter>
-                    </Card>
+                    <DashboardCard type={'OK'}
+                                   icon={'fa fa-vial-circle-check text-success'}
+                                   title={'Total Ok\'s'}
+                                   issueCountValue={displayIssueCount('OK')}
+                                   subtitle={'Successful Checks'}
+                                   subtitleIcon={'fa fa-check'}/>
                 </Col>
                 <Col lg="3" md="6" sm="6">
-                    <Card className="card-stats">
-                        <CardBody>
-                            <Row>
-                                <Col md="4" xs="5">
-                                    <div className="icon-big text-center icon-warning">
-                                        <i className="fa fa-triangle-exclamation text-warning"/>
-                                    </div>
-                                </Col>
-                                <Col md="8" xs="7">
-                                    <div className="numbers">
-                                        <p className="card-category">Total Warnings</p>
-                                        {displayIssueCount('Warn')}
-                                        <p/>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </CardBody>
-                        <CardFooter>
-                            <hr/>
-                            <div className="stats">
-                                <i className="fa fa-exclamation"/>Cautionary Checks
-                            </div>
-                        </CardFooter>
-                    </Card>
+                    <DashboardCard type={'Warn'}
+                                   icon={'fa fa-triangle-exclamation text-warning'}
+                                   title={'Total Warnings'}
+                                   issueCountValue={displayIssueCount('Warn')}
+                                   subtitle={'Cautionary Checks'}
+                                   subtitleIcon={'fa fa-exclamation'}/>
                 </Col>
                 <Col lg="3" md="6" sm="6">
-                    <Card className="card-stats">
-                        <CardBody>
-                            <Row>
-                                <Col md="4" xs="5">
-                                    <div className="icon-big text-center icon-warning">
-                                        <i className="fa fa-bomb" style={{color: '#ef8157'}}></i>
-                                    </div>
-                                </Col>
-                                <Col md="8" xs="7">
-                                    <div className="numbers">
-                                        <p className="card-category">Total Criticals</p>
-                                        {displayIssueCount('Crit')}
-                                        <p/>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </CardBody>
-                        <CardFooter>
-                            <hr/>
-                            <div className="stats">
-                                <i className="fa fa-xmark"/> Critical Checks
-                            </div>
-                        </CardFooter>
-                    </Card>
+                    <DashboardCard type={'Crit'}
+                                   icon={'fa fa-bomb text-danger'}
+                                   title={'Total Criticals'}
+                                   issueCountValue={displayIssueCount('Crit')}
+                                   subtitle={'Critical Checks'}
+                                   subtitleIcon={'fa fa-xmark'}/>
                 </Col>
                 <Col lg="3" md="6" sm="6">
-                    <Card className="card-stats">
-                        <CardBody>
-                            <Row>
-                                <Col md="4" xs="5">
-                                    <div className="icon-big text-center icon-warning">
-                                        <i className="fa fa-circle-nodes text-info"/>
-                                    </div>
-                                </Col>
-                                <Col md="8" xs="7">
-                                    <div className="numbers">
-                                        <p className="card-category">Total Checks</p>
-                                        {displayCheckCount()}
-                                        <p/>
-                                    </div>
-                                </Col>
-                            </Row>
-                        </CardBody>
-                        <CardFooter>
-                            <hr/>
-                            <div className="stats">
-                                <i className="fa fa-layer-group"/> Cumulative Checks
-                            </div>
-                        </CardFooter>
-                    </Card>
+                    <DashboardCard type={'Total'}
+                                   icon={'fa fa-circle-nodes text-info'}
+                                   title={'Total Checks'}
+                                   issueCountValue={displayCheckCount()}
+                                   subtitle={'Cumulative Checks'}
+                                   subtitleIcon={'fa fa-layer-group'}/>
                 </Col>
+
             </Row>
             <Row>
 
@@ -205,8 +124,7 @@ function Dashboard() {
                     <CyberTip/>
                 </Col>
             </Row>
-        </div>
-    </>);
+        </div>);
 }
 
 export default Dashboard;
