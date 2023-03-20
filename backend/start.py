@@ -29,7 +29,7 @@ def start_celery():
     worker = celeryi.Worker(
         include=['backend.runner.tasks'],
         loglevel='INFO',
-        pool='solo',
+        pool='threads',
         without_gossip=True,
         without_mingle=True,
         without_heartbeat=True,

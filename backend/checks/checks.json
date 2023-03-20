@@ -161,6 +161,20 @@
       "os": [
         "Windows"
       ]
+    },
+    {
+      "id": "12",
+        "name": "Check-OpenPorts",
+        "friendly_name": "Check Open Ports",
+        "description": "Checks if any ports are open that could be exploited",
+        "icon": "fa fa-network-wired",
+        "api_name": "checkopenports",
+        "filename": "Check-OpenPorts.ps1",
+        "fix_name": "",
+        "category": "Security",
+        "os": [
+          "Windows"
+        ]
     }
   ]
 }
