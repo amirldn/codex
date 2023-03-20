@@ -70,7 +70,7 @@
       "api_name": "checkwindowsdefender",
       "filename": "Check-WindowsDefender.ps1",
       "fix_name": "fixdefenderrealtime",
-      "filename": "Fix-DefenderRealtime.ps1",
+      "fix_filename": "Fix-DefenderRealtime.ps1",
       "category": "Security",
       "os": [
         "Windows"
@@ -164,17 +164,75 @@
     },
     {
       "id": "12",
-        "name": "Check-OpenPorts",
-        "friendly_name": "Check Open Ports",
-        "description": "Checks if any ports are open that could be exploited - this check may take some time to run",
-        "icon": "fa fa-network-wired",
-        "api_name": "checkopenports",
-        "filename": "Check-OpenPorts.ps1",
-        "fix_name": "",
-        "category": "Security",
-        "os": [
-          "Windows"
-        ]
+      "name": "Check-OpenPorts",
+      "friendly_name": "Check Open Ports",
+      "description": "Checks if any ports are open that could be exploited - this check may take some time to run",
+      "icon": "fa fa-network-wired",
+      "api_name": "checkopenports",
+      "filename": "Check-OpenPorts.ps1",
+      "fix_name": "",
+      "category": "Security",
+      "os": [
+        "Windows"
+      ]
+    },
+    {
+      "id": "13",
+      "name": "Check-AppLockerPolicy",
+      "friendly_name": "AppLocker Policy",
+      "description": "Checks if AppLocker is enabled and configured correctly - AppLocker can be used to restrict applications from untrusted developers from running on your system",
+      "icon": "fa fa-lock",
+      "api_name": "checkapplockerpolicy",
+      "filename": "Check-AppLockerPolicy.ps1",
+      "fix_name": "",
+      "category": "Security",
+      "os": [
+        "Windows"
+      ]
+    },
+    {
+      "id": "14",
+      "name": "Check-WebFiltering",
+      "friendly_name": "Web Filtering",
+      "description": "Checks if web filtering is enabled and configured correctly - web filtering can be used to block access to malicious websites and prevent malware infections",
+      "icon": "fa fa-globe",
+      "api_name": "checkwebfiltering",
+      "filename": "Check-WebFiltering.ps1",
+      "fix_name": "fixdefenderhttp",
+      "fix_filename": "Fix-DefenderHTTP.ps1",
+      "category": "Security",
+      "os": [
+        "Windows"
+      ]
+    },
+    {
+      "id": "15",
+      "name": "Check-PasswordPolicy",
+      "friendly_name": "Password Policy",
+      "description": "Checks if the password policy is configured correctly - a strong password policy is a crucial part of ensuring the security of your system",
+      "icon": "fa fa-key",
+      "api_name": "checkpasswordpolicy",
+      "filename": "Check-PasswordPolicy.ps1",
+      "fix_name": "",
+      "category": "Security",
+      "os": [
+        "Windows"
+      ]
+    },
+    {
+      "id": "16",
+      "name": "Check-RemoteDesktop",
+      "friendly_name": "Remote Desktop",
+      "description": "Checks if Remote Desktop is enabled - RDP could provide an attacker access your system remotely",
+      "icon": "fa fa-desktop",
+      "api_name": "checkremotedesktop",
+      "filename": "Check-RemoteDesktop.ps1",
+      "fix_name": "disableremotedesktop",
+      "fix_filename": "Disable-RemoteDesktop.ps1",
+      "category": "Security",
+      "os": [
+        "Windows"
+      ]
     }
   ]
 }
