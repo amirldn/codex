@@ -14,7 +14,7 @@ Import-Module $modulePath -Force
 
 # Check if bitlocker is enabled
 $defender = Get-MpPreference
-if ($defender.DisableHttpParsing -eq $true)
+if ($defender.DisableHttpParsing -eq $false)
 {
     Add-CodexOutput -CheckName "Network Protection" -State Ok -Message "Web filtering is enabled and configured on this system, which blocks access to malicious websites and reduces the risk of malware infections."
 }
