@@ -166,7 +166,7 @@
       "id": "12",
         "name": "Check-OpenPorts",
         "friendly_name": "Check Open Ports",
-        "description": "Checks if any ports are open that could be exploited",
+        "description": "Checks if any ports are open that could be exploited - this check may take some time to run",
         "icon": "fa fa-network-wired",
         "api_name": "checkopenports",
         "filename": "Check-OpenPorts.ps1",
