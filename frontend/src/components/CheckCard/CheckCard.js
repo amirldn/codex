@@ -34,6 +34,7 @@ export default function CheckCard(props) {
 
     // On first run, get latest taskIds
     useEffect(() => {
+        setInstanceHasBeenRan(false)
         getLatest(props.check.api_name);
     }, []);
 

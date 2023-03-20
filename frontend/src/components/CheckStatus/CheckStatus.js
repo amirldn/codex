@@ -24,10 +24,9 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
             }
         }
         return (<div>
-                <i className={`fa fa-circle ${textColour}`}/>
-           <span className={`statusbar-button-container ${textColour}`}>    {overallStatus}</span>
-        </div>
-            )
+            <i className={`fa fa-circle ${textColour}`}/>
+            <span className={`statusbar-button-container ${textColour}`}>    {overallStatus}</span>
+        </div>)
     }
 
     const [shouldRefresh, setShouldRefresh] = React.useState(false);
@@ -62,6 +61,7 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
 
     // If a taskId is present and a status exists, display the status
     if (taskId !== '' && status.task_status) {
+        console.log('status for ' + check.api_name + ' is: ' + status.task_status + ' with: ' + taskId.task_id + ' and instanceHasBeenRan: ' + instanceHasBeenRan)
         if (status.task_status === 'PENDING' && instanceHasBeenRan === false) {
             return (<div>
                 <p>
@@ -74,8 +74,7 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
                     </b>
                 </p>
             </div>)
-        }
-        else if (status.task_status === 'PENDING' && instanceHasBeenRan === true) {
+        } else if (status.task_status === 'PENDING' && instanceHasBeenRan === true) {
             return (<div>
                 <p>
                     Status:
@@ -139,8 +138,16 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
 
 
     // If no status is set
-    return (<div className="animate__animated animate__fadeInUp rounded pt-1 ">
-        <p>Status: <b><span className="text-secondary">Not Run</span></b></p>
+    return (<div>
+        <p>
+            Status:
+            <br/>
+            <b>
+                <i className={`fa fa-circle text-disabled`}/>
+                <span
+                    className="text-disabled animate__animated animate__pulse">     Not Ran</span>
+            </b>
+        </p>
     </div>)
 }
 
