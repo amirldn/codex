@@ -2,6 +2,7 @@ import json
 import os
 import logging
 from backend.router.redisclient import redisi
+
 # from backend.runner.tasks import celeryi
 
 check_json_path = os.path.join(os.path.dirname(__file__), 'checks.json')
@@ -14,6 +15,7 @@ def exists(check_name: str):
         if check['api_name'] == check_name:
             return True
     return False
+
 
 def fix_exists(fix_name: str):
     for check in checks_dict:
@@ -41,8 +43,10 @@ def get_check_list():
 def get_check_count():
     return len(checks_dict)
 
+
 def get_category_list():
     return list(set([check['category'] for check in checks_dict]))
+
 
 #
 # def get_check_latest_results():
@@ -66,3 +70,6 @@ def get_category_list():
 #         if 'fault' in result['task_result']:
 #             total_errors += 1
 #     return total_errors
+
+def get_all_checks():
+    return checks_dict

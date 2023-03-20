@@ -51,9 +51,31 @@ function Checks() {
         fetchCategoryList()
     }, [])
 
-    function runAllChecks() {
-        console.log("Run all checks")
+
+
+    const [runAllTaskIds, setRunAllTaskIds] = React.useState({});
+    const fetchRunAllTasksIds = async () => {
+        console.log("fetchRunAllTasksIds")
+        const response = await fetch('http://127.0.0.1:8000/check/run/all', {
+            method: 'POST', headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        const data = await response.json().then((result) => {
+            setRunAllTaskIds(result.data)
+            console.log(result.data)
+        })
     }
+
+    const [runAllHappened, setRunAllHappened] = React.useState(false);
+    function handleRunAll() {
+        setRunAllHappened(true)
+        fetchRunAllTasksIds()
+    }
+
+    useEffect(() => {
+        console.log("useEffect runAllHappened")
+    }, [runAllHappened])
 
     return (<div className="content">
         <Row>
@@ -67,7 +89,7 @@ function Checks() {
                             </Col>
                             <Col md="2">
                                 <Button className="btn-round" color="primary" outline type="submit"
-                                        onClick={() => runAllChecks()}>
+                                        onClick={handleRunAll}>
                                     <i className="nc-icon nc-spaceship"/> Run All
                                 </Button>
                             </Col>
@@ -79,7 +101,7 @@ function Checks() {
                                 <h5>{category}</h5>
                                 <Row>
                                     {checkList.filter((check) => check.category === category).map((check) => (
-                                        <CheckCard check={check} key={check.id}/>))}
+                                        <CheckCard check={check} key={check.id} taskIdFromRunAll={runAllHappened}/>))}
                                 </Row>
                             </CardBody>
                         </Card>))}

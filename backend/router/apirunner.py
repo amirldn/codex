@@ -103,6 +103,20 @@ async def run_check(check_name: str):
     else:
         raise HTTPException(status_code=422, detail="Check name does not exist - {}".format(check_name))
 
+@router.post(path="/run/all",
+                summary="Runs all checks",
+                status_code=201)
+async def run_all_checks():
+    task_ids = {}
+    logging.info("Run all checks called")
+    for check_object in check.get_all_checks():
+        task = create_task.delay(check_object['api_name'], "check")
+        logging.info(f"New Task Created for {check_object['friendly_name']} - ID: {task.id}")
+        redisi.set(check_object['api_name'], task.id)
+        task_ids[check_object['api_name']] = task.id
+        logging.info(f"Task ID {task.id} saved to Redis for check: {check_object['api_name']}")
+    return {"data": task_ids}
+
 
 @router.post(path="/fix/",
              summary="Runs a fix script specified in the request body",
