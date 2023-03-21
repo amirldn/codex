@@ -28,7 +28,7 @@ import 'animate.css';
 function Learning() {
 
     const tips = [{
-        title: "Introduction", body: (<div>
+        title: "Introduction", icon: "fa fa-info-circle", body: (<div>
             <h6>What is Cybersecurity?</h6>
             <p>Cybersecurity is the practice of protecting your computer, network, and data from
                 unauthorized access or attacks. It is important to keep your computer and network
@@ -58,7 +58,7 @@ function Learning() {
             </p>
         </div>)
     }, {
-        title: "Passwords", body: (<div>
+        title: "Passwords", icon: "fa fa-key", body: (<div>
             <h6>What is a password?</h6>
             <p>A password is a secret word or phrase that allows you to gain access to your account.</p>
             <br/>
@@ -85,7 +85,7 @@ function Learning() {
                 different password for each account.</p>
         </div>)
     }, {
-        title: "Phishing", body: (<div>
+        title: "Phishing", icon: "fa fa-fish", body: (<div>
             <h6>What is phishing?</h6>
             <p>Phishing is a type of cyberattack in which hackers send fake emails or text messages to
                 trick
@@ -106,7 +106,7 @@ function Learning() {
                 never give out your personal information to anyone who calls you.</p>
         </div>)
     }, {
-        title: "Malware", body: (<div>
+        title: "Malware", icon: "fa fa-bug", body: (<div>
             <h6>What is malware?</h6>
             <p>Malware is a type of software that is designed to cause damage to your computer or
                 network.</p>
@@ -124,7 +124,7 @@ function Learning() {
                 or text messages from people you don't know.</p>
         </div>)
     }, {
-        title: "Social Engineering", body: (<div>
+        title: "Social Engineering", icon: "fa fa-user-friends", body: (<div>
             <h6>What is social engineering?</h6>
 
             <p>Social engineering is a type of cyberattack in which hackers use social skills to trick
@@ -146,7 +146,7 @@ function Learning() {
                 click on links or attachments in emails or text messages from people you don't know.</p>
         </div>)
     }, {
-        title: "Ransomware", body: (<div>
+        title: "Ransomware", icon: "fa fa-lock", body: (<div>
             <h6>What is ransomware?</h6>
             <p>Ransomware is a type of malware that locks your computer or network until you pay a
                 ransom.</p>
@@ -167,14 +167,15 @@ function Learning() {
                 text messages from people you don't know.</p>
         </div>)
     }, {
-        title: "Viruses", body: (<div>
+        title: "Viruses", icon: "fa fa-virus", body: (<div>
             <h6>What is a virus?</h6>
             <p>A virus is a type of malware that can replicate itself and spread to other computers
                 and
                 networks.</p>
             <br/>
             <h6>Why is it important?</h6>
-            <p>Viruses can quickly spread across networks (including your own local home environment) and infect other
+            <p>Viruses can quickly spread across networks (including your own local home environment) and infect
+                other
                 devices.
             </p>
             <br/>
@@ -189,7 +190,7 @@ function Learning() {
                 text messages from people you don't know.</p>
         </div>)
     }, {
-        title: "Trojans", body: (<div>
+        title: "Trojans", icon: "fa fa-horse", body: (<div>
             <h6>What is a Trojan?</h6>
             <p>A Trojan is a type of malware that is disguised as a legitimate program. They can be in the form of
                 malware
@@ -222,7 +223,7 @@ function Learning() {
                 the site have provided.</p>
         </div>),
     }, {
-        title: "Spyware", body: (<div>
+        title: "Spyware", icon: "fa fa-eye", body: (<div>
             <h6>What is spyware?</h6>
             <p>Spyware is a type of malware that is designed to collect information about you without your
                 knowledge.</p>
@@ -240,15 +241,17 @@ function Learning() {
                 text messages from people you don't know.</p>
         </div>),
     }, {
-        title: "Adware", body: (<div>
+        title: "Adware", icon: "fa fa-ad", body: (<div>
             <h6>What is adware?</h6>
 
             <p>Adware is a type of malware that is designed to display advertisements on your computer or mobile
                 device.</p>
             <br/>
             <h6>Why is it important?</h6>
-            <p>Adware is important because it means that your device will be constantly fetching adverts and distrupting
-                your experience. It can also lead to slowness on your machine as processing power is spent displaying
+            <p>Adware is important because it means that your device will be constantly fetching adverts and
+                distrupting
+                your experience. It can also lead to slowness on your machine as processing power is spent
+                displaying
                 ads instead of running the applications that you want.</p>
             <br/>
             <h6>How do I avoid adware?</h6>
@@ -257,11 +260,12 @@ function Learning() {
                 avoid
                 adware. You can install an adblocker on your browser or on your device. If you are using a mobile
                 device,
-                you can find one on your device's app store. If you are using a desktop, you can install an adblocker as
+                you can find one on your device's app store. If you are using a desktop, you can install an
+                adblocker as
                 a browser extension.</p>
         </div>),
     }, {
-        title: "Botnet", body: (<div>
+        title: "Botnet", icon: "fa fa-robot", body: (<div>
             <h6>What is a botnet?</h6>
             <p>A botnet is a network of computers that have been infected with malware and are controlled by a
                 hacker.</p>
@@ -274,8 +278,33 @@ function Learning() {
                 links
                 or attachments in emails or text messages from people you don't know. Next, you
                 should
-                never download software from untrusted sources. Having a real-time system scanner is also valuable as it
+                never download software from untrusted sources. Having a real-time system scanner is also valuable
+                as it
                 will be able to scan for suspicious activity on your system.</p>
+        </div>)
+    }, {
+        title: "2 Factor Authentication", icon: "fa fa-shield-alt", body: (<div>
+            <h6>What is 2 Factor Authentication?</h6>
+            <p>2 Factor Authentication is a security feature that requires you to enter a code in
+                addition to
+                your password to gain access to your account. In fact, you may have been using a form of 2FA without
+                knowing it in the form of a credit/debit card. In order to withdraw money from an ATM, you need two
+                forms of authentication, a physical card & a PIN number. There is no 'username' option when
+                withdrawing
+                from an ATM as your identity is resolved from the physical card.</p>
+            <br/>
+            <h6>Why is it important?</h6>
+            <p>2 Factor Authentication is important because it makes it harder for hackers to gain
+                access to
+                your account as they require two forms of authentication to gain entry. It can be a bit of an
+                annoyance
+                to use however it is one of the best forms of security.</p>
+            <br/>
+            <h6>How do I enable 2 Factor Authentication?</h6>
+            <p>2 Factor Authentication is slowly becoming an option on more and more websites. You should enable it
+                where possible, especially on sites that house sensitive data such as emails, social media websites
+                &
+                online storage sites like iCloud. Online banking sites often have these options by default.</p>
         </div>)
     }];
 
@@ -283,43 +312,17 @@ function Learning() {
     const [selectedTip, setSelectedTip] = useState(0);
     const [tipTitle, setTipTitle] = useState(tips[selectedTip].title);
     const [tipBody, setTipBody] = useState(tips[selectedTip].body);
+    const [tipIcon, setTipIcon] = useState(tips[selectedTip].icon);
 
     useEffect(() => {
         setTipTitle(tips[selectedTip].title);
         setTipBody(tips[selectedTip].body);
+        setTipIcon(tips[selectedTip].icon);
     }, [selectedTip]);
 
     function handleTipChange(newValue) {
         setSelectedTip(newValue);
     }
-
-    // useEffect(() => {
-    //     console.log(window.location.href);
-    //     if (window.location.href.includes("passwords")) {
-    //         setSelectedTip(1);
-    //     } else if (window.location.href.includes("phishing")) {
-    //         setSelectedTip(2);
-    //     } else if (window.location.href.includes("malware")) {
-    //         setSelectedTip(3);
-    //     } else if (window.location.href.includes("social")) {
-    //         setSelectedTip(4);
-    //     } else if (window.location.href.includes("ransomware")) {
-    //         setSelectedTip(5);
-    //     } else if (window.location.href.includes("virus")) {
-    //         setSelectedTip(6);
-    //     } else if (window.location.href.includes("trojan")) {
-    //         setSelectedTip(7);
-    //     } else if (window.location.href.includes("spyware")) {
-    //         setSelectedTip(8);
-    //     } else if (window.location.href.includes("adware")) {
-    //         setSelectedTip(9);
-    //     } else if (window.location.href.includes("botnet")) {
-    //         setSelectedTip(10);
-    //     } else {
-    //         setSelectedTip(0);
-    //     }
-    //
-    // }, [window.location.href]);
 
     return (<div className="content">
         <Row>
@@ -350,16 +353,30 @@ function Learning() {
                     <CardBody>
                         <ul>
                             {/*TODO: Change this from href to link that changes state instead*/}
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(0)}>Introduction</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(1)}>Passwords</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(2)}>Phishing</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(4)}>Malware</a></li>
-                           <li><a href="javascript:void(0);" onClick={() => handleTipChange(5)}>Ransomeware</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(6)}>Viruses</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(7)}>Trojan</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(8)}>Spyware</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(9)}>Adware</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(10)}>Botnets</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(0)}><i
+                                className={tips[0].icon}/> Introduction</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(1)}><i
+                                className={tips[1].icon}/> Passwords</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(1)}><i
+                                className={tips[11].icon}/> 2-Factor Authentication</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(2)}><i
+                                className={tips[2].icon}/> Phishing</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(4)}><i
+                                className={tips[3].icon}/> Malware</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(4)}><i
+                                className={tips[4].icon}/> Social Engineering</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(5)}><i
+                                className={tips[5].icon}/> Ransomeware</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(6)}><i
+                                className={tips[6].icon}/> Viruses</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(7)}><i
+                                className={tips[7].icon}/> Trojan</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(8)}><i
+                                className={tips[8].icon}/> Spyware</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(9)}><i
+                                className={tips[9].icon}/> Adware</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(10)}><i
+                                className={tips[10].icon}/> Botnets</a></li>
                         </ul>
                     </CardBody>
                 </Card>
@@ -367,7 +384,7 @@ function Learning() {
             <Col md="9">
                 <Card className="card-user">
                     <CardBody>
-                        <h3>{tipTitle}</h3>
+                        <h3><i className={tipIcon}/> {tipTitle}</h3>
                         {tipBody}
                     </CardBody>
                 </Card>
