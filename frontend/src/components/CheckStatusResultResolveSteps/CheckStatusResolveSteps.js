@@ -137,6 +137,7 @@ export default function CheckStatusResolveSteps({props}) {
     const [stepView, setStepView] = React.useState(0);
     const [taskId, setTaskId] = React.useState('');
     const [fixApplied, setFixApplied] = React.useState(false);
+
     // console.log(props)
 
     function updateStep(step) {
@@ -168,7 +169,12 @@ export default function CheckStatusResolveSteps({props}) {
                              maxWidth: '40rem',
                              paddingBottom: '4rem'
                          }}>
-                <img src={imgDir} alt='' style={{maxHeight: '100%', maxWidth: '100%'}}/>
+                <a target="_blank" href={imgDir}>
+                    <UncontrolledTooltip target='image' placement='bottom'>
+                        Click to view full size
+                    </UncontrolledTooltip>
+                    <img id='image' src={imgDir} alt='' style={{maxHeight: '100%', maxWidth: '100%'}}/>
+                </a>
             </div>);
         }
     }
