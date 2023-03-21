@@ -56,7 +56,8 @@ function SystemHealthDashCategoryCard({props}) {
         }
         // 0 critical issues, 0 warnings, 0 checks that could not be ran
         else {
-            return ('No checks have been found for this category.')
+            // return ('No checks have been found for this category.')
+            return('')
         }
     }
 
@@ -79,7 +80,7 @@ function SystemHealthDashCategoryCard({props}) {
         } else if (statuses.unknown > 0) {
             type = 'Unknown'
         } else {
-            let type = 'Ok'
+            type = 'Ok'
         }
         if (type === 'Unknown') {
             return (<Col md="2"><h2><i
