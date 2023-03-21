@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Button, Card, CardBody, Col, Row} from "reactstrap";
+import {Button, Card, CardBody, Col, Container, Row} from "reactstrap";
 
 import 'animate.css';
 import CheckStatusResult from "../CheckStatusResult/CheckStatusResult";
@@ -103,7 +103,10 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
                 </p>
                 <p><b>Result:</b></p>
                 <br/>
-                {status.task_result.data.map((item) => (<CheckStatusResult props={item} key={item.ID}/>))}
+                <Container style={{overflow: 'scroll', maxHeight: '530px'}}>
+                    {status.task_result.data.map((item) => (<CheckStatusResult props={item} key={item.ID}/>))}
+                </Container>
+
                 {/*{console.log(status)}*/}
             </div>)
         }
