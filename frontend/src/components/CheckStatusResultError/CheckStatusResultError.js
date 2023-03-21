@@ -10,15 +10,16 @@ export default function CheckStatusResultError({props}) {
         <div className="animate__animated animate__fadeInUp rounded p-1">
             <Card className="card-check m-1">
                 <CardHeader>
-                    <Container className="d-flex justify-content-between">
-                        <Button className="btn btn-link rounded"
-                                onClick={toggle}>
-                            <Row>
+                   <Container className="d-flex">
+                    <Button className="btn btn-link rounded"
+                            onClick={toggle}
+                    style={{width: 'inherit'}}>
+                           <Row style={{flexWrap: 'nowrap'}}>
                                 <Col md="1">
                                     <i className="fa fa-question-circle fa-3x text-info"/>
                                 </Col>
-                                <Col md="10">
-                                    <b>Internal Error</b>
+                                <Col md="10" style={{textAlign: 'left', paddingLeft: '2rem'}}>
+                                        <b style={{verticalAlign: 'middle'}}>Internal Error</b>
                                 </Col>
                                 <Col md="1">
                                     <i className="fa fa-chevron-down"/>

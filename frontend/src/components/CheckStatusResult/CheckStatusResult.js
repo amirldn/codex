@@ -23,9 +23,7 @@ export default function CheckStatusResult({props}) {
         if (props.ResolveSteps) {
             // Combine props.ResolveSteps with props.ResolveImg
             let resolveProps = {
-                resolveSteps: props.ResolveSteps,
-                resolveImg: props.ResolveImg,
-                fixName: props.ResolveScript
+                resolveSteps: props.ResolveSteps, resolveImg: props.ResolveImg, fixName: props.ResolveScript
             }
             return (<CheckStatusResolveSteps props={resolveProps}/>)
         }
@@ -35,18 +33,23 @@ export default function CheckStatusResult({props}) {
     return (<div className="animate__animated animate__fadeInUp rounded p-1">
         <Card className="card-check m-1">
             <CardHeader>
-                <Container className="d-flex justify-content-between">
+                <Container className="d-flex">
                     <Button className="btn btn-link rounded"
-                            onClick={toggle}>
+                            onClick={toggle}
+                    style={{width: 'inherit'}}>
                         <Row>
-                            <Col md="1">
-                                <DrawStatusIcon status={props.State}/>
-                            </Col>
-                            <Col md="10">
-                                <b>{props.CheckName}</b>
-                            </Col>
-                            <Col md="1">
-                                <i className="fa fa-chevron-down"/>
+                            <Col>
+                                <Row style={{flexWrap: 'nowrap'}}>
+                                    <Col md="1">
+                                        <DrawStatusIcon status={props.State}/>
+                                    </Col>
+                                    <Col md="10" style={{textAlign: 'left', paddingLeft: '2rem'}}>
+                                        <b style={{verticalAlign: 'middle'}}>{props.CheckName}</b>
+                                    </Col>
+                                    <Col md="1">
+                                        <i className="fa fa-chevron-down"/>
+                                    </Col>
+                                </Row>
                             </Col>
                         </Row>
                     </Button>

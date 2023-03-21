@@ -73,7 +73,7 @@ export default function CheckCard(props) {
 
 
     return (<div className="animate__animated animate__fadeInUp rounded p-1">
-        <Card className="card-check m-1">
+        <Card className="card-check m-1" style={{maxWidth: 'min-content', minWidth: '300px'}}>
             <CardBody>
                 <h5><i className={props.check.icon}/> {props.check.friendly_name}</h5>
                 <i>{props.check.description}</i>
