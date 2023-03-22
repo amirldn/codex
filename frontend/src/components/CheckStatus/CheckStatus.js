@@ -103,7 +103,9 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
                 </p>
                 <p><b>Result:</b></p>
                 <br/>
-                <Container style={{overflow: 'scroll', maxHeight: '530px'}}>
+                <Container style={{
+                    overflowy: 'auto', maxHeight: '530px', overflowx: 'hidden'
+                }}>
                     {status.task_result.data.map((item) => (<CheckStatusResult props={item} key={item.ID}/>))}
                 </Container>
 
