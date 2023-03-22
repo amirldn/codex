@@ -124,17 +124,30 @@ function Checks() {
 
     function displayRunAllButton() {
         if (runAllHappened) {
-            return (<Button className="btn-round" color="primary" outline type="submit"
-                            onClick={handleRunAll}
-                            id='runAll' disabled>
-                <i className="nc-icon nc-spaceship"/> Run All
-            </Button>)
+            return (<div>
+                <UncontrolledTooltip target={'runAll'} placement='left'>
+                    <span>All checks have been ran</span>
+                </UncontrolledTooltip>
+                <Button className="btn-round" color="primary" outline type="submit"
+                        onClick={handleRunAll}
+                        id='runAll' disabled>
+                    <i className="nc-icon nc-spaceship"/> Run All
+                </Button>
+            </div>)
         } else {
-            return (<Button className="btn-round" color="primary" outline type="submit"
-                            onClick={handleRunAll}
-                            id='runAll'>
-                <i className="nc-icon nc-spaceship"/> Run All
-            </Button>)
+            return (<div>
+                <div id='runAll'></div>
+                <UncontrolledTooltip target={'runAllDisabled'} placement='left'>
+                    <span>
+                    Run All Checks
+                    </span>
+                </UncontrolledTooltip>
+                <Button className="btn-round" color="primary" outline type="submit"
+                        onClick={handleRunAll}
+                        id='runAllDisabled'>
+                    <i className="nc-icon nc-spaceship"/> Run All
+                </Button>
+            </div>)
         }
     }
 
@@ -192,9 +205,6 @@ function Checks() {
                                 <p>Check the status of your system by running these checks</p>
                             </Col>
                             <Col md="2">
-                                <UncontrolledTooltip target={"runAll"} placement='left'>
-                                    Runs all checks on the page
-                                </UncontrolledTooltip>
                                 {displayRunAllButton()}
                             </Col>
                         </Row>

@@ -14,7 +14,7 @@ Import-Module $modulePath -Force
 
 # Check if bitlocker is enabled
 $defender = Get-MpPreference
-if ($defender.DisableRealtimeMonitoring -eq $true)
+if ($defender.DisableRealtimeMonitoring -eq $false)
 {
     Add-CodexOutput -CheckName "Windows Defender" -State Ok -Message "Windows Defender is enabled. Realtime monitoring is enabled which will scan files as they are created or modified therefore improving the security of your system."
 }
