@@ -264,7 +264,7 @@ export default function CheckStatusResolveSteps({props}) {
                             >
                                 <i className="nc-icon nc-check-2"/> Fix Applied
                             </Button>
-                            <UncontrolledTooltip placement="right" target='fixAppliedButton'>
+                            <UncontrolledTooltip placement="top" target='fixAppliedButton'>
                                 The fix has already been applied.
                             </UncontrolledTooltip>
                         </Row>
@@ -282,7 +282,7 @@ export default function CheckStatusResolveSteps({props}) {
                         <b>Automated Fix</b>
                     </Row>
                     <Row className='pl-1'>
-                        <UncontrolledTooltip placement="right" target='applyFixButton'>
+                        <UncontrolledTooltip placement="top" target='applyFixButton'>
                             Codex can try to automatically resolve the issue. Click to run.
                         </UncontrolledTooltip>
                         <Button className="btn-round" color="info" outline id='applyFixButton'
@@ -300,7 +300,7 @@ export default function CheckStatusResolveSteps({props}) {
                         <b>Automated Fix</b>
                     </Row>
                     <Row className='pl-1'>
-                        <UncontrolledTooltip placement="right" target='noFixAvaliable'>
+                        <UncontrolledTooltip placement="top" target='noFixAvaliable'>
                             Codex does not have an automated fix for this issue. Please try the manual steps.
                         </UncontrolledTooltip>
                         <Button className="btn-round" color="disabled" outline id='noFixAvaliable'
