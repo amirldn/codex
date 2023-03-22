@@ -57,7 +57,7 @@ function SystemHealthDashCategoryCard({props}) {
         // 0 critical issues, 0 warnings, 0 checks that could not be ran
         else {
             // return ('No checks have been found for this category.')
-            return('')
+            return ('')
         }
     }
 
@@ -101,18 +101,21 @@ function SystemHealthDashCategoryCard({props}) {
     }
 
 
-    return (<Card style={{'marginRight': '2%'}}>
-        <CardBody>
-            <Row>
-                {displayIssueIcon(type)}
-                <Col md="10">
-                    <h2>{props.category}</h2>
-                    <p>{okText()}</p>
-                    <p>{displayIssueText()}</p>
-                </Col>
-            </Row>
-        </CardBody>
-    </Card>)
+    return (// Make the card fill the avaliable space
+        <Card style={{
+            marginRight: '2%', width: '50%'
+        }}>
+            <CardBody>
+                <Row>
+                    {displayIssueIcon(type)}
+                    <Col md="10">
+                        <h2>{props.category}</h2>
+                        <p>{okText()}</p>
+                        <p>{displayIssueText()}</p>
+                    </Col>
+                </Row>
+            </CardBody>
+        </Card>)
 }
 
 export default function SystemHealthDash(props) {
@@ -257,6 +260,19 @@ export default function SystemHealthDash(props) {
                     <p>Take a look at the <a href='/admin/checks/'>checks</a> page to get started.</p>
                 </Col>
             </Row>)
+        } else if (issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK > 0) {
+            return (<Row>
+                <Col md="2">
+                    <h1 style={{textAlign: "center"}}><i
+                        className="fa fa-check-circle fa-2x text-success"/></h1>
+                </Col>
+                <Col md="10">
+                    <h4>Codex found no issues, keep it up!</h4>
+                    <p>It looks like your system is up to date & protected across all Codex checks.</p>
+                    <p>Take a look at the <a href='/admin/learning/'>learning</a> page to improve your cybersecurity
+                        knowledge.</p>
+                </Col>
+            </Row>)
         } else {
             return (<Row>
                 <Col md="2">
@@ -278,16 +294,20 @@ export default function SystemHealthDash(props) {
         // console.log(issueCount)
         if (!(issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0)) {
             return (<CardFooter>
-                    <hr/>
-                    <div className="checkCategories">
-                        <Row style={{
-                            'paddingLeft': '2%', 'flexWrap': 'nowrap'
-                        }}>
-                            {categoryIssueCount.map((category) => (
-                                <SystemHealthDashCategoryCard key={category.category} props={category}/>))}
-                        </Row>
-                    </div>
-                </CardFooter>)
+                <hr/>
+                <div className="checkCategories">
+                    <Row style={{
+                        'display': 'flex',
+                        'justifyContent': 'space-between',
+                        'alignItems': 'center',
+                        'paddingLeft': '2%',
+                        'flexWrap': 'nowrap'
+                    }}>
+                        {categoryIssueCount.map((category) => (
+                            <SystemHealthDashCategoryCard key={category.category} props={category}/>))}
+                    </Row>
+                </div>
+            </CardFooter>)
         }
     }
 

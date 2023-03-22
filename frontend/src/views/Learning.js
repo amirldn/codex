@@ -175,7 +175,13 @@ function Learning() {
             <br/>
             <h6>How do I avoid malware?</h6>
             <p>You should ensure that you have antivirus software installed on your computer that has realtime
-                protection as a feature. Some good recommendations are Avast, AVG, and Malwarebytes.
+                protection as a feature. Some good recommendations are
+                <a href={"https://www.avast.com/en-us/index"}> Avast</a>
+                ,
+                <a href='https://www.malwarebytes.com/'> Malwarebytes</a>
+                , and
+                <a href={"https://www.bitdefender.com/solutions/free.html"}> Bitdefender</a>
+                .
                 You should also ensure that you are using a strong password and that you are not clicking on any
                 suspicious links or attachments in emails or text messages. Avoiding pirated software is
 
@@ -253,133 +259,6 @@ function Learning() {
                 ransomware.
 
             </p>
-        </div>)
-    }, {
-        title: "Viruses", icon: "fa fa-virus", body: (<div>
-            <h6>What is a virus?</h6>
-            <p>A virus is a type of malware that can replicate itself and spread to other computers
-                and
-                networks.</p>
-            <br/>
-            <h6>Why is it important?</h6>
-            <p>Viruses are dangerous because if one machine becomes infected, others in the same network environment are
-                susceptible to infection. When on a large scale, such as a business or school, this can cause severe
-                distruption.
-            </p>
-            <br/>
-            <h6>How do I avoid viruses?</h6>
-            <p>There are a few things you can do to avoid viruses. First, you should never click on
-                links
-                or attachments in emails or text messages from people you don't know. Next, you
-                should
-
-                never download software from untrusted sources. Finally, you should never open emails
-                or
-                text messages from people you don't know.</p>
-        </div>)
-    }, {
-        title: "Trojans", icon: "fa fa-horse", body: (<div>
-            <h6>What is a Trojan?</h6>
-            <p>A Trojan is a type of malware that is disguised as a legitimate program. They can be in the form
-                of
-                malware
-                or a virus.</p>
-            <br/>
-            <h6>Why is it important?</h6>
-            <p>Trojans are important because they can be disguised as legitimate programs and can be difficult
-                to
-                detect.
-                When downloading files or programs from the internet, even a trusted source could become
-                compromised
-                and
-                infect your device with a trojan.
-            </p>
-
-            <br/>
-            <h6>How do I avoid Trojans?</h6>
-            <p>There are a few things you can do to avoid Trojans. First, you should never click on
-                links
-                or attachments in emails or text messages from people you don't know. Next, you
-                should
-                never download software from untrusted sources. You should ensure you have some form of real
-                time
-                malware
-                protection set up on your machine. To go the extra mile, often a website will display the 'hash'
-                of
-                a
-                file
-                which indicates a form of mathematical signature for a file that they have created. After a file
-                has
-                been
-                downloaded, you can generate a mathemtical signature using your file and double check it is the
-                same
-                as
-                what
-                the site have provided.</p>
-        </div>),
-    }, {
-        title: "Spyware", icon: "fa fa-eye", body: (<div>
-            <h6>What is spyware?</h6>
-            <p>Spyware is a type of malware that is designed to collect information about you without your
-                knowledge.</p>
-            <br/>
-            <h6>Why is it important?</h6>
-            <p>Spyware is important because it can collect information about you without your knowledge.</p>
-            <br/>
-            <h6>How do I avoid spyware?</h6>
-            <p>There are a few things you can do to avoid spyware. First, you should never click on
-                links
-                or attachments in emails or text messages from people you don't know. Next, you
-                should
-                never download software from untrusted sources. Finally, you should never open emails
-                or
-                text messages from people you don't know.</p>
-        </div>),
-    }, {
-        title: "Adware", icon: "fa fa-ad", body: (<div>
-            <h6>What is adware?</h6>
-
-            <p>Adware is a type of malware that is designed to display advertisements on your computer or mobile
-                device.</p>
-            <br/>
-            <h6>Why is it important?</h6>
-            <p>Adware is important because it means that your device will be constantly fetching adverts and
-                distrupting
-                your experience. It can also lead to slowness on your machine as processing power is spent
-                displaying
-                ads instead of running the applications that you want.</p>
-            <br/>
-            <h6>How do I avoid adware?</h6>
-            <p>There are a few things you can do to avoid adware. First, you should avoid clicking on links or
-                attachments in emails or text messages from people you don't know. An adblocker is a great way
-                to
-                avoid
-                adware. You can install an adblocker on your browser or on your device. If you are using a
-                mobile
-                device,
-                you can find one on your device's app store. If you are using a desktop, you can install an
-                adblocker as
-                a browser extension.</p>
-        </div>),
-    }, {
-        title: "Botnet", icon: "fa fa-robot", body: (<div>
-            <h6>What is a botnet?</h6>
-            <p>A botnet is a network of computers that have been infected with malware and are controlled by a
-                hacker.</p>
-            <br/>
-            <h6>Why is it important?</h6>
-            <p>Botnets are important because they can be used to launch attacks on other computers and
-                networks.</p>
-            <br/>
-            <h6>How do I avoid botnets?</h6>
-            <p>There are a few things you can do to avoid botnets. First, you should never click on
-                links
-                or attachments in emails or text messages from people you don't know. Next, you
-                should
-                never download software from untrusted sources. Having a real-time system scanner is also
-                valuable
-                as it
-                will be able to scan for suspicious activity on your system.</p>
         </div>)
     }, {
         title: "2 Factor Authentication", icon: "fa fa-shield-alt", body: (<div>
@@ -466,8 +345,8 @@ function Learning() {
                                 className={tips[0].icon}/> Introduction</a></li>
                             <li><a href="javascript:void(0);" onClick={() => handleTipChange(1)}><i
                                 className={tips[1].icon}/> Passwords</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(11)}><i
-                                className={tips[11].icon}/> 2-Factor Authentication</a></li>
+                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(6)}><i
+                                className={tips[6].icon}/> 2-Factor Authentication</a></li>
                             <li><a href="javascript:void(0);" onClick={() => handleTipChange(2)}><i
                                 className={tips[1].icon}/> Phishing</a></li>
                             <li><a href="javascript:void(0);" onClick={() => handleTipChange(3)}><i
@@ -476,16 +355,6 @@ function Learning() {
                                 className={tips[4].icon}/> Social Engineering</a></li>
                             <li><a href="javascript:void(0);" onClick={() => handleTipChange(5)}><i
                                 className={tips[5].icon}/> Ransomeware</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(6)}><i
-                                className={tips[6].icon}/> Viruses</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(7)}><i
-                                className={tips[7].icon}/> Trojan</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(8)}><i
-                                className={tips[8].icon}/> Spyware</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(9)}><i
-                                className={tips[9].icon}/> Adware</a></li>
-                            <li><a href="javascript:void(0);" onClick={() => handleTipChange(10)}><i
-                                className={tips[10].icon}/> Botnets</a></li>
                         </ul>
                     </CardBody>
                 </Card>
