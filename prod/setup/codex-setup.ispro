@@ -14,21 +14,22 @@ WizardBitmap=
 WizardFontColor=0
 
 [FirstMessage]
-
+Welcome to Codex, the helpful cybersecurity toolkit aimed to assist protecting your system from common cybersecurity threats.
 [LastMessage]
-Thank you for installing Codex!
+Thank you for installing Codex! You can launch it by doubling clicking the 'Codex' icon on the desktop.
 
 [LicenseAgreement]
 
 [SetupFiles]
-SourceFolder=C:\codex-windows\prod
+SourceFolder=C:\codex-windows\prod\package
 SpecialFolder=Program Files
 SetupPath=Codex
-SetupFile=C:\codex-windows\codex-setup.exe
+SetupFile=C:\codex-windows\prod\setup\codex-setup.exe
 
 [Shortcuts]
 ProgramGroup=Codex
-codex-io.exe=dm
+codex.exe=dm
+Uninstall.exe=m
 
 [Registry]
 
@@ -36,7 +37,7 @@ codex-io.exe=dm
 OperatingSystem=0
 NetFramework=0
 NetFrameworkLink=http://www.microsoft.com/en-us/download/details.aspx?id=17718
-AdminRights=0
+AdminRights=1
 
 [AfterInstalling]
 Reboot=0
