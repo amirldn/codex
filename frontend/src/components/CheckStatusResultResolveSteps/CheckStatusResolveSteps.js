@@ -200,6 +200,55 @@ export default function CheckStatusResolveSteps({props}) {
             })
     }
 
+    // function displayPaginationButton(typeOfNavButton) {
+    //     if (typeOfNavButton === 'next') {
+    //         if (stepView === props.resolveSteps.length - 1) {
+    //             return (<PaginationLink className="btn-round" color="info" outline
+    //                             disabled>
+    //                 <i className="nc-icon nc-minimal-right"/> Next
+    //             </PaginationLink>)
+    //         }
+    //         return (<Button className="btn-round" color="info" outline
+    //                         onClick={() => updateStep(-2)}>
+    //             <i className="nc-icon nc-minimal-right"/> Next
+    //         </Button>)
+    //     }
+    //     if (typeOfNavButton === 'prev') {
+    //         if (stepView === 0) {
+    //             return (<Button className="btn-round" color="info" outline
+    //                             disabled>
+    //                 <i className="nc-icon nc-minimal-left"/> Prev
+    //             </Button>)
+    //         }
+    //         return (<Button className="btn-round" color="info" outline
+    //                         onClick={() => updateStep(-1)}>
+    //             <i className="nc-icon nc-minimal-left"/> Prev
+    //         </Button>)
+    //     }
+    // }
+
+
+    function displayPaginationButton(typeOfNavButton) {
+        if (typeOfNavButton === 'next') {
+            if (stepView === props.resolveSteps.length - 1) {
+                return (<PaginationLink next tag="button"
+                    ><i className="nc-icon nc-minimal-right"/></PaginationLink>)
+            }
+            return (<PaginationLink next tag="button"
+                                    onClick={() => updateStep(-2)}><i
+                className="nc-icon nc-minimal-right"/></PaginationLink>)
+        }
+        if (typeOfNavButton === 'prev') {
+            if (stepView === 0) {
+                return (<PaginationLink previous tag="button"
+                    ><i className="nc-icon nc-minimal-left"/></PaginationLink>)
+            }
+            return (<PaginationLink previous tag="button"
+                                    onClick={() => updateStep(-1)}><i
+                className="nc-icon nc-minimal-left"/></PaginationLink>)
+        }
+    }
+
     function displayAutomatedFix() {
         if (props.fixName) {
             if (fixApplied) {
@@ -289,8 +338,7 @@ export default function CheckStatusResolveSteps({props}) {
                                     <Pagination size={'sm'}>
                                         {/*TODO: Grey out if at its last step*/}
                                         <PaginationItem>
-                                            <PaginationLink previous tag="button"
-                                                            onClick={() => updateStep(-1)}>Prev</PaginationLink>
+                                            {displayPaginationButton('prev')}
                                         </PaginationItem>
 
                                         {props.resolveSteps.map((step, index) => {
@@ -300,8 +348,7 @@ export default function CheckStatusResolveSteps({props}) {
                                             </PaginationItem>
                                         })}
                                         <PaginationItem>
-                                            <PaginationLink next tag="button"
-                                                            onClick={() => updateStep(-2)}>Next</PaginationLink>
+                                            {displayPaginationButton('next')}
                                         </PaginationItem>
 
 

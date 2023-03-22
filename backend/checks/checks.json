@@ -1,6 +1,37 @@
 {
   "checks": [
     {
+      "id": "1",
+      "name": "Test-Output",
+      "friendly_name": "Test Output",
+      "description": "Tests the output of Codex PowerShell Module",
+      "icon": "fa fa-terminal",
+      "api_name": "testoutput",
+      "filename": "Test-Output.ps1",
+      "fix_name": "fixtestoutput",
+      "fix_filename": "Fix-TestOutput.ps1",
+      "category": "Testing",
+      "os": [
+        "Windows",
+        "MacOS"
+      ]
+    },
+    {
+      "id": "2",
+      "name": "Test-FlagFileExists",
+      "friendly_name": "Test Flag File",
+      "description": "Tests if a flag file exists",
+      "icon": "fa fa-flag",
+      "api_name": "testflagfileexists",
+      "filename": "Test-FlagFileExists.ps1",
+      "fix_name": "",
+      "category": "Testing",
+      "os": [
+        "Windows",
+        "MacOS"
+      ]
+    },
+    {
       "id": "3",
       "name": "Check-WindowsUpdate",
       "friendly_name": "Windows Update",
@@ -84,6 +115,34 @@
       "filename": "Check-SoftwareUpdate.ps1",
       "fix_name": "",
       "category": "Patching",
+      "os": [
+        "Windows"
+      ]
+    },
+    {
+      "id": "9",
+      "name": "Test-NewFile",
+      "friendly_name": "New File",
+      "description": "Creates a new file",
+      "icon": "fa fa-cog",
+      "api_name": "testnewfile",
+      "filename": "Test-NewFile.ps1",
+      "fix_name": "",
+      "category": "Testing",
+      "os": [
+        "Windows"
+      ]
+    },
+    {
+      "id": "10",
+      "name": "Test-OutputSlow",
+      "friendly_name": "Test Output (Slow)",
+      "description": "Test the output of Codex PowerShell Module with a 10 second delay",
+      "icon": "fa fa-cog",
+      "api_name": "testoutputslow",
+      "filename": "Test-Output.ps1",
+      "fix_name": "",
+      "category": "Testing",
       "os": [
         "Windows"
       ]

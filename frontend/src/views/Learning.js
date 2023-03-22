@@ -340,7 +340,6 @@ function Learning() {
                     </CardHeader>
                     <CardBody>
                         <ul>
-                            {/*TODO: Change this from href to link that changes state instead*/}
                             <li><a href="javascript:void(0);" onClick={() => handleTipChange(0)}><i
                                 className={tips[0].icon}/> Introduction</a></li>
                             <li><a href="javascript:void(0);" onClick={() => handleTipChange(1)}><i

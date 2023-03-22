@@ -132,14 +132,6 @@ export default function CheckStatus({check, taskId, updateLastRan, instanceHasBe
     }
 
 
-    // TODO: This component should display the status of the check
-    //  If the check is running, display a loading spinner
-    //  If the check is complete, display the status of the check
-    //  If the check errored, display the error message
-
-    // If no task id is provided, display a message to run the check
-
-
     // If no status is set
     return (<div>
         <p>

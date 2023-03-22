@@ -172,7 +172,6 @@ function Use-CodexModule
         Write-Error "Module $ModuleName is not compatible with this OS ($( Get-CodexOS ))"
     }
 
-    #    TODO: check if module is installed already
 
     # Check if module requires Administrator
     if ($ModuleName -eq 'PSWindowsUpdate')

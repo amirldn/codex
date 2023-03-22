@@ -147,7 +147,6 @@ async def get_latest_task_id(check_name: str):
 def format_celery_status(task_id):
     task_result = celeryi.AsyncResult(task_id)
     if not task_result.status:
-        # TODO: Fix this - don't know why task_result is empty
         raise HTTPException(status_code=500, detail='something went wrong ')
 
     if task_result.status == 'PENDING':
