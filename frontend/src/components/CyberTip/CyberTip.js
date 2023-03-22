@@ -5,11 +5,13 @@ import 'animate.css';
 
 export default function CyberTip(props) {
     const [tip, setTip] = React.useState({});
+    const [animationKey, setAnimationKey] = React.useState(0);
     const fetchTip = async () => {
         const response = await fetch('http://127.0.0.1:8000/cybertip/tip/');
         const data = await response.json();
         setTip(data.data);
     }
+
 
     // TODO: make this refresh the animation too
     // Refresh the component every 10 seconds but make it fetch as soon as it is loaded
@@ -22,7 +24,8 @@ export default function CyberTip(props) {
     }, []);
 
     return (
-        <div className="animate__animated animate__fadeInUp rounded p-1">
+        <div key={tip.title}
+             className="animate__animated animate__headShake p rounded p-1">
             <Card className="card-tip-of-the-day m-1">
                 <CardBody>
                     <h3 style={{'marginBottom' : '2%'}}><i className="nc-icon nc-bulb-63"/> Cyber Tips</h3>

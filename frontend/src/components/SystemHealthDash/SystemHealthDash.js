@@ -234,14 +234,15 @@ export default function SystemHealthDash(props) {
     }
 
     function displayIssueCount() {
-        // TODO: need to update the time
         if (issueCount === []) {
             return (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
             </div>)
         } else if (issueCount.Warn > 0 || issueCount.Crit > 0) {
             return (<Row>
-                {displayIssueIcon('Warn')}
+                <div className='animate__tada animate__animated'>
+                    {displayIssueIcon('Warn')}
+                </div>
                 <Col md="10">
                     {displayWarnCritText()}
                     <p>On the last run, we saw some issues with your cyber security setup.</p>
@@ -262,9 +263,14 @@ export default function SystemHealthDash(props) {
             </Row>)
         } else if (issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK > 0) {
             return (<Row>
+                {/*Make the icon vertically aligned*/}
                 <Col md="2">
-                    <h1 style={{textAlign: "center"}}><i
+
+                    <div className='animate__tada animate__animated animate__delay-2s'>
+                    <h1 style={{textAlign: "center",
+                    paddingTop: '15%'}}><i
                         className="fa fa-check-circle fa-2x text-success"/></h1>
+                    </div>
                 </Col>
                 <Col md="10">
                     <h4>Codex found no issues, keep it up!</h4>
