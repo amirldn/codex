@@ -192,7 +192,10 @@ export default function SystemHealthDash(props) {
 
     function displayIssueIcon(type) {
         if (type === 'Warn') {
-            return (<Col md="2"><h1 style={{textAlign: "center"}}><i
+
+            return (<Col md="2"><h1 style={{
+                textAlign: "center", paddingTop: '15%'
+            }}><i
                 className="fa fa-exclamation-circle fa-2x text-warning"/></h1></Col>)
         }
         if (type === 'Crit') {
@@ -240,7 +243,7 @@ export default function SystemHealthDash(props) {
             </div>)
         } else if (issueCount.Warn > 0 || issueCount.Crit > 0) {
             return (<Row>
-                <div className='animate__tada animate__animated'>
+                <div className='animate__tada animate__animated animate__delay-2s'>
                     {displayIssueIcon('Warn')}
                 </div>
                 <Col md="10">
@@ -252,8 +255,13 @@ export default function SystemHealthDash(props) {
         } else if (issueCount.Warn === 0 && issueCount.Crit === 0 && issueCount.OK === 0) {
             return (<Row>
                 <Col md="2">
-                    <h1 style={{textAlign: "center"}}><i
-                        className="fa fa-exclamation-circle fa-2x text-info"/></h1>
+                    <div className='animate__tada animate__animated animate__delay-2s'>
+                        <h1 style={{
+                            textAlign: "center", paddingTop: '15%'
+                        }}>
+                            <i
+                                className="fa fa-exclamation-circle fa-2x text-info"/></h1>
+                    </div>
                 </Col>
                 <Col md="10">
                     <h4>No Codex checks have been ran</h4>
@@ -267,9 +275,10 @@ export default function SystemHealthDash(props) {
                 <Col md="2">
 
                     <div className='animate__tada animate__animated animate__delay-2s'>
-                    <h1 style={{textAlign: "center",
-                    paddingTop: '15%'}}><i
-                        className="fa fa-check-circle fa-2x text-success"/></h1>
+                        <h1 style={{
+                            textAlign: "center", paddingTop: '15%'
+                        }}>
+                            <i className="fa fa-check-circle fa-2x text-success"/></h1>
                     </div>
                 </Col>
                 <Col md="10">
