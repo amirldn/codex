@@ -232,7 +232,7 @@ export default function CheckStatusResolveSteps({props}) {
         if (typeOfNavButton === 'next') {
             if (stepView === props.resolveSteps.length - 1) {
                 return (<PaginationLink next tag="button"
-                    ><i className="nc-icon nc-minimal-right"/></PaginationLink>)
+                ><i className="nc-icon nc-minimal-right"/></PaginationLink>)
             }
             return (<PaginationLink next tag="button"
                                     onClick={() => updateStep(-2)}><i
@@ -241,7 +241,7 @@ export default function CheckStatusResolveSteps({props}) {
         if (typeOfNavButton === 'prev') {
             if (stepView === 0) {
                 return (<PaginationLink previous tag="button"
-                    ><i className="nc-icon nc-minimal-left"/></PaginationLink>)
+                ><i className="nc-icon nc-minimal-left"/></PaginationLink>)
             }
             return (<PaginationLink previous tag="button"
                                     onClick={() => updateStep(-1)}><i
@@ -336,7 +336,6 @@ export default function CheckStatusResolveSteps({props}) {
                             <Row>
                                 <Col className="d-flex justify-content-start">
                                     <Pagination size={'sm'}>
-                                        {/*TODO: Grey out if at its last step*/}
                                         <PaginationItem>
                                             {displayPaginationButton('prev')}
                                         </PaginationItem>
