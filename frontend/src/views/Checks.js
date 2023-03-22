@@ -100,10 +100,9 @@ function Checks() {
 
     function displayIssueCount(type) {
         if (!issueCount.hasOwnProperty(type)) {
-            return (<div className="spinner-border" role="status">
-
+            return ([Math.random(), (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
-            </div>)
+            </div>)])
         } else {
             return ([Math.random(), (<CardTitle tag="p">{issueCount[type]}</CardTitle>)])
 
@@ -115,9 +114,9 @@ function Checks() {
         // console.log(checkCount)
         let total = issueCount['OK'] + issueCount['Warn'] + issueCount['Crit']
         if (!issueCount.hasOwnProperty('OK')) {
-            return (<div className="spinner-border" role="status">
+            return ([Math.random(), (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
-            </div>)
+            </div>)])
         } else {
             return ([Math.random(), (<CardTitle tag="p">{total}</CardTitle>)])
         }

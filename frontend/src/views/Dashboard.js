@@ -42,9 +42,9 @@ function Dashboard() {
         // console.log(checkCount)
         let total = issueCount['OK'] + issueCount['Warn'] + issueCount['Crit']
         if (!issueCount.hasOwnProperty('OK')) {
-            return (<div className="spinner-border" role="status">
+            return ([Math.random(), (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
-            </div>)
+            </div>)])
         } else {
             return ([Math.random(), (<CardTitle tag="p">{total}</CardTitle>)])
         }
@@ -67,10 +67,9 @@ function Dashboard() {
 
     function displayIssueCount(type) {
         if (!issueCount.hasOwnProperty(type)) {
-            return (<div className="spinner-border" role="status">
-
+            return ([Math.random(), (<div className="spinner-border" role="status">
                 <span className="sr-only">Loading...</span>
-            </div>)
+            </div>)])
         } else {
             return ([Math.random(), (<CardTitle tag="p">{issueCount[type]}</CardTitle>)])
         }
@@ -78,52 +77,52 @@ function Dashboard() {
 
 
     return (<div className="content">
-            <Row>
-                <Col lg="3" md="6" sm="6">
-                    <DashboardCard type={'OK'}
-                                   icon={'fa fa-vial-circle-check text-success'}
-                                   title={'Total Ok\'s'}
-                                   issueCountValue={displayIssueCount('OK')}
-                                   subtitle={'Successful Checks'}
-                                   subtitleIcon={'fa fa-check'}/>
-                </Col>
-                <Col lg="3" md="6" sm="6">
-                    <DashboardCard type={'Warn'}
-                                   icon={'fa fa-triangle-exclamation text-warning'}
-                                   title={'Total Warnings'}
-                                   issueCountValue={displayIssueCount('Warn')}
-                                   subtitle={'Cautionary Checks'}
-                                   subtitleIcon={'fa fa-exclamation'}/>
-                </Col>
-                <Col lg="3" md="6" sm="6">
-                    <DashboardCard type={'Crit'}
-                                   icon={'fa fa-bomb text-danger'}
-                                   title={'Total Criticals'}
-                                   issueCountValue={displayIssueCount('Crit')}
-                                   subtitle={'Critical Checks'}
-                                   subtitleIcon={'fa fa-xmark'}/>
-                </Col>
-                <Col lg="3" md="6" sm="6">
-                    <DashboardCard type={'Total'}
-                                   icon={'fa fa-circle-nodes text-info'}
-                                   title={'Total Checks'}
-                                   issueCountValue={displayCheckCount()}
-                                   subtitle={'Cumulative Checks'}
-                                   subtitleIcon={'fa fa-layer-group'}/>
-                </Col>
+        <Row>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'OK'}
+                               icon={'fa fa-vial-circle-check text-success'}
+                               title={'Total Ok\'s'}
+                               issueCountValue={displayIssueCount('OK')}
+                               subtitle={'Successful Checks'}
+                               subtitleIcon={'fa fa-check'}/>
+            </Col>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'Warn'}
+                               icon={'fa fa-triangle-exclamation text-warning'}
+                               title={'Total Warnings'}
+                               issueCountValue={displayIssueCount('Warn')}
+                               subtitle={'Cautionary Checks'}
+                               subtitleIcon={'fa fa-exclamation'}/>
+            </Col>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'Crit'}
+                               icon={'fa fa-bomb text-danger'}
+                               title={'Total Criticals'}
+                               issueCountValue={displayIssueCount('Crit')}
+                               subtitle={'Critical Checks'}
+                               subtitleIcon={'fa fa-xmark'}/>
+            </Col>
+            <Col lg="3" md="6" sm="6">
+                <DashboardCard type={'Total'}
+                               icon={'fa fa-circle-nodes text-info'}
+                               title={'Total Checks'}
+                               issueCountValue={displayCheckCount()}
+                               subtitle={'Cumulative Checks'}
+                               subtitleIcon={'fa fa-layer-group'}/>
+            </Col>
 
-            </Row>
-            <Row>
+        </Row>
+        <Row>
 
-                <Col md="12">
-                    <SystemHealthDash/>
-                </Col>
-                <Col md="12">
-                    <hr/>
-                    <CyberTip/>
-                </Col>
-            </Row>
-        </div>);
+            <Col md="12">
+                <SystemHealthDash/>
+            </Col>
+            <Col md="12">
+                <hr/>
+                <CyberTip/>
+            </Col>
+        </Row>
+    </div>);
 }
 
 export default Dashboard;
