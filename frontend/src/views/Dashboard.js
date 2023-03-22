@@ -46,7 +46,7 @@ function Dashboard() {
                 <span className="sr-only">Loading...</span>
             </div>)
         } else {
-            return (<CardTitle tag="p">{total}</CardTitle>)
+            return ([Math.random(), (<CardTitle tag="p">{total}</CardTitle>)])
         }
     }
 
@@ -72,7 +72,7 @@ function Dashboard() {
                 <span className="sr-only">Loading...</span>
             </div>)
         } else {
-            return (<CardTitle tag="p">{issueCount[type]}</CardTitle>)
+            return ([Math.random(), (<CardTitle tag="p">{issueCount[type]}</CardTitle>)])
         }
     }
 

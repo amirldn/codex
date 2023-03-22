@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {Button, Card, CardBody, Col, Row} from "reactstrap";
+import {Button, Card, CardBody, Col, Row, UncontrolledTooltip} from "reactstrap";
 
 import 'animate.css';
 import CheckStatus from "../CheckStatus/CheckStatus";
@@ -19,9 +19,7 @@ export default function CheckCard(props) {
                 setTaskId(data);
             }).then(() => {
             setInstanceHasBeenRan(true);
-        }).then(
-            props.setSomethingChanged(Math.random())
-        )
+        }).then(props.setSomethingChanged(Math.random()))
 
     }
 
@@ -85,7 +83,11 @@ export default function CheckCard(props) {
                         </p>
                     </Col>
                     <Col md="6">
-                        <Button className="btn-round" color="success" outline
+                        <UncontrolledTooltip target={props.check.api_name}
+                                             placement='bottom'>
+                            Run this check with Codex
+                        </UncontrolledTooltip>
+                        <Button className="btn-round" color="success" id={props.check.api_name} outline
                                 onClick={() => runCheck(props.check.api_name)}>
                             <i className="nc-icon nc-check-2"/> Run Check
                         </Button>

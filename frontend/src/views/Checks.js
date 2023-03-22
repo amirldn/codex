@@ -20,7 +20,7 @@
 import React, {useEffect} from "react";
 // reactstrap components
 import {
-    UncontrolledAlert, Alert, Button, Card, CardHeader, CardBody, CardTitle, Row, Col, UncontrolledTooltip,
+    Button, Card, CardHeader, CardBody, CardTitle, Row, Col, UncontrolledTooltip,
 } from "reactstrap";
 
 import CheckCard from "../components/CheckCard/CheckCard";
@@ -86,6 +86,7 @@ function Checks() {
 
     // Individual Counts
     const [issueCount, setIssueCount] = React.useState({});
+    const [oldIssueCount, setOldIssueCount] = React.useState({});
 
     function fetchIssueCount() {
         fetch('http://127.0.0.1:8000/check/list/latest/issuetotal')
@@ -104,12 +105,10 @@ function Checks() {
                 <span className="sr-only">Loading...</span>
             </div>)
         } else {
-            return (<CardTitle tag="p">{issueCount[type]}</CardTitle>)
+            return ([Math.random(), (<CardTitle tag="p">{issueCount[type]}</CardTitle>)])
+
         }
     }
-
-    // Total No of Check Count
-    const [checkCount, setCheckCount] = React.useState(0);
 
 
     function displayCheckCount() {
@@ -120,7 +119,7 @@ function Checks() {
                 <span className="sr-only">Loading...</span>
             </div>)
         } else {
-            return (<CardTitle tag="p">{total}</CardTitle>)
+            return ([Math.random(), (<CardTitle tag="p">{total}</CardTitle>)])
         }
     }
 
